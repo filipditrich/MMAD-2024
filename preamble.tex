@@ -1,0 +1,53 @@
+%%%%% Encoding and fonts
+%%%%% ---------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+
+% hyperlinks break on hyphens
+\PassOptionsToPackage{hyphens}{url}
+
+%%%%% Other packages
+%%%%% ----------------------------------------------------------------
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage[labelfont=bf]{caption}
+\newcommand{\sourceDefaultLabel}{Author's elaboration}
+\newcommand{\sourceLabel}{Source:}
+\newcommand{\source}[1][\sourceDefaultLabel]{\caption*{\hfill\footnotesize{\sourceLabel~\textit{#1}}}}
+\usepackage{psfrag}
+\usepackage{fancyvrb}
+\usepackage[numbers]{natbib}
+\usepackage{usebib}
+\usepackage{tikz}
+\usepackage{bbding}
+\usepackage{icomma}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{float}
+\newcommand\foreign[1]{\emph{#1}}
+\usepackage{nameref}
+\newcommand{\fullref}[1]{\textbf{\nameref{#1}}}
+
+%%%%% Color boxes
+%%%%% ---------------------------------------------------------------
+\usepackage{tcolorbox}
+% gray box preset
+\newtcolorbox{gray-box}[1]{colback=gray!5!white,colframe=gray!50!black,title=#1}
+% green box preset
+\newtcolorbox{green-box}[1]{
+    fonttitle=\bfseries,
+    coltitle=black,
+    colframe=blue!20!white,
+    colback=blue!5!white,
+    boxrule=0mm,
+    title=#1
+}
+% answer box
+\newcommand{\answerbox}[1]{
+    \begin{green-box}{\MakeUppercase{\small{Odpověď}}}
+        #1
+    \end{green-box}
+}
+
+\setlength{\parindent}{0pt}
