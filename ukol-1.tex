@@ -1,0 +1,173 @@
+\documentclass[10pt, a4paper]{ReportSheet}
+
+%%%%% Preamble with packages
+%%%%% ---------------------------------------------------------------
+\include{preamble}
+
+%%%%% Hyperlink configuration
+%%%%% ------------------------------------------------------------
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\hypersetup{pdftitle=MMAD - Úkol 1,
+    pdfauthor=Filip Ditrich,
+    ps2pdf,
+    colorlinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfnewwindow,
+    breaklinks
+}
+% make autoref links smaller and bold
+\let\oldautoref\autoref
+\renewcommand{\autoref}[1]{\small\textbf{\oldautoref{#1}}}
+
+%%%%% Figures
+%%%%% ---------------------------------------------------------------
+\newcommand{\FIGDIR}{./assets/figures}
+
+%%%%% Custom commands
+% section with underline
+\newcommand{\uloha}[4]{
+    \section{Úloha #1\hfill\small\normalfont{(#2 body)}}
+    \label{sec:uloha-#1}
+    #3
+    \subsection{Řešení}
+    \label{subsec:uloha-#1-reseni}
+    #4
+    \newpage
+}
+
+\usetikzlibrary{automata, positioning, arrows}
+
+%%%%% Main document
+%%%%% ------------------------------------------------------------
+\begin{document}
+%%% content
+%%% --- title, author, date
+    \title{MMAD - Úkol 1}
+    \author{Filip Ditrich}
+    \date{
+        \footnotesize{
+            \centering{
+                Unicorn University, Prague, Czech Republic\\
+                \today
+            }
+        }
+    }
+    \maketitle
+
+% -- Úloha 1
+    \uloha{1}{3}{
+        Dokažte, že každá ortogonální matice má determinant $\pm 1$.
+    }{
+        ...
+        \answerbox{–}
+    }
+
+% -- Úloha 2
+    \uloha{2}{3}{
+        Pokud mají matice $A$ i $B$ stejná vlastní čísla, platí i, že $A \times B$ mají ty samá vlastní čísla?
+    }{
+        Neplatí. Uvažme matice
+        \begin{equation*}
+            A = \begin{pmatrix}
+                    1 & 0 \\
+                    0 & 2
+            \end{pmatrix}
+            \quad
+            B = \begin{pmatrix}
+                    2 & 0 \\
+                    0 & 1
+            \end{pmatrix}
+        \end{equation*}
+        Obě matice mají stejná vlastní čísla, ale jejich součin
+        \begin{equation*}
+            A \times B = \begin{pmatrix}
+                             2 & 0 \\
+                             0 & 2
+            \end{pmatrix}
+        \end{equation*}
+        již vlastní čísla stejná nemají.
+
+        Kdyby však matice $A$ a $B$ byly navzájem komutativní, tedy $A \times B = B \times A$, pak by platilo, že $A \times B$ mají stejná vlastní čísla jako $B \times A$, protože vlastní čísla matice jsou nezávislá na pořadí násobení.
+
+        \answerbox{Ne, platí pouze v případě, že matice $A$ a $B$ jsou komutativní.}
+    }
+
+% -- Úloha 3
+    \uloha{3}{3}{
+        Rozhodněte, zda je následující matice diagonalizovatelná
+
+        \[
+            A = \begin{pmatrix}
+                    0  & 1 & 2 \\
+                    -4 & 1 & 4 \\
+                    -5 & 1 & 7
+            \end{pmatrix}
+        \]
+    }{
+        ...
+        \answerbox{–}
+    }
+
+% -- Úloha 4
+    \uloha{4}{3}{
+        Nalezněte vlastní vektor příslušný k nejmenšímu a největšímu vlastnímu číslu matice $A$ z předchozího příkladu.
+    }{
+        ...
+        \answerbox{–}
+    }
+
+% -- Úloha 5
+    \uloha{5}{3}{
+        Mějme stálý migrační proces obyvatel mezi Severem, Jihem, Východem a Západem, jehož průběh za 1 rok lze znázornit diagramem níže (desetinná čísla udávají, jaký zlomek populace se za rok přemístí po šipce do jiné oblasti). Na počátku je počet obyvatel ve všech oblastech 10 milionů.
+
+        Jak bude situace rozložení populace vypadat za 10 let od počátku? Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně dlouho sledovat? Využijte libovolný počítačový nástroj a své argumenty podpořte výstupy tohoto nástroje.
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[->, >=stealth', auto, thin, node distance=3cm]
+                \tikzstyle{state}=[circle, thick, draw, minimum size=1cm]
+
+                % States
+                \node[state] (S) {$S$};
+                \node[state] (Z) [below left=of S] {$Z$};
+                \node[state] (J) [below right=of Z] {$J$};
+                \node[state] (V) [above right=of J] {$V$};
+
+                % Paths
+                \draw (Z) edge [loop left] node {0.75} (Z)
+                \draw (Z) edge node {0.25} (S)
+
+                \draw (S) edge [loop above] node {0.75} (S)
+                \draw (S) edge node {0.25} (J)
+
+                \draw (J) edge [loop below] node {0.25} (J)
+                \draw (J) edge node {0.5} (Z)
+                \draw (J) edge node {0.25} (V)
+
+                \draw (V) edge [loop right] node {0.75} (V)
+                \draw (V) edge node {0.25} (J)
+            \end{tikzpicture}
+            \label{fig:population-migration}
+        \end{figure}
+        \source{}
+    }{
+        ...
+        \answerbox{–}
+    }
+
+% -- Úloha 6
+    \uloha{6}{3}{
+        Na adrese \url{https://openmv.net/file/room-temperature.csv} naleznete soubor s daty. Jedná se o simulovaná data měření teploty v místnosti. Data jsou v .csv formátu. Obsahují hlavičku a pět sloupců. V prvním sloupci je datum, v následujících čtyřech sloupcích jsou teploty měření v jednotlivých čtyřech rozích místnosti.
+
+        Celkem je v souboru 144 záznamů měření. Pokud bychom chtěli s takovými daty dále pracovat, kolik hlavních komponent (a jaké) je vhodné zvolit a proč?
+        Využijte SVD rozkladu a libovolného počítačového nástroje a své argumenty podpořte výstupy těchto nástrojů. Nezapomeňte na úvodní transformaci dat.
+    }{
+        ...
+        \answerbox{–}
+    }
+\end{document}
