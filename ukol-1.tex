@@ -115,18 +115,35 @@
                     0 & 1
             \end{pmatrix}
         \end{equation*}
-        Obě matice mají stejná vlastní čísla, ale jejich součin
+        Obě matice mají stejná vlastní čísla:
+        \begin{equation*}
+            \begin{aligned}
+                det(A - \lambda I) &= 0 \Rightarrow (1 - \lambda)(2 - \lambda) = 0 \Rightarrow \lambda_1 = 1, \lambda_2 = 2 \\
+                det(B - \lambda I) &= 0 \Rightarrow (2 - \lambda)(1 - \lambda) = 0 \Rightarrow \lambda_1 = 1, \lambda_2 = 2
+            \end{aligned}
+        \end{equation*}
+
+        ale jejich součin:
         \begin{equation*}
             A \times B = \begin{pmatrix}
                              2 & 0 \\
                              0 & 2
             \end{pmatrix}
         \end{equation*}
-        již vlastní čísla stejná nemají.
+        již vlastní čísla stejná nemají:
+        \begin{equation*}
+            det(A \times B - \lambda I) = det\begin{pmatrix}
+                                                 2 - \lambda & 0           \\
+                                                 0           & 2 - \lambda
+            \end{pmatrix} = (2 - \lambda)^2 = 0 \Rightarrow \lambda = 2
+        \end{equation*}
 
-        Kdyby však matice $A$ a $B$ byly navzájem komutativní, tedy $A \times B = B \times A$, pak by platilo, že $A \times B$ mají stejná vlastní čísla jako $B \times A$, protože vlastní čísla matice jsou nezávislá na pořadí násobení.
+        Kdyby však matice $A$ a $B$ byly navzájem komutativní, tedy $A \times B = B \times A$, pak by platilo, že $A \times B$ mají stejná vlastní čísla jako $B \times A$, protože vlastní čísla matice jsou nezávislá na pořadí násobení:
+        \begin{equation*}
+            det(A \times B - \lambda I) = det(B \times A - \lambda I)
+        \end{equation*}
 
-        \answerbox{Ne, platí pouze v případě, že matice $A$ a $B$ jsou komutativní.}
+        \answerbox{Ne, pokud matice $A$ a $B$ nemají stejná vlastní čísla, pak ani jejich součin $A \times B$ nemusí mít stejná vlastní čísla.}
     }
 
 % -- Úloha 3
