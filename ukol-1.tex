@@ -158,8 +158,45 @@
             \end{pmatrix}
         \]
     }{
-        ...
-        \answerbox{–}
+        Diagonalizovatelná matice je taková reálná čtvercová matice o rozměrech $n \times n$, která má $n$ navzájem různých
+        vlastních čísel.
+
+        Vlastní čísla matice $A$ jsou řešením rovnice $\det(A - \lambda I) = 0$:
+        \begin{equation*}
+            det(A - \lambda I) = \begin{vmatrix}
+                                     -\lambda & 1           & 2           \\
+                                     -4       & 1 - \lambda & 4           \\
+                                     -5       & 1           & 7 - \lambda
+            \end{vmatrix} = 0
+        \end{equation*}
+
+        Po úpravě dostaneme charakteristický polynom:
+        \begin{equation*}
+            p_A(\lambda) = -\lambda^3 + 8\lambda^2 - 17\lambda + 10 = 0
+        \end{equation*}
+
+        Tuto rovnici následovně upravíme:
+        \begin{equation*}
+            \begin{aligned}
+                -\lambda^3 + 8\lambda^2 - 17\lambda + 10 &= 0 \\
+                \cdots \\
+                (\lambda - 1) \times (\lambda - 2) \times (\lambda - 5) &= 0
+            \end{aligned}
+        \end{equation*}
+
+        A tím získáme kořeny charakteristické rovnice a tedy vlastní čísla matice $A$:
+        \begin{equation*}
+            \begin{aligned}
+                \lambda_1 &= 1 \\
+                \lambda_2 &= 2 \\
+                \lambda_3 &= 5
+            \end{aligned}
+        \end{equation*}
+
+        Jelikož $\lambda_1 \ne \lambda_2 \ne \lambda_3$, matice $A$ má 3 různá vlastní čísla a tedy je diagonalizovatelná.
+        \answerbox{
+            Ano, matice $A$ je diagonalizovatelná.
+        }
     }
 
 % -- Úloha 4
