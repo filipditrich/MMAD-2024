@@ -203,8 +203,86 @@
     \uloha{4}{3}{
         Nalezněte vlastní vektor příslušný k nejmenšímu a největšímu vlastnímu číslu matice $A$ z předchozího příkladu.
     }{
-        ...
-        \answerbox{–}
+        Vlastní vektory matice $A$ jsou řešením soustavy rovnic $(A - \lambda I)x = 0$, kde $\lambda$ je vlastní číslo matice $A$.
+
+        Nejmenší a největší vlastní čísla matice $A$ jsou $\lambda_{\min} = 1$ a $\lambda_{\max} = 5$.
+
+        Pro $\lambda_{\min} = 1$:
+        \begin{equation*}
+            \begin{aligned}
+                (A - 1I)x &= \begin{pmatrix}
+                                 -1 & 1 & 2 \\
+                                 -4 & 0 & 4 \\
+                                 -5 & 1 & 6
+                \end{pmatrix} \begin{pmatrix}
+                                 x_1 \\
+                                 x_2 \\
+                                 x_3
+                \end{pmatrix} = \begin{pmatrix}
+                                   0 \\
+                                   0 \\
+                                   0
+                \end{pmatrix}
+            \end{aligned}
+        \end{equation*}
+
+        Po úpravě dostaneme:
+        \begin{equation*}
+            \begin{aligned}
+                x_1 - x_3 &= 0 \\
+                x_2 + x_3 &= 0
+            \end{aligned}
+        \end{equation*}
+
+        Řešením této soustavy rovnic je vlastní vektor $p$:
+        \begin{equation*}
+            p = \begin{pmatrix}
+                    1 \\
+                    -1 \\
+                    1
+            \end{pmatrix}
+        \end{equation*}
+
+        Pro $\lambda_{\max} = 5$:
+        \begin{equation*}
+            \begin{aligned}
+                (A - 5I)x &= \begin{pmatrix}
+                                 -5 & 1 & 2 \\
+                                 -4 & -4 & 4 \\
+                                 -5 & 1 & 2
+                \end{pmatrix} \begin{pmatrix}
+                                 x_1 \\
+                                 x_2 \\
+                                 x_3
+                \end{pmatrix} = \begin{pmatrix}
+                                   0 \\
+                                   0 \\
+                                   0
+                \end{pmatrix}
+            \end{aligned}
+        \end{equation*}
+
+        Po úpravě dostaneme:
+        \begin{equation*}
+            \begin{aligned}
+                x_1 - \frac{1}{2}x_3 &= 0 \\
+                x_2 - \frac{1}{2}x_3 &= 0
+            \end{aligned}
+        \end{equation*}
+
+        Řešením této soustavy rovnic je vlastní vektor $s$:
+        \begin{equation*}
+            s = \begin{pmatrix}
+                    \frac{1}{2} \\
+                    \frac{1}{2} \\
+                    1
+            \end{pmatrix}
+        \end{equation*}
+
+        \answerbox{
+            Vlastní vektor příslušný nejmenšímu vlastnímu číslu $\lambda_{\min} = 1$ je $p = (1, -1, 1)^T$ a vlastní
+            vektor příslušný největšímu vlastnímu číslu $\lambda_{\max} = 5$ je $s = \left(\frac{1}{2}, \frac{1}{2}, 1\right)^T$.
+        }
     }
 
 % -- Úloha 5
