@@ -63,8 +63,40 @@
     \uloha{1}{3}{
         Dokažte, že každá ortogonální matice má determinant $\pm 1$.
     }{
-        ...
-        \answerbox{–}
+        Ortogonální matice je čtvercová reálná matice $Q$, která splňuje podmínku:
+        \begin{equation*}
+            Q^{TQ} = QQ^T = I
+        \end{equation*}
+        kde $I$ je jednotková matice.
+
+        Dále platí, že determinant součinu dvou matic je roven součinu determinantů těchto matic, tedy:
+        \begin{equation*}
+            det(Q^{TQ}) = det(Q) \cdot det(Q^T)
+        \end{equation*}
+
+        Determinant jednotkové matice je vždy 1:
+        \begin{equation*}
+            det(I) = 1
+        \end{equation*}
+
+        Z předchozích vztahů plyne, že:
+        \begin{equation*}
+            det(Q^{TQ}) = det(I) = 1
+        \end{equation*}
+
+        Dá se také zapsat jako:
+        \begin{equation*}
+            det(Q) \cdot det(Q) = det(Q)^2 = 1
+        \end{equation*}
+
+        Odtud již plyne, že determinant ortogonální matice je roven $\pm 1$, jelikož:
+        \begin{equation*}
+            \sqrt{det(Q)^2} = \sqrt{1} = \pm 1
+        \end{equation*}
+
+        \answerbox{
+            Ano, každá ortogonální matice má determinant $\pm 1$.
+        }
     }
 
 % -- Úloha 2
