@@ -30,14 +30,14 @@
 
 %%%%% Custom commands
 % section with underline
-\newcommand{\uloha}[4]{
+\newcommand{\uloha}[5]{
     \section{Úloha #1\hfill\small\normalfont{(#2 body)}}
     \label{sec:uloha-#1}
     #3
     \subsection{Řešení}
     \label{subsec:uloha-#1-reseni}
     #4
-    \newpage
+    \ifthenelse{\equal{#5}{false}}{}{\newpage}
 }
 
 \usetikzlibrary{automata, positioning, arrows}
@@ -210,18 +210,19 @@
         Pro $\lambda_{\min} = 1$:
         \begin{equation*}
             \begin{aligned}
-                (A - 1I)x &= \begin{pmatrix}
-                                 -1 & 1 & 2 \\
-                                 -4 & 0 & 4 \\
-                                 -5 & 1 & 6
+            (A - 1I)
+                x &= \begin{pmatrix}
+                         -1 & 1 & 2 \\
+                         -4 & 0 & 4 \\
+                         -5 & 1 & 6
                 \end{pmatrix} \begin{pmatrix}
-                                 x_1 \\
-                                 x_2 \\
-                                 x_3
+                                  x_1 \\
+                                  x_2 \\
+                                  x_3
                 \end{pmatrix} = \begin{pmatrix}
-                                   0 \\
-                                   0 \\
-                                   0
+                                    0 \\
+                                    0 \\
+                                    0
                 \end{pmatrix}
             \end{aligned}
         \end{equation*}
@@ -237,7 +238,7 @@
         Řešením této soustavy rovnic je vlastní vektor $p$:
         \begin{equation*}
             p = \begin{pmatrix}
-                    1 \\
+                    1  \\
                     -1 \\
                     1
             \end{pmatrix}
@@ -246,18 +247,19 @@
         Pro $\lambda_{\max} = 5$:
         \begin{equation*}
             \begin{aligned}
-                (A - 5I)x &= \begin{pmatrix}
-                                 -5 & 1 & 2 \\
-                                 -4 & -4 & 4 \\
-                                 -5 & 1 & 2
+            (A - 5I)
+                x &= \begin{pmatrix}
+                         -5 & 1  & 2 \\
+                         -4 & -4 & 4 \\
+                         -5 & 1  & 2
                 \end{pmatrix} \begin{pmatrix}
-                                 x_1 \\
-                                 x_2 \\
-                                 x_3
+                                  x_1 \\
+                                  x_2 \\
+                                  x_3
                 \end{pmatrix} = \begin{pmatrix}
-                                   0 \\
-                                   0 \\
-                                   0
+                                    0 \\
+                                    0 \\
+                                    0
                 \end{pmatrix}
             \end{aligned}
         \end{equation*}
@@ -293,29 +295,8 @@
 
         \begin{figure}[H]
             \centering
-            \begin{tikzpicture}[->, >=stealth', auto, thin, node distance=3cm]
-                \tikzstyle{state}=[circle, thick, draw, minimum size=1cm]
-
-                % States
-                \node[state] (S) {$S$};
-                \node[state] (Z) [below left=of S] {$Z$};
-                \node[state] (J) [below right=of Z] {$J$};
-                \node[state] (V) [above right=of J] {$V$};
-
-                % Paths
-                \draw (Z) edge [loop left] node {0.75} (Z)
-                \draw (Z) edge node {0.25} (S)
-
-                \draw (S) edge [loop above] node {0.75} (S)
-                \draw (S) edge node {0.25} (J)
-
-                \draw (J) edge [loop below] node {0.25} (J)
-                \draw (J) edge node {0.5} (Z)
-                \draw (J) edge node {0.25} (V)
-
-                \draw (V) edge [loop right] node {0.75} (V)
-                \draw (V) edge node {0.25} (J)
-            \end{tikzpicture}
+            \includegraphics[width=0.5\textwidth]{\FIGDIR/ukol-1-5-diagram}
+            \caption{Diagram stálého migračního procesu obyvatel mezi Severem, Jihem, Východem a Západem.}
             \label{fig:population-migration}
         \end{figure}
         \source{}
@@ -331,7 +312,41 @@
         Celkem je v souboru 144 záznamů měření. Pokud bychom chtěli s takovými daty dále pracovat, kolik hlavních komponent (a jaké) je vhodné zvolit a proč?
         Využijte SVD rozkladu a libovolného počítačového nástroje a své argumenty podpořte výstupy těchto nástrojů. Nezapomeňte na úvodní transformaci dat.
     }{
-        ...
-        \answerbox{–}
+        Pro vyřešení této úlohy využijeme jazyk Python a knihovny \texttt{pandas} a \texttt{numpy} pro práci s
+        maticemi a vektory.
+    }{false}
+% answer must be outside the \uloha command, since \minted cannot be used inside it
+    Nejprve načteme data z CSV souboru a provedeme úvodní transformaci dat.
+    \begin{minted}{python}
+            import pandas as pd
+            import numpy as np
+
+            # načtení dat
+            data = pd.read_csv('room-temperature.csv')
+            # zahození sloupce s datem (nepotřebné pro analýzu)
+            data = data.drop(columns=['date'])
+            # normalizace dat (odstranění průměru)
+            data = data - data.mean()
+    \end{minted}
+
+    Následně provedeme SVD rozklad matice dat a zjistíme, kolik hlavních komponent je vhodné zvolit.
+    \begin{minted}{python}
+            # SVD rozklad
+            U, s, V = np.linalg.svd(data, full_matrices=False)
+            # s = [34.54408633 16.15976563  7.69262365  6.51293724]
+
+            # výpočet vysvětlené variance
+            explained_variance = np.square(s) / np.sum(np.square(s))
+            # explained_variance = [0.76688522 0.16782361 0.03803049 0.02726068]
+
+            # zjištění počtu komponent pro 95% vysvětlené variance
+            components = np.argmax(np.cumsum(explained_variance) > 0.95) + 1
+            # components = 3
+    \end{minted}
+
+
+    \answerbox{
+        Z výsledků SVD rozkladu zjistíme, že pro dosažení 95\% vysvětlené variance je vhodné zvolit 3 hlavní komponenty.
     }
+    \newpage
 \end{document}

@@ -51,3 +51,35 @@
 }
 
 \setlength{\parindent}{0pt}
+
+%%%%% Nastavení barev a syntaxe kódu
+%%%%% ---------------------------------------------------------------
+\usepackage{fvextra}
+\usepackage{xcolor}
+\definecolor{codekeyword}{rgb}{0.0,0.3,0.7}
+\definecolor{codestring}{rgb}{0.4,0.4,0.8}
+\definecolor{codecomment}{rgb}{0.2,0.2,0.2}
+\definecolor{codejsdoc}{rgb}{0.4,0.4,0.4}
+\definecolor{codelinenum}{rgb}{0.8,0.8,0.8}
+\definecolor{lightyellow}{rgb}{255, 255, 224}
+
+% nastavení minted balíčku
+\usepackage[outputdir=dist]{minted}
+\setminted{
+    frame=none,
+    breaklines=true,
+    fontsize=\footnotesize,
+    tabsize=2,
+    linenos,
+    numbersep=5pt,
+    xleftmargin=0pt,
+    baselinestretch=1.2,
+    style=friendly,
+%   TODO: highlihgting not working
+    highlightcolor=\color{lightyellow},
+    keywordstyle=\color{codekeyword},
+    stringstyle=\color{codestring},
+    commentstyle=\color{codecomment}\itshape,
+    morecomment=[s][\color{codejsdoc}]{/**}{*/},
+    numberstyle=\footnotesize\color{codelinenum}
+}
