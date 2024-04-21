@@ -96,7 +96,7 @@
 
         \answerbox{
             Ano, každá ortogonální matice má determinant $\pm 1$.
-        }
+        }{}
     }
 
 % -- Úloha 2
@@ -143,7 +143,8 @@
             det(A \times B - \lambda I) = det(B \times A - \lambda I)
         \end{equation*}
 
-        \answerbox{Ne, pokud matice $A$ a $B$ nemají stejná vlastní čísla, pak ani jejich součin $A \times B$ nemusí mít stejná vlastní čísla.}
+        \answerbox{Ne, pokud matice $A$ a $B$ nemají stejná vlastní čísla, pak ani jejich součin $A \times B$ nemusí
+        mít stejná vlastní čísla.}{}
     }
 
 % -- Úloha 3
@@ -196,7 +197,7 @@
         Jelikož $\lambda_1 \ne \lambda_2 \ne \lambda_3$, matice $A$ má 3 různá vlastní čísla a tedy je diagonalizovatelná.
         \answerbox{
             Ano, matice $A$ je diagonalizovatelná.
-        }
+        }{}
     }
 
 % -- Úloha 4
@@ -284,14 +285,19 @@
         \answerbox{
             Vlastní vektor příslušný nejmenšímu vlastnímu číslu $\lambda_{\min} = 1$ je $p = (1, -1, 1)^T$ a vlastní
             vektor příslušný největšímu vlastnímu číslu $\lambda_{\max} = 5$ je $s = \left(\frac{1}{2}, \frac{1}{2}, 1\right)^T$.
-        }
+        }{}
     }
 
 % -- Úloha 5
     \uloha{5}{3}{
         Mějme stálý migrační proces obyvatel mezi Severem, Jihem, Východem a Západem, jehož průběh za 1 rok lze znázornit diagramem níže (desetinná čísla udávají, jaký zlomek populace se za rok přemístí po šipce do jiné oblasti). Na počátku je počet obyvatel ve všech oblastech 10 milionů.
 
-        Jak bude situace rozložení populace vypadat za 10 let od počátku? Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně dlouho sledovat? Využijte libovolný počítačový nástroj a své argumenty podpořte výstupy tohoto nástroje.
+        \begin{itemize}
+            \item 5a) Jak bude situace rozložení populace vypadat za 10 let od počátku?
+            \item 5b) Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně dlouho sledovat?
+        \end{itemize}
+
+        Využijte libovolný počítačový nástroj a své argumenty podpořte výstupy tohoto nástroje.
 
         \begin{figure}[H]
             \centering
@@ -301,9 +307,91 @@
         \end{figure}
         \source{}
     }{
-        ...
-        \answerbox{–}
-    }
+        Pro řešení této úlohy využijeme jazyk Python a knihovnu \texttt{numpy} pro práci s maticemi a vektory.
+    }{false}
+
+    \textbf{\textit{5a) Jak bude situace rozložení populace vypadat za 10 let od počátku?}}
+
+    Nejprve si vytvoříme matici přechodů $P$ a vektor počátečního rozložení populace $x_0$:
+    \begin{minted}{python}
+        import numpy as np
+
+        # matice přechodů
+        P = np.array([
+            # Sever -> S, J, V, Z
+            [0.75, 0.25, 0, 0],
+            # Jih -> S, J, V, Z
+            [0, 0.25, 0.25, 0.5],
+            # Východ -> S, J, V, Z
+            [0, 0.25, 0.75, 0],
+            # Západ -> S, J, V, Z
+            [0.25, 0, 0, 0.75]
+        ]).T
+
+        # počáteční rozložení populace
+        x0 = np.array([10, 10, 10, 10])
+    \end{minted}
+
+    Následně provedeme výpočet rozložení populace za 10 let:
+    \begin{minted}{python}
+        # výpočet rozložení populace za 10 let
+        x = x0
+        for _ in range(10):
+            x = np.dot(P, x) # P * x
+        print(x)
+        # [13.05176735  6.66666985  6.94823265 13.33333015]
+    \end{minted}
+
+    \answerbox{
+        Výsledné rozložení populace po 10 letech bude:
+        \begin{equation*}
+            S &\approx 13.05 \text{ mil.}; \\
+            J &\approx 6.67 \text{ mil.}; \\
+            V &\approx 6.95 \text{ mil.}; \\
+            Z &\approx 13.33 \text{ mil.}
+        \end{equation*}
+    }{5a}
+
+    \vspace{5em}
+
+    \textbf{\textit{5b) Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně
+    dlouho sledovat?}}
+
+    Pro řešení této otázky můžeme využít vlastních vektorů a vlastních čísel matice přechodů $P$.
+    Vlastní vektor příslušný vlastnímu číslu 1 nám řekne, na kterých hodnotách se populace ustálí po dostatečně dlouh
+    é době (tj. po nekonečně mnoho letech).
+    \begin{minted}{python}
+        # vlastní čísla a vektory matice P
+        w, v = np.linalg.eig(P)
+        # vlastní čísla: [0.25 0.5 1. 0.75]
+        # vlastní vektory: [
+        #   [ 3.16227766e-01 -6.32455532e-01 -6.32455532e-01  7.07106781e-01]
+        #   [ 6.32455532e-01 -3.16227766e-01 -3.16227766e-01  4.44605073e-17]
+        #   [-3.16227766e-01  3.16227766e-01 -3.16227766e-01 -7.07106781e-01]
+        #   [-6.32455532e-01  6.32455532e-01 -6.32455532e-01  2.03628341e-15]
+        # ]
+        print(w)
+        print(v)
+
+        # vlastní vektor příslušný vlastnímu číslu 1
+        v1 = v[:, np.isclose(w, 1)]
+        # [[-0.63245553], [-0.31622777], [-0.31622777], [-0.63245553]]
+
+        # normalizace vlastního vektoru
+        v1 = v1 / np.sum(v1)
+        # [[0.33333333] [0.16666667], [0.16666667], [0.33333333]]
+    \end{minted}
+
+    \answerbox{
+        Pokud budeme populaci dostatečně dlouho sledovat, ustálí se na hodnotách:
+        \begin{equation*}
+            S &\approx 33.33\%; \\
+            J &\approx 16.67\%; \\
+            V &\approx 16.67\%; \\
+            Z &\approx 33.33\%
+        \end{equation*}
+    }{5b}
+    \newpage
 
 % -- Úloha 6
     \uloha{6}{3}{
@@ -318,35 +406,34 @@
 % answer must be outside the \uloha command, since \minted cannot be used inside it
     Nejprve načteme data z CSV souboru a provedeme úvodní transformaci dat.
     \begin{minted}{python}
-            import pandas as pd
-            import numpy as np
+        import pandas as pd
+        import numpy as np
 
-            # načtení dat
-            data = pd.read_csv('room-temperature.csv')
-            # zahození sloupce s datem (nepotřebné pro analýzu)
-            data = data.drop(columns=['date'])
-            # normalizace dat (odstranění průměru)
-            data = data - data.mean()
+        # načtení dat
+        data = pd.read_csv('room-temperature.csv')
+        # zahození sloupce s datem (nepotřebné pro analýzu)
+        data = data.drop(columns=['date'])
+        # normalizace dat (odstranění průměru)
+        data = data - data.mean()
     \end{minted}
 
     Následně provedeme SVD rozklad matice dat a zjistíme, kolik hlavních komponent je vhodné zvolit.
     \begin{minted}{python}
-            # SVD rozklad
-            U, s, V = np.linalg.svd(data, full_matrices=False)
-            # s = [34.54408633 16.15976563  7.69262365  6.51293724]
+        # SVD rozklad
+        U, s, V = np.linalg.svd(data, full_matrices=False)
+        # s = [34.54408633 16.15976563  7.69262365  6.51293724]
 
-            # výpočet vysvětlené variance
-            explained_variance = np.square(s) / np.sum(np.square(s))
-            # explained_variance = [0.76688522 0.16782361 0.03803049 0.02726068]
+        # výpočet vysvětlené variance
+        explained_variance = np.square(s) / np.sum(np.square(s))
+        # explained_variance = [0.76688522 0.16782361 0.03803049 0.02726068]
 
-            # zjištění počtu komponent pro 95% vysvětlené variance
-            components = np.argmax(np.cumsum(explained_variance) > 0.95) + 1
-            # components = 3
+        # zjištění počtu komponent pro 95% vysvětlené variance
+        components = np.argmax(np.cumsum(explained_variance) > 0.95) + 1
+        # components = 3
     \end{minted}
-
 
     \answerbox{
         Z výsledků SVD rozkladu zjistíme, že pro dosažení 95\% vysvětlené variance je vhodné zvolit 3 hlavní komponenty.
-    }
+    }{}
     \newpage
 \end{document}

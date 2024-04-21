@@ -2,6 +2,10 @@
 %%%%% ---------------------------------------------------------------
 \usepackage[utf8]{inputenc}
 
+%%%%% Nastavení češtiny
+%%%%% ---------------------------------------------------------------
+\usepackage[czech]{babel}
+
 % hyperlinks break on hyphens
 \PassOptionsToPackage{hyphens}{url}
 
@@ -44,8 +48,16 @@
     title=#1
 }
 % answer box
-\newcommand{\answerbox}[1]{
-    \begin{green-box}{\MakeUppercase{\small{Odpověď}}}
+\newcommand{\answerbox}[2]{
+    \begin{green-box}{
+        \MakeUppercase{
+            \small{Odpověď}
+            \ifx&#2&%
+            \else
+            \space#2
+            \fi
+        }
+    }
         #1
     \end{green-box}
 }
