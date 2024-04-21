@@ -252,7 +252,58 @@
     \newpage
 
 % -- Úloha programovací 1
-    \uloha{programovací 1}{4}{TODO}{TODO}{false}
+    \uloha{programovací 1}{4}{
+        Naprogramujte algoritmus pro testování isomorfismu grafů hrubou silou a otestujte to na pár příkladech grafů s využitím knihovní funkce pro testování isomorfismu.
+    }{}{false}
+    Isomorfismus lze testovat hrubou silou, kde se všechny možné permutace uzlů grafu $G$ porovnají s uzly grafu $H$.
+
+    Vytvoříme funkci \texttt{isomorphism(G, H)}, která otestuje isomorfismus grafů $G$ a $H$ následovně:
+    \begin{itemize}
+        \item Pokud mají grafy různý počet uzlů, vrátí \texttt{False}.
+        \item Pro všechny permutace uzlů grafu $G$:
+        \begin{itemize}
+            \item Vytvoří mapování uzlů grafu $G$ na uzly grafu $H$.
+            \item Pokud všechny uzly grafu $G$ mají svůj ekvivalent v grafu $H$ a všechny hrany zůstanou zachovány, vrátí \texttt{True}.
+        \end{itemize}
+        \item Pokud žádná permutace nevyhovuje, vrátí \texttt{False}.
+    \end{itemize}
+
+    Implementačně je algoritmus následující:
+    \begin{minted}{python}
+        import networkx as nx
+        import itertools
+
+        def isomorphism(G, H):
+            if len(G.nodes) != len(H.nodes):
+                return False
+
+            # získání všech permutací uzlů grafu G
+            perms = itertools.permutations(list(G.nodes))
+            for perm in perms:
+                # vytvoření mapování uzlů grafu G na uzly grafu H
+                # pokud všechny uzly grafu G mají svůj ekvivalent v grafu H a všechny hrany zůstanou zachovány, vrátí True
+                mapping = dict(zip(G.nodes, perm))
+                has_all_nodes = all([mapping[u] in H.nodes for u in G.nodes])
+                has_all_edges = all([mapping[u] in H.nodes for u in G.nodes])
+                if has_all_nodes and has_all_edges:
+                    return True
+                return False
+    \end{minted}
+
+    Poté již zbývá jen funkci výše otestovat na několika příkladech grafů a porovnat výsledky s knihovní funkcí pro
+    testování isomorfismu:
+    \begin{minted}{python}
+        G = nx.generators.small.cycle_graph(5)
+        H = nx.complement(nx.generators.small.cycle_graph(5))
+
+        my_isom = isomorphism(G, H)
+        nx_isom = nx.is_isomorphic(G, nx.complement(H))
+        print(f"Vlastní: {my_isom}\nNetworkX: {nx_isom}\nÚspěch: {'Ano' if my_isom == nx_isom else 'Ne'}")
+    \end{minted}
+
+    \textit{
+        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k1.py}{ukol-2-k1.py}.
+    }
     \newpage
 
 % -- Úloha programovací 2
