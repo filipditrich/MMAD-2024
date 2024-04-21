@@ -1,0 +1,261 @@
+\documentclass[10pt, a4paper]{ReportSheet}
+
+%%%%% Preamble with packages
+%%%%% ---------------------------------------------------------------
+\include{preamble}
+
+%%%%% Hyperlink configuration
+%%%%% ------------------------------------------------------------
+\hypersetup{pdftitle=MMAD - Úkol 2}
+
+%%%%% Main document
+%%%%% ------------------------------------------------------------
+\begin{document}
+%%% Úvod
+%%% --- title, author, date
+    \title{MMAD - Úkol 2}
+    \author{Filip Ditrich}
+    \date{
+        \footnotesize{
+            \centering{
+                Unicorn University, Prague, Czech Republic\\
+                \today
+            }
+        }
+    }
+    \maketitle
+
+%%% Obsah
+    \setcounter{tocdepth}{1}
+    \pagestyle{plain}
+    \renewcommand{\contentsname}{}
+    \addtocontents{toc}{\vskip -2em}
+    \tableofcontents
+
+% -- Úloha 1
+    \uloha{1}{2}{
+        Pro následující grafy určete minimální stupeň $\delta(G)$, maximální stupeň $\Delta(G)$, skóre grafu a barevnost pro následující grafy:
+        \begin{enumerate}
+            \item a) Cesta $P_n$
+            \item b) Kružnice $C_n$
+            \item c) Úplný graf $K_n$
+            \item d) Úplný bipartitní graf $K_{m,n}$
+            \item e) Papův graf ukázaný níže
+        \end{enumerate}
+    }{
+
+        Nejprve si připomeneme definice:
+        \begin{itemize}
+            \item \textbf{Minimální stupeň $\delta(G)$} je nejmenší stupeň vrcholu v grafu $G$.
+            \item \textbf{Maximální stupeň $\Delta(G)$} je největší stupeň vrcholu v grafu $G$.
+            \item \textbf{Skóre grafu} je součet stupňů všech vrcholů v grafu $G$.
+            \item \textbf{Barevnost} je minimální počet barev potřebných k obarvení vrcholů grafu $G$ tak, aby žádné dva sousední vrcholy neměly stejnou barvu.
+        \end{itemize}
+    }{false}
+
+    \subsubsection{1a) Cesta $P_n$}
+    Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[draw, circle] (1) at (0,0) {1};
+            \node[draw, circle] (2) at (1,0) {2};
+            \node[draw, circle] (3) at (2,0) {3};
+            \node (dots) at (3,0) {$\ldots$};
+            \node[draw, circle] (n) at (4,0) {n};
+            \draw (1) -- (2) -- (3) -- (dots) -- (n);
+        \end{tikzpicture}
+        \caption{Cesta $P_n$}
+        \label{fig:ukol-2-1a-cesta}
+    \end{figure}
+
+    \answerbox{
+        Uvažujme cestu $P_n$ s $n \ge 3$ vrcholy.\\
+        \begin{itemize}
+            \item $\delta(P_n) = 1$ ... první a poslední vrchol mají stupeň 1
+            \item $\Delta(P_n) = 2$ ... všechny vrcholy kromě prvního a posledního mají stupeň 2
+            \item Skóre grafu $P_n = 2n - 2$ ... vnitřní vrcholy mají stupeň 2, první a poslední vrchol mají stupeň 1
+            \item Barevnost grafu $P_n = 2$ ... vždy stačí 2 barvy
+        \end{itemize}
+        Pro $P_2$ pak platí, že $\delta(P_2) = \Delta(P_2) = 1$.
+    }{1a}
+
+    \subsubsection{1b) Kružnice $C_n$}\\
+    Definice: Kružnice $C_n$ má $n$ vrcholů a každý vrchol je spojen s předchozím a následujícím vrcholem.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[draw, circle] (1) at (0,0) {1};
+            \node[draw, circle] (2) at (1,1) {2};
+            \node[draw, circle] (dots) at (2,0) {...};
+            \node[draw, circle] (n) at (1,-1) {n};
+            \draw (1) -- (2) -- (dots) -- (n) -- (1);
+        \end{tikzpicture}
+        \caption{Kružnice $C_n$}
+        \label{fig:ukol-2-1b-kruznice}
+    \end{figure}
+
+    \answerbox{
+        Uvažujme kružnici $C_n$ s $n \ge 3$ vrcholy.\\
+        \begin{itemize}
+            \item $\delta(C_n) = 2$ ... všechny vrcholy mají stupeň 2
+            \item $\Delta(C_n) = 2$ ... všechny vrcholy mají stupeň 2
+            \item Skóre grafu $C_n = 2n$ ... všechny vrcholy mají stupeň 2
+            \item Barevnost grafu $C_n = 2$ pro sudé $n$, $3$ pro liché $n$
+        \end{itemize}
+    }{1b}
+    \newpage
+
+    \subsubsection{1c) Úplný graf $K_n$}\\
+    Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.\\
+    Speciální případ úplného grafu je úplný graf $K_2$, který má 2 vrcholy a 1 hranu a jedná se tedy o cestu $P_2$.\\
+    Další speciální případ je úplný graf $K_3$, který má 3 vrcholy a 3 hrany a jedná se tedy o kružnici $C_3$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[draw, circle] (1) at (0,0) {1};
+            \node[draw, circle] (2) at (2,0) {2};
+            \node[draw, circle] (3) at (0,-2) {3};
+            \node[draw, circle] (4) at (2,-2) {4};
+            \draw (1) -- (2) -- (3) -- (4) -- (1);
+            \draw (1) -- (3) -- (2) -- (4) -- (1);
+        \end{tikzpicture}
+        \caption{Úplný graf $K_4$}
+        \label{fig:ukol-2-1c-uplny-graf}
+    \end{figure}
+
+    \answerbox{
+        Uvažujme úplný graf $K_n$ s $n \ge 3$ vrcholy.\\
+        \begin{itemize}
+            \item $\delta(K_n) = n-1$ ... všechny vrcholy mají stupeň $n-1$
+            \item $\Delta(K_n) = n-1$ ... všechny vrcholy mají stupeň $n-1$
+            \item Skóre grafu $K_n = n(n-1)$ ... všechny vrcholy mají stupeň $n-1$
+            \item Barevnost grafu $K_n = \begin{cases}
+                                             n-1 & \text{pro sudé } n \\ n & \text{pro liché } n
+            \end{cases}$
+        \end{itemize}
+    }{1c}
+
+    \subsubsection{1d) Úplný bipartitní graf $K_{m,n}$}\\
+    Definice: Úplný bipartitní graf $K_{m,n}$ má $m$ vrcholů v jedné partitě a $n$ vrcholů v druhé partitě a každý vrchol z jedné partity je spojen s každým vrcholem z druhé partity.
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[draw, circle] (1) at (0,0) {1};
+            \node[draw, circle] (2) at (0,-1) {2};
+            \node[draw, circle] (3) at (0,-2) {3};
+            \node[draw, circle] (4) at (2,0) {4};
+            \node[draw, circle] (5) at (2,-1) {5};
+            \node[draw, circle] (6) at (2,-2) {6};
+            \draw (1) -- (4);
+            \draw (1) -- (5);
+            \draw (1) -- (6);
+            \draw (2) -- (4);
+            \draw (2) -- (5);
+            \draw (2) -- (6);
+            \draw (3) -- (4);
+            \draw (3) -- (5);
+            \draw (3) -- (6);
+        \end{tikzpicture}
+        \caption{Úplný bipartitní graf $K_{3,3}$}
+        \label{fig:ukol-2-1d-uplny-bipartitni-graf}
+    \end{figure}
+
+    \answerbox{
+        Uvažujme úplný bipartitní graf $K_{m,n}$ s $m,n \ge 1$ vrcholy.\\
+        \begin{itemize}
+            \item $\delta(K_{m,n}) = n$ ... všechny vrcholy z první partity mají stupeň $n$
+            \item $\Delta(K_{m,n}) = m$ ... všechny vrcholy z druhé partity mají stupeň $m$
+            \item Skóre grafu $K_{m,n} = mn$ ... všechny vrcholy z první partity mají stupeň $n$, všechny vrcholy z druhé partity mají stupeň $m$
+            \item Barevnost grafu $K_{m,n} = 2$ ... vždy stačí 2 barvy, jedna pro každou partitu
+        \end{itemize}
+    }{1d}
+    \newpage
+
+    \subsubsection{1e) Papův graf}\\
+    Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami.\\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
+        \caption{Papův graf}
+        \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
+    \end{figure}
+
+    \answerbox{
+        TODO:
+        \begin{itemize}
+            \item $\delta(\text{Papův graf}) = 3$ ... všechny vrcholy mají stupeň 3
+            \item $\Delta(\text{Papův graf}) = 3$ ... všechny vrcholy mají stupeň 3
+            \item Skóre grafu $\text{Papův graf} = 18 \times 3 = 54$ ... všechny vrcholy mají stupeň 3
+            \item Barevnost grafu $\text{Papův graf} = TODO?$
+        \end{itemize}
+    }{1e}
+    \newpage
+
+% -- Úloha 2
+    \uloha{2}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 3
+    \uloha{3}{2}{
+        Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
+    }{TODO}{false}
+    \newpage
+
+% -- Úloha 4
+    \uloha{4}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 5
+    \uloha{5}{2}{
+        Mějme množinu $\{1, 2, \ldots, n\}$. Určete, kolik je možné na této množině najít různých kružnic délky $n$? (jedná se tedy o počet průchodů, ale neorientovaného grafu).
+    }{TODO}{false}
+    \newpage
+
+% -- Úloha 6
+    \uloha{6}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 7
+    \uloha{7}{2}{
+        Zdůvodněte, proč každá hrana vrcholově 2-souvislého grafu musí ležet na kružnici.
+    }{TODO}{false}
+    \newpage
+
+% -- Úloha 8
+    \uloha{8}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 9
+    \uloha{9}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 10
+    \uloha{10}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 11
+    \uloha{11}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 12
+    \uloha{12}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 13
+    \uloha{13}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha 14
+    \uloha{14}{2}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha programovací 1
+    \uloha{programovací 1}{4}{TODO}{TODO}{false}
+    \newpage
+
+% -- Úloha programovací 2
+    \uloha{programovací 2}{4}{TODO}{TODO}{false}
+    \newpage
+\end{document}
