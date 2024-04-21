@@ -6,41 +6,7 @@
 
 %%%%% Hyperlink configuration
 %%%%% ------------------------------------------------------------
-\usepackage[unicode]{hyperref}
-\usepackage{amsmath}
-\hypersetup{pdftitle=MMAD - Úkol 1,
-    pdfauthor=Filip Ditrich,
-    ps2pdf,
-    colorlinks=true,
-    urlcolor=black,
-    linkcolor=black,
-    citecolor=black,
-    pdfstartview=FitH,
-    pdfpagemode=UseOutlines,
-    pdfnewwindow,
-    breaklinks
-}
-% make autoref links smaller and bold
-\let\oldautoref\autoref
-\renewcommand{\autoref}[1]{\small\textbf{\oldautoref{#1}}}
-
-%%%%% Figures
-%%%%% ---------------------------------------------------------------
-\newcommand{\FIGDIR}{./assets/figures}
-
-%%%%% Custom commands
-% section with underline
-\newcommand{\uloha}[5]{
-    \section{Úloha #1\hfill\small\normalfont{(#2 body)}}
-    \label{sec:uloha-#1}
-    #3
-    \subsection{Řešení}
-    \label{subsec:uloha-#1-reseni}
-    #4
-    \ifthenelse{\equal{#5}{false}}{}{\newpage}
-}
-
-\usetikzlibrary{automata, positioning, arrows}
+\hypersetup{pdftitle=MMAD - Úkol 1}
 
 %%%%% Main document
 %%%%% ------------------------------------------------------------
@@ -58,6 +24,13 @@
         }
     }
     \maketitle
+
+%%% Obsah
+    \setcounter{tocdepth}{1}
+    \pagestyle{plain}
+    \renewcommand{\contentsname}{}
+    \addtocontents{toc}{\vskip -2em}
+    \tableofcontents
 
 % -- Úloha 1
     \uloha{1}{3}{

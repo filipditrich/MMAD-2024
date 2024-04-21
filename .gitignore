@@ -8,4 +8,8 @@ dist/*.log
 dist/*.aux
 dist/*.out
 dist/*.gz
+dist/*.toc
+dist/*.maf
+dist/*.mtc
+dist/*.mtc0
 dist/_minted*

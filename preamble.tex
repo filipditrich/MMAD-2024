@@ -95,3 +95,51 @@
     morecomment=[s][\color{codejsdoc}]{/**}{*/},
     numberstyle=\footnotesize\color{codelinenum}
 }
+
+%%%%% Hyperlink configuration
+%%%%% ------------------------------------------------------------
+\usepackage[unicode]{hyperref}
+\usepackage{amsmath}
+\hypersetup{pdftitle=MMAD - Úkol 2,
+    pdfauthor=Filip Ditrich,
+    ps2pdf,
+    colorlinks=true,
+    urlcolor=black,
+    linkcolor=black,
+    citecolor=black,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfnewwindow,
+    breaklinks
+}
+
+% make autoref links smaller and bold
+\let\oldautoref\autoref
+\renewcommand{\autoref}[1]{\small\textbf{\oldautoref{#1}}}
+
+%%%%% Figures
+%%%%% ---------------------------------------------------------------
+\newcommand{\FIGDIR}{./assets/figures}
+
+
+%%%%% Custom commands
+%%%%% ---------------------------------------------------------------
+% uloha/task with answerbox command
+\newcommand{\uloha}[5]{
+    \section[Úloha #1]{Úloha #1\hfill\small\normalfont{(#2 body)}}
+    \label{sec:uloha-#1}
+    #3
+    \subsection{Řešení}
+    \label{subsec:uloha-#1-reseni}
+    #4
+    \ifthenelse{\equal{#5}{false}}{}{\newpage}
+}
+
+\usetikzlibrary{automata, positioning, arrows}
+
+
+%%%%% Table of contents
+%%%%% ---------------------------------------------------------------
+\usepackage{titletoc}
+\usepackage{tocloft} \setlength\cftparskip{-4pt} \setlength\cftbeforechapskip{2pt}
+\titlecontents{section}[0em]{\addvspace{0.5pc}}{\contentslabel{1.5em}}{}{\titlerule*[0.5pc]{.}\contentspage}
