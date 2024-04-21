@@ -412,7 +412,7 @@
         # načtení dat
         data = pd.read_csv('room-temperature.csv')
         # zahození sloupce s datem (nepotřebné pro analýzu)
-        data = data.drop(columns=['date'])
+        data = data.drop(columns=['Date'])
         # normalizace dat (odstranění průměru)
         data = data - data.mean()
     \end{minted}
