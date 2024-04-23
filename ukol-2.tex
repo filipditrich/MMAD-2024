@@ -32,7 +32,7 @@
     \addtocontents{toc}{\vskip -2em}
     \tableofcontents
 
-% -- Úloha 1
+% -- TODO: Úloha 1
     \uloha{1}{2}{
         Pro následující grafy určete minimální stupeň $\delta(G)$, maximální stupeň $\Delta(G)$, skóre grafu a barevnost pro následující grafy:
         \begin{enumerate}
@@ -177,7 +177,7 @@
     Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami.\\
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.5\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
+        \includegraphics[width=0.35\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
         \caption{Papův graf}
         \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
     \end{figure}
@@ -193,62 +193,176 @@
     }{1e}
     \newpage
 
-% -- Úloha 2
-    \uloha{2}{2}{TODO}{TODO}{false}
-    \newpage
+% -- TODO: Úloha 2
+    \uloha{2}{2}{
+        Máme graf $G = (V, E)$. Pro ukázku si představme následující graf $H$:
 
-% -- Úloha 3
-    \uloha{3}{2}{
-        Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.2\textwidth]{\FIGDIR/ukol-2-2-graf}
+            \caption{Graf $H$}
+            \label{fig:ukol-2-2-graf}
+        \end{figure}
+
+        Definujme Laplacovu matici $L$ jako:
+
+        \begin{equation*}
+            L_{i,j} = \begin{cases}
+                          \deg(v_i) & \text{pro } i = j \\
+                          -1 & \text{pro } i \ne j \text{ a } v_i \text{ je spojen s } v_j \\
+                          0 & \text{jinak}
+            \end{cases}
+        \end{equation*}
+
+        Například pro ukázkový graf dostaneme Laplacovu matici:
+
+        \begin{equation*}
+            L = \begin{pmatrix}
+                    2  & -1 & -1 & 0  \\
+                    -1 & 4  & -1 & -1 \\
+                    -1 & -1 & 3  & -1 \\
+                    0  & -1 & -1 & 2
+            \end{pmatrix}
+        \end{equation*}
+
+        Mějme $k$-regulární graf $G = (V, E)$ velikosti $|V| = n$, tj. graf pro který víme, že $\deg(v_i) = k$ pro
+        všechny vrcholy $v_i \in V$. Navíc víme, že vlastní čísla matice sousednosti jsou reálná v pořadí $\lambda_1(A) \ge \lambda_2(A) \ge \ldots \ge \lambda_n(A)$. Lze nějak obecně vyjádřit všechna vlastní čísla Laplacovy matice takového grafu?
     }{TODO}{false}
     \newpage
 
-% -- Úloha 4
-    \uloha{4}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 3
+    \uloha{3}{2}{
+        Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
+    }{}{false}
+
+    TODO
+    Minimální počet hran v grafu s $n$ vrcholy a $c$ komponentami zjistíme tak, že každá komponenta bude mít minimálně 1 vrchol a žádná hrana nebude spojovat komponenty. Minimální počet hran tedy bude $n - c$.
+
+    Důkaz – Maximální počet hran: V grafu na $n$ vrcholech může být maximálně $\frac{n(n-1)}{2}$ hran. Pokud má graf $c$ komponent, pak každá komponenta může mít maximálně $\frac{n_i(n_i-1)}{2}$ hran, kde $n_i$ je počet vrcholů v $i$-té komponentě. Celkový maximální počet hran je tedy $\frac{n(n-1)}{2} - c$.
+
+    \answerbox{
+        Pro $n$ vrcholů a $c$ komponent platí:
+        \begin{itemize}
+            \item Minimální počet hran: $n - c$
+            \item Maximální počet hran: $\frac{n(n-1)}{2} - c$
+        \end{itemize}
+    }{3}
     \newpage
 
-% -- Úloha 5
+% -- TODO: Úloha 4
+    \uloha{4}{2}{
+        Mějme následující funkci:
+        \begin{equation*}
+            f(x, y) = 100(y - x^2)^2 + (1 - x)^2
+        \end{equation*}
+
+        Vypočtěte gradient $\nabla f(x)$ a Hessian $\nabla^2 f(x)$ a rozhodněte (a zdůvodněte)
+        zda-li je v bodě $(1, 1)$ splněna 1. podmínka pro lokální minimizátor (nulovost gradientu) či zda-li je splněna i 2. podmínka pro Hessovu matici.
+    }{TODO}{false}
+    \newpage
+
+% -- TODO: Úloha 5
     \uloha{5}{2}{
         Mějme množinu $\{1, 2, \ldots, n\}$. Určete, kolik je možné na této množině najít různých kružnic délky $n$? (jedná se tedy o počet průchodů, ale neorientovaného grafu).
     }{TODO}{false}
     \newpage
 
-% -- Úloha 6
-    \uloha{6}{2}{TODO}{TODO}{false}
+
+% -- TODO: Úloha 6
+    \uloha{6}{2}{
+        Mějme graf $G_{n,2} = (V, E)$ definovaný následovně. Množina vrcholů jsou všechny podmnožiny množiny $A = \{1, 2, \ldots, n\}$ o velikosti 2, tedy například $v_1 = \{1, 2\}, v_2 = \{2, 3\}, \ldots$. Hrany spojují ty vrcholy $v_i = \{a, b\}, v_2 = \{c, d\}$, které sdílí právě jeden prvek, tj. $a = b \ne c = d$. Příklad takového grafu je vidět na následujícím obrázku.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{\FIGDIR/ukol-2-6-graf}
+            \caption{Graf $G_{n,2}$}
+            \label{fig:ukol-2-6-graf}
+        \end{figure}
+
+        Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako funkce $n$
+        . Také určete počet hran tohoto grafu, opět jako funkci $n$.
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 7
+% -- TODO: Úloha 7
     \uloha{7}{2}{
         Zdůvodněte, proč každá hrana vrcholově 2-souvislého grafu musí ležet na kružnici.
     }{TODO}{false}
     \newpage
 
-% -- Úloha 8
-    \uloha{8}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 8
+    \uloha{8}{2}{
+        Určete vrcholový a hranový stupeň grafu, neboli $\alpha(G)$ a $\kappa(G)$, pro následující grafy:
+        \begin{enumerate}
+            \item Cesta $P_n$
+            \item Kružnice $C_n$
+            \item Úplný graf $K_n$
+            \item Úplný bipartitní graf $K_{m,n}$
+        \end{enumerate}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 9
-    \uloha{9}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 9
+    \uloha{9}{2}{
+        Vezměmě si grafy typu strom o fixní velikosti $n$. Rozhodněte a nakreslete, jaký strom o velikosti $n$ má:
+        \begin{enumerate}
+            \item Největší hodnotu nezávislosti $\alpha(G)$
+            \item Nejmenší hodnotu nezávislosti $\alpha(G)$
+            \item Největší hodnotu vrcholového pokrytí $\beta(G)$
+            \item Nejmenší hodnotu vrcholového pokrytí $\beta(G)$
+        \end{enumerate}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 10
-    \uloha{10}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 10
+    \uloha{10}{2}{
+        Ukažte proč pro každý kubický graf $G$, t.j. takový, že všechny stupně vrcholů jsou 3, platí, že stupeň vrcholové i hranové souvislosti se rovnají, tj. $\alpha(G) = \kappa(G)$.
+        \textit{Hint: Pokuste se rozebrat případy pro různé vrcholové stupně souvislosti.}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 11
-    \uloha{11}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 11
+    \uloha{11}{2}{
+        Pokuste se navrhnout Turingův stroj pro rozpoznání, že neorientovaný graf má izolovaný vrchol.\\
+        \textit{Hint: Graf uložte na pásku jako matici sousednosti (nezapomeňte na oddělovače řádků) a v ní pomocí pravidel nalezněte takový vrchol.}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 12
-    \uloha{12}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 12
+    \uloha{12}{2}{
+        Využijte vysvětlení proč platí polynomialita 2-SAT a nakreslete graf odpovídající následující formuli a otestujte a případně ukažte, zda-li je splněna.
+        \textit{Pozn.: Graf na kreslete, i když budete schopni splnitelnost rozhodnout jinak.}
+
+        \begin{equation*}
+            f(x_1, x_2, x_3, x_4, x_5) = (x_1 \lor \overline{x_3}) \land (x_2 \lor x_3) \land (\overline{x_3} \lor x_4) \land (\overline{x_2}
+            \lor
+            \overline{x_4}) \land (x_4 \lor x_5) \land (\overline{x_3} \lor x_5)
+        \end{equation*}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 13
-    \uloha{13}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 13
+    \uloha{13}{2}{
+        Na základě vysvětlení převodu SAT na IND nakreslete graf odpovídající následující formuli a otestujte splnitelnost formule nalezením nezávislé množiny.
+        \textit{Pozn.: Graf nakreslete a zhodnoťte, i když budete schopni splnitelnost rozhodnout jinak.}
+
+        \begin{equation*}
+            f(x_1, x_2, x_3, x_4, x_5) = (x_2 \lor \overline{x_3} \lor x_4) \land (x_1 \lor \overline{x_2} \lor x_3) \land (\overline{x_1}
+            \lor \overline{x_3}
+            \lor
+            x_4) \land (x_1 \lor \overline{x_2} \lor x_3 \lor \overline{x_4}) \land (x_4 \lor x_5)
+        \end{equation*}
+    }{TODO}{false}
     \newpage
 
-% -- Úloha 14
-    \uloha{14}{2}{TODO}{TODO}{false}
+% -- TODO: Úloha 14
+    \uloha{14}{2}{
+        Na základě vysvětlení převodu 3-SAT na 3-COL nakreslete graf odpovídající následující formuli a otestujte barevnost grafu.
+        \begin{equation*}
+            f(x_1, x_2, x_3, x_4, x_5) = (x_1 \lor x_2 \lor \overline{x_4}) \land (x_1 \lor \overline{x_2} \lor x_3) \land (\overline{x_2}
+            \lor \overline{x_3} \lor x_4) \land (x_1 \lor \overline{x_2} \lor x_3)
+        \end{equation*}
+    }{TODO}{false}
     \newpage
 
 % -- Úloha programovací 1
@@ -306,7 +420,11 @@
     }
     \newpage
 
-% -- Úloha programovací 2
-    \uloha{programovací 2}{4}{TODO}{TODO}{false}
+% -- TODO: Úloha programovací 2
+    \uloha{programovací 2}{4}{
+        Realizujte hrubou silou nalezení největší nezávislé množiny daného grafu a následně otestujte, že je množina nezávislá. Následně se pokuste vylepšit řešení procházení množinami použitím sousedů vrcholu.
+
+        Pokud chceme testovat procházení, nabízí se, ne nutně, řešení pomocí nějakého rekurzivního přístupu.
+    }{TODO}{false}
     \newpage
 \end{document}
