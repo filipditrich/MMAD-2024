@@ -54,7 +54,7 @@
         \end{itemize}
     }{}{false}{true}
 
-    \textbf{a) Cesta $P_n$}\\
+    \subsection{a) Cesta $P_n$}\\
     Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
 
     \begin{itemize}
@@ -86,7 +86,7 @@
         \end{itemize}
     }{1a}
 
-    \textbf{b) Kružnice $C_n$}\\
+    \subsection{b) Kružnice $C_n$}\\
     Definice: Kružnice $C_n$ má $n$ vrcholů a každý vrchol je spojen s předchozím a následujícím vrcholem.
 
     \begin{itemize}
@@ -118,9 +118,8 @@
             \end{cases}$
         \end{itemize}
     }{1b}
-    \newpage
 
-    \textbf{c) Úplný graf $K_n$}\\
+    \subsection{c) Úplný graf $K_n$}\\
     Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.
 
     \begin{itemize}
@@ -152,7 +151,7 @@
         \end{itemize}
     }{1c}
 
-    \textbf{d) Úplný bipartitní graf $K_{m,n}$}\\
+    \subsection{d) Úplný bipartitní graf $K_{m,n}$}
     Definice: Úplný bipartitní graf $K_{m,n}$ má $m$ vrcholů v jedné partitě a $n$ vrcholů v druhé partitě a každý vrchol z jedné partity je spojen s každým vrcholem z druhé partity.
 
     \begin{itemize}
@@ -192,9 +191,8 @@
             \item Barevnost grafu \chi($K_{m,n}) = 2$
         \end{itemize}
     }{1d}
-    \newpage
 
-    \textbf{e) Papův graf}\\
+    \subsection{e) Papův graf}\\
     Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami, označme si jej jako $PG_{n, m}$, kde $
     n$ je počet vrcholů a $m$ je počet hran.
 
@@ -206,7 +204,7 @@
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.35\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
+        \includegraphics[width=0.25\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
         \caption{Papův graf $PG_{18, 27}$}
         \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
     \end{figure}
@@ -263,11 +261,7 @@
     \uloha{3}{2}{
         Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
     }{}{false}{true}
-    Cílem je nalézt rozsah (minimální a maximální) možných hran v grafu skládajícím se z $n$ vrcholů rozdělených do $
-    c$ komponent. Komponentou se rozumí podgraf, ve kterém jsou všechny vrcholy spojeny cestou a který není spojen s
-    žádnými dalšími vrcholy v hlavním grafu.
-
-    \textbf{a) Postup pro nalezení minimálního počtu hran}:
+    \subsection{a) Postup pro nalezení minimálního počtu hran}
     \begin{itemize}
         \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
         případem je mít komponenty bez hran, tedy izolované vrcholy.
@@ -287,7 +281,7 @@
         Minimální počet v grafu na $n$ vrcholech s $c$ komponentami je $n-c$.
     }{3a}
 
-    \textbf{b) Postup pro nalezení maximálního počtu hran}:
+    \subsection{b) Postup pro nalezení maximálního počtu hran}
     \begin{itemize}
         \item Maximální počet hran nastává, když každá komponenta je úplný graf (graf, kde jsou každé různé vrcholy spojeny jedinou hranou).
         \item Respektive postačí nám jedna komponenta jako úplný graf a zbytek komponent jako izolované vrcholy (tedy
@@ -401,8 +395,9 @@
             \label{fig:ukol-2-6-graf}
         \end{figure}
 
-        Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako funkce $n$
-        . Také určete počet hran tohoto grafu, opět jako funkci $n$.
+        Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako
+        funkce~$n$
+        . Také určete počet hran tohoto grafu, opět jako funkci~$n$.
     }{TODO}{false}{false}
     \newpage
 
@@ -442,7 +437,6 @@
         \end{enumerate}
     }{}{false}{true}
 
-    \textbf{Definice}:
     \begin{itemize}
         \item \textbf{Vrcholový stupeň $\alpha(G)$} je minimální počet vrcholů, které je třeba odebrat, aby se graf
         rozpadl na více komponent.
@@ -523,14 +517,14 @@
     \end{equation*}
     kde $\delta(G)$ je minimální stupeň vrcholu v grafu $G$. Pro kubický graf tedy platí $\delta(G) = 3$.
 
-    \textbf{Odebírání hran a vrcholů v kubickém grafu}:
+    \subsection{Odebírání hran a vrcholů v kubickém grafu}
     \begin{itemize}
         \item Odebráním hrany se sníží stupeň dvou vrcholů z 3 na 2, ale graf zůstává souvislý.
         \item Odebráním vrcholu se sníží stupeň tří hran z 3 na 2, což může vést k rozpadu grafu.
         \item Zatím můžeme pozorovat, že odebrání vrcholu může být více kritické než odebrání hrany.
     \end{itemize}
 
-    \textbf{Případy pro různé vrcholové stupně souvislosti}:
+    \subsection{Případy pro různé vrcholové stupně souvislosti}
     \begin{itemize}
         \item \textbf{Případ 1:} Pokud $\alpha(G) = 1$, graf obsahuje most, který po odebrání rozdělí graf na dvě
         komponenty. Odebráním jednoho vrcholu se graf rozpadne, tedy $\kappa(G) = 1$ také.
@@ -546,11 +540,138 @@
     }{}
     \newpage
 
-% -- TODO: Úloha 11
+% -- Úloha 11
     \uloha{11}{2}{
         Pokuste se navrhnout Turingův stroj pro rozpoznání, že neorientovaný graf má izolovaný vrchol.\\
         \textit{Hint: Graf uložte na pásku jako matici sousednosti (nezapomeňte na oddělovače řádků) a v ní pomocí pravidel nalezněte takový vrchol.}
-    }{TODO}{false}{false}
+    }{}{false}{true}
+    Tento Turingův stroj kontroluje, zda je v neorientovaném grafu izolovaný vrchol, který je reprezentován jako řádek v matici sousednosti se samými $0$.
+
+    \subsection*{Příklad reprezentace grafu na pásce}
+    \begin{itemize}
+        \item Graf je reprezentován jako matice sousednosti, kde $A_{ij} = 1$ pokud existuje hrana mezi vrcholy $i$ a $j$.
+        \item Abeceda obsahuje znaky $1, 0$ a speciální symbol $\hookleftarrow$ jako oddělovač řádků společně se standardními
+        znaky~$\triangleright$~pro označení počátečního stavu a $\star$ pro prázdné pole.
+        \item Příklad matice, se kterou budeme pracovat: $001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$.
+        \item Tu lze reprezentovat na pásce Turingova strojě následovně:
+    \end{itemize}
+
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[every node/.style={block},block/.style={minimum height=1.5em,outer sep=0pt,draw,rectangle,node distance=0pt}]
+            \node (ldots) {$\dots$};
+            \node (empty1) [right=of ldots] {$\star$};
+            \node (empty2) [right=of empty1] {$\star$};
+            \node (empty3) [right=of empty2] {$\star$};
+            \node[fill=gray!20] (start) [right=of empty3] {$\triangleright$};
+
+            \node (x_11) [right=of start] {$0$};
+            \node (x_12) [right=of x_11] {$0$};
+            \node (x_13) [right=of x_12] {$1$};
+            \node (x_1stop) [right=of x_13] {$\hookleftarrow$};
+            \node (x_21) [right=of x_1stop] {$0$};
+            \node (x_22) [right=of x_21] {$1$};
+            \node (x_23) [right=of x_22] {$1$};
+            \node (x_2stop) [right=of x_23] {$\hookleftarrow$};
+            \node (x_31) [right=of x_2stop] {$0$};
+            \node (x_32) [right=of x_31] {$0$};
+            \node (x_33) [right=of x_32] {$0$};
+            \node (x_3stop) [right=of x_33] {$\hookleftarrow$};
+
+            \node (empty4) [right=of x_3stop] {$\star$};
+            \node (empty5) [right=of empty4] {$\star$};
+            \node (empty6) [right=of empty5] {$\star$};
+            \node (rdots) [right=of empty6] {$\dots$};
+        \end{tikzpicture}
+        \caption{Reprezentace grafu na pásce}
+        \label{fig:ukol-2-11-paska}
+    \end{figure}
+
+    \subsection*{Konfigurace Turingova stroje}
+    \begin{itemize}
+        \item \textbf{Množina stavů} $K$: Obsahuje počáteční stav $s_0$, stavy pro čtení řádků $s_r$, stav pro
+        kontrolu řádku $s_c$, stav přijetí $s_{\text{ano}}$ a stav odmítnutí $s_{\text{ne}}$.
+        \item \textbf{Vstupní abeceda} $\Sigma$: $\{0, 1, \star, \hookleftarrow, \triangleright\}$.
+        \item \textbf{Abeceda pásky} $\Gamma$: $\{0, 1, \hookleftarrow, \triangleright, X\}$, kde $X$ označuje již zkontrolované prvky.
+        \item \textbf{Přechodová funkce} $\delta$.
+        \item \textbf{Počáteční stav}: $s_0$.
+        \item \textbf{Koncové stavy}: $s_{\text{ano}}, s_{\text{ne}}$.
+    \end{itemize}
+
+    \subsection*{Přechodová funkce}
+    Tabulka přechodů pro Turingův stroj je následující:
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \rowcolor{gray!25}
+            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
+            \hline
+            $s_0$         & $\triangleright$ & $\triangleright$ & \rightarrow    & $s_r$               \\
+            \hline
+        \end{tabular}
+
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \rowcolor{gray!25}
+            \textbf{Stav} & \textbf{Čtení} & \textbf{Zápis} & \textbf{Pohyb} & \textbf{Další stav} \\
+            \hline
+            $s_r$         & $0$            & $0$            & \rightarrow    & $s_r$               \\
+            \hline
+            $s_r$         & $1$            & $X$            & \rightarrow    & $s_c$               \\
+            \hline
+            $s_r$         & $\hookleftarrow$  & $\hookleftarrow$  & \rightarrow    & $s_{\text{ano}}$    \\
+            \hline
+            $s_r$         & $\star$        & $\star$        & \rightarrow    & $s_{\text{ano}}$    \\
+            \hline
+        \end{tabular}
+
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \rowcolor{gray!25}
+            \textbf{Stav} & \textbf{Čtení} & \textbf{Zápis} & \textbf{Pohyb} & \textbf{Další stav} \\
+            \hline
+            $s_c$         & $1$            & $X$            & \rightarrow    & $s_{\text{ne}}$     \\
+            \hline
+            $s_c$         & $0$            & $0$            & \rightarrow    & $s_r$               \\
+            \hline
+            $s_c$         & $\hookleftarrow$  & $\hookleftarrow$  & \rightarrow    & $s_r$               \\
+            \hline
+            $s_c$         & $\star$        & $\star$        & \rightarrow    & $s_r$               \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \subsection*{Popis přechodů}
+    \begin{itemize}
+        \item Stroj začíná ve stavu $s_0$ a přejde do stavu $s_r$ po přečtení počátečního stavu $\triangleright$.
+        \item Ve stavu $s_r$ stroj pokračuje ve stavu $s_r$ po přečtení $0$. Po přečtení $1$ přejde do stavu $s_c$.
+        \item Stroj přejde do stavu $s_{\text{ano}}$ po přečtení oddělovače řádku $\hookleftarrow$ nebo $\star$.
+        \item Ve stavu $s_c$ stroj přejde do stavu $s_{\text{ne}}$ po přečtení $1$. Po přečtení $0$, $X$ nebo oddělovače řádku $\hookleftarrow$ přejde zpět do stavu $s_r$.
+        \item Stroj přijme vstup, pokud nalezne řádek s samými $0$ nebo pokud dojde na konec pásky ve stavu $s_r$ po přečtení samých $0$.
+    \end{itemize}
+
+    \subsection*{Ukázka běhu Turingova stroje}
+    \textbf{Vstup}: $\triangleright 001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$ – viz obrázek~\ref{fig:ukol-2-11-paska}.
+
+    \begin{enumerate}
+        \item Stroj začíná ve stavu $s_0$ s hlavou nad symbolem $\triangleright$.
+        \item Přečte $\triangleright$, zapíše $\triangleright$, posune se doprava a přejde do stavu $s_r$.
+        \item Hlava je nyní nad prvním $0$ za oddělovačem řádku. Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+        \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+        \item Přečte $1$. Protože stroj byl navržen tak, aby odmítl, pokud najde $1$ v řádku, přejde do stavu $s_c$.
+        \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava. Protože byla v tomto řádku $1$, stroj nezastaví ani nepřijme, ale pokračuje ve stavu $s_r$ pro kontrolu dalšího řádku.
+        \item Přečte další $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+        \item Přečte $1$, přejde do stavu $s_c$, zapíše $1$ a posune se doprava.
+        \item Přečte druhé $1$, zapíše $1$, posune se doprava a zůstává ve stavu $s_c$.
+        \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava a přejde zpět do stavu $s_r$ pro kontrolu dalšího řádku.
+        \item Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+        \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+        \item Přečte třetí $0$. Nyní je to klíčové, protože je to poslední číslice v řádku a dalším symbolem je $\hookleftarrow$. Stroj se musí přepnout do stavu přijetí, protože našel řádek pouze s $0$, což naznačuje izolovaný vrchol.
+        \item Přečte $\hookleftarrow$, zapíše $\hookleftarrow$ a přejde do stavu $s_{\text{ano}}$ podle poslední aktualizace v přechodové tabulce. To je proto, že detekoval řádek bez $1$, což naznačuje izolovaný vrchol.
+        \item Stroj zastaví ve stavu $s_{\text{ano}$, když úspěšně nalezl izolovaný vrchol.
+    \end{enumerate}
+
     \newpage
 
 % -- Úloha 12
