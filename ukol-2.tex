@@ -228,13 +228,13 @@
 
         Mějme $k$-regulární graf $G = (V, E)$ velikosti $|V| = n$, tj. graf pro který víme, že $\deg(v_i) = k$ pro
         všechny vrcholy $v_i \in V$. Navíc víme, že vlastní čísla matice sousednosti jsou reálná v pořadí $\lambda_1(A) \ge \lambda_2(A) \ge \ldots \ge \lambda_n(A)$. Lze nějak obecně vyjádřit všechna vlastní čísla Laplacovy matice takového grafu?
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- Úloha 3
     \uloha{3}{2}{
         Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
-    }{}{false}
+    }{}{false}{true}
     Cílem je nalézt rozsah (minimální a maximální) možných hran v grafu skládajícím se z $n$ vrcholů rozdělených do $
     c$ komponent. Komponentou se rozumí podgraf, ve kterém jsou všechny vrcholy spojeny cestou a který není spojen s
     žádnými dalšími vrcholy v hlavním grafu.
@@ -290,13 +290,13 @@
 
         Vypočtěte gradient $\nabla f(x)$ a Hessian $\nabla^2 f(x)$ a rozhodněte (a zdůvodněte)
         zda-li je v bodě $(1, 1)$ splněna 1. podmínka pro lokální minimizátor (nulovost gradientu) či zda-li je splněna i 2. podmínka pro Hessovu matici.
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- Úloha 5
     \uloha{5}{2}{
         Mějme množinu $\{1, 2, \ldots, n\}$. Určete, kolik je možné na této množině najít různých kružnic délky $n$? (jedná se tedy o počet průchodů, ale neorientovaného grafu).
-    }{}{false}
+    }{}{false}{true}
     Problém můžeme řešit následovně:
     \begin{itemize}
         \item Krok 1: Seřadíme vrcholy kružnice do pořadí $1, 2, \ldots, n$. Takových sekvencí je $n!$.
@@ -375,13 +375,13 @@
 
         Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako funkce $n$
         . Také určete počet hran tohoto grafu, opět jako funkci $n$.
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 7
     \uloha{7}{2}{
         Zdůvodněte, proč každá hrana vrcholově 2-souvislého grafu musí ležet na kružnici.
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 8
@@ -393,7 +393,7 @@
             \item Úplný graf $K_n$
             \item Úplný bipartitní graf $K_{m,n}$
         \end{enumerate}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 9
@@ -405,21 +405,21 @@
             \item Největší hodnotu vrcholového pokrytí $\beta(G)$
             \item Nejmenší hodnotu vrcholového pokrytí $\beta(G)$
         \end{enumerate}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 10
     \uloha{10}{2}{
         Ukažte proč pro každý kubický graf $G$, t.j. takový, že všechny stupně vrcholů jsou 3, platí, že stupeň vrcholové i hranové souvislosti se rovnají, tj. $\alpha(G) = \kappa(G)$.
         \textit{Hint: Pokuste se rozebrat případy pro různé vrcholové stupně souvislosti.}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 11
     \uloha{11}{2}{
         Pokuste se navrhnout Turingův stroj pro rozpoznání, že neorientovaný graf má izolovaný vrchol.\\
         \textit{Hint: Graf uložte na pásku jako matici sousednosti (nezapomeňte na oddělovače řádků) a v ní pomocí pravidel nalezněte takový vrchol.}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 12
@@ -432,7 +432,7 @@
             \lor
             \overline{x_4}) \land (x_4 \lor x_5) \land (\overline{x_3} \lor x_5)
         \end{equation*}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 13
@@ -446,7 +446,7 @@
             \lor
             x_4) \land (x_1 \lor \overline{x_2} \lor x_3 \lor \overline{x_4}) \land (x_4 \lor x_5)
         \end{equation*}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- TODO: Úloha 14
@@ -456,13 +456,13 @@
             f(x_1, x_2, x_3, x_4, x_5) = (x_1 \lor x_2 \lor \overline{x_4}) \land (x_1 \lor \overline{x_2} \lor x_3) \land (\overline{x_2}
             \lor \overline{x_3} \lor x_4) \land (x_1 \lor \overline{x_2} \lor x_3)
         \end{equation*}
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 
 % -- Úloha programovací 1
     \uloha{programovací 1}{4}{
         Naprogramujte algoritmus pro testování isomorfismu grafů hrubou silou a otestujte to na pár příkladech grafů s využitím knihovní funkce pro testování isomorfismu.
-    }{}{false}
+    }{}{false}{true}
     Isomorfismus lze testovat hrubou silou, kde se všechny možné permutace uzlů grafu $G$ porovnají s uzly grafu $H$.
 
     Vytvoříme funkci \texttt{isomorphism(G, H)}, která otestuje isomorfismus grafů $G$ a $H$ následovně:
@@ -519,6 +519,6 @@
         Realizujte hrubou silou nalezení největší nezávislé množiny daného grafu a následně otestujte, že je množina nezávislá. Následně se pokuste vylepšit řešení procházení množinami použitím sousedů vrcholu.
 
         Pokud chceme testovat procházení, nabízí se, ne nutně, řešení pomocí nějakého rekurzivního přístupu.
-    }{TODO}{false}
+    }{TODO}{false}{false}
     \newpage
 \end{document}
