@@ -393,7 +393,61 @@
             \item Úplný graf $K_n$
             \item Úplný bipartitní graf $K_{m,n}$
         \end{enumerate}
-    }{TODO}{false}{false}
+    }{}{false}{true}
+
+    \textbf{Definice}:
+    \begin{itemize}
+        \item \textbf{Vrcholový stupeň $\alpha(G)$} je minimální počet vrcholů, které je třeba odebrat, aby se graf
+        rozpadl na více komponent.
+        \item \textbf{Hranový stupeň $\kappa(G)$} je minimální počet hran, které je třeba odebrat, aby se graf rozpadl
+        na více komponent.
+    \end{itemize}
+
+    \subsubsection{Cesta $P_n$}
+    \begin{itemize}
+        \item Odebráním jakéhokoliv vnitřního vrcholu se cesta rozpadne na dvě komponenty. Vrcholový stupeň je tedy $\alpha(P_n) = 1$.
+        \item Odebráním jakékoliv hrany se cesta rozpadne na dvě komponenty. Hranový stupeň je tedy $\kappa(P_n) = 1$.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
+    \answerbox{
+        Pro cestu $P_n$ platí $\alpha(P_n) = 1$ a $\kappa(P_n) = 1$.
+    }{8a}
+
+    \subsubsection{Kružnice $C_n$}
+    \begin{itemize}
+        \item Odebráním jakéhokoliv vrcholu se z kružnice stane cesta, z tvrzení výše víme že $\alpha(P_n) = 1$.
+        Vrcholový stupeň je tedy $\alpha(C_n) = \alpha(P_{n-1}) + 1$.
+        \item Obdobně odebráním jakýchkoliv 2 sousedních hran se kružnice rozpadne na cestu a jeden izolovaný vrchol. Hranový stupeň je tedy $\kappa(C_n) = 2$.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
+    \answerbox{
+        Pro kružnici $C_n$ platí $\alpha(C_n) = 2$ a $\kappa(C_n) = 2$.
+    }{8b}
+
+    \subsubsection{Úplný graf $K_n$}
+    \begin{itemize}
+        \item Postupným odebíráním vrcholů zůstává graf stále souvislý, dokud neodebereme až $n-1$ vrcholů, pak zůstává pouze izolovaný vrchol. Vrcholový stupeň je tedy $\alpha(K_n) = n-1$.
+        \item Odebráním všech hran jednoho vrcholu, který má stupeň $n-1$, se graf rozpadne jednu jednu souvislou
+        komponentu a izolovaný vrchol. Hranový stupeň je tedy $\kappa(K_n) = n-1$.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 2$ vrcholy.}
+    \answerbox{
+        Pro úplný graf $K_n$ platí $\alpha(K_n) = n-1$ a $\kappa(K_n) = n-1$.
+    }{8c}
+
+    \subsubsection{Úplný bipartitní graf $K_{m,n}$}
+    \begin{itemize}
+        \item Odebráním všech vrcholů jedné partity se graf rozpadne na několik izolovaných vrcholů (jelikož každý
+        vrchol z jedné partity je spojen s každým vrcholem z druhé partity, ale nikoliv s vrcholem ze stejné partity). Lze tedy říci, že vrcholový stupeň je $\alpha(K_{m,n}) = \min(m, n)$.
+        \item Odebráním všech hran spojujících vrcholy jedné partity se graf rozpadne na souvislou komponentu a
+        několik izolovaných vrcholů. Pokud vybereme vrchol z větši parity, musíme odebrat pouze tolik hran, kolik
+        vrcholů má menší parita, tedy opět hranový stupeň je tedy $\kappa(K_{m,
+        n}) = \min(m, n)$.
+    \end{itemize}
+    \answerbox{
+        Pro úplný bipartitní graf $K_{m,n}$ platí $\alpha(K_{m,n}) = \min(m, n)$ a $\kappa(K_{m,n}) = \min(m, n)$.
+    }{8d}
+
     \newpage
 
 % -- TODO: Úloha 9
