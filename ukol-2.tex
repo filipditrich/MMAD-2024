@@ -35,12 +35,12 @@
 % -- TODO: Úloha 1
     \uloha{1}{2}{
         Pro následující grafy určete minimální stupeň $\delta(G)$, maximální stupeň $\Delta(G)$, skóre grafu a barevnost pro následující grafy:
-        \begin{enumerate}
-            \item a) Cesta $P_n$
-            \item b) Kružnice $C_n$
-            \item c) Úplný graf $K_n$
-            \item d) Úplný bipartitní graf $K_{m,n}$
-            \item e) Papův graf ukázaný níže
+        \begin{enumerate}[a]
+            \item Cesta $P_n$
+            \item Kružnice $C_n$
+            \item Úplný graf $K_n$
+            \item Úplný bipartitní graf $K_{m,n}$
+            \item Papův graf ukázaný níže
         \end{enumerate}
     }{
 
@@ -239,7 +239,7 @@
     c$ komponent. Komponentou se rozumí podgraf, ve kterém jsou všechny vrcholy spojeny cestou a který není spojen s
     žádnými dalšími vrcholy v hlavním grafu.
 
-    \textbf{Postup pro nalezení minimálního počtu hran}:
+    \textbf{a) Postup pro nalezení minimálního počtu hran}:
     \begin{itemize}
         \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
         případem je mít komponenty bez hran, tedy izolované vrcholy.
@@ -259,7 +259,7 @@
         Minimální počet v grafu na $n$ vrcholech s $c$ komponentami je $n-c$.
     }{3a}
 
-    \textbf{Postup pro nalezení maximálního počtu hran}:
+    \textbf{b) Postup pro nalezení maximálního počtu hran}:
     \begin{itemize}
         \item Maximální počet hran nastává, když každá komponenta je úplný graf (graf, kde jsou každé různé vrcholy spojeny jedinou hranou).
         \item Respektive postačí nám jedna komponenta jako úplný graf a zbytek komponent jako izolované vrcholy (tedy
@@ -378,16 +378,34 @@
     }{TODO}{false}{false}
     \newpage
 
-% -- TODO: Úloha 7
+% -- Úloha 7
     \uloha{7}{2}{
         Zdůvodněte, proč každá hrana vrcholově 2-souvislého grafu musí ležet na kružnici.
-    }{TODO}{false}{false}
+    }{}{false}{true}
+    Vrcholově 2-souvislý graf je graf, který zůstane souvislý i po odebrání libovolního vrcholu, ale po odebrání
+    alespoň dvou vrcholů se může rozpadnout na více komponent vzájemně nespojených hranami, tedy nesouvislých.
+
+    \begin{itemize}
+        \item Ve vrcholově 2-souvislém grafu musí existovat alespoň dva nezávislé průchody mezi libovolnými dvěma vrcholy.
+        \item Uvažujme libovolnou hranu $uv$ ve vrcholově 2-souvislém grafu.
+        \item Dle vlastností vrcholové 2-souvislosti existuje další cesta z vrcholu $u$ do vrcholu $v$, která
+        neobsahuje hranu $uv$.
+        \item Existence této alternativní cesty mezi vrcholy $u$ a $v$, spolu s hranou $uv$, tvoří kružnici.
+        \item Kružnice je vytvořena cestou z vrcholu $u$ do vrcholu $v$ přes alternativní cestu a návratem do
+        vrcholu $u$ pomocí hrany $uv$.
+    \end{itemize}
+
+    \answerbox{
+        Každá hrana ve vrcholově 2-souvislém grafu musí ležet na kružnici, protože definice vrcholové 2-souvislosti zaru
+        čuje přítomnost alternativních cest mezi vrcholy.
+    }{}
+
     \newpage
 
-% -- TODO: Úloha 8
+% -- Úloha 8
     \uloha{8}{2}{
         Určete vrcholový a hranový stupeň grafu, neboli $\alpha(G)$ a $\kappa(G)$, pro následující grafy:
-        \begin{enumerate}
+        \begin{enumerate}[a]
             \item Cesta $P_n$
             \item Kružnice $C_n$
             \item Úplný graf $K_n$
@@ -404,6 +422,7 @@
     \end{itemize}
 
     \subsubsection{Cesta $P_n$}
+    \label{subsubsec:ukol-2-8-cesta}
     \begin{itemize}
         \item Odebráním jakéhokoliv vnitřního vrcholu se cesta rozpadne na dvě komponenty. Vrcholový stupeň je tedy $\alpha(P_n) = 1$.
         \item Odebráním jakékoliv hrany se cesta rozpadne na dvě komponenty. Hranový stupeň je tedy $\kappa(P_n) = 1$.
