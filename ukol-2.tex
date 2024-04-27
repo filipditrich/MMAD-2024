@@ -231,32 +231,54 @@
     }{TODO}{false}
     \newpage
 
-% -- TODO: Úloha 3
+% -- Úloha 3
     \uloha{3}{2}{
         Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
     }{}{false}
+    Cílem je nalézt rozsah (minimální a maximální) možných hran v grafu skládajícím se z $n$ vrcholů rozdělených do $
+    c$ komponent. Komponentou se rozumí podgraf, ve kterém jsou všechny vrcholy spojeny cestou a který není spojen s
+    žádnými dalšími vrcholy v hlavním grafu.
 
-    \textbf{Minimální počet hran:}
+    \textbf{Postup pro nalezení minimálního počtu hran}:
     \begin{itemize}
-        \item Minimální počet hran v grafu je dosažen tehdy, když je graf tvořen $c$ izolovanými komponentami. Každá komponenta má jeden vrchol a žádnou hranu. Celkový počet hran je tedy $0$.
-        \item Celkový počet lze tedy vyjádřit jako počet vrcholů $n$ minus počet komponent $c$, tedy $n - c$.
+        \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
+        případem je mít komponenty bez hran, tedy izolované vrcholy.
+        \item Neizolované komponenty: Pro každou komponentu, která není jediný izolovaný vrchol, je minimální
+        struktura vlastně strom. Strom s $k$ vrcholy má $k-1$ hran (minimum pro udržení grafu spojeného).
+        \item Pokud je potřeba $c$ komponent a předpokládáme že $c-1$ komponent jsou jednotlivé izolované vrcholy a jedna komponenta obsahuje zbytek vrcholů, $n-(c-1)$, tato poslední komponenta jako strom by měla $n-(c-1)-1=n-c$ hran.
+        \item Minimální počet hran je tedy $0 + (n-c) = n-c$.
     \end{itemize}
 
-    \textbf{Maximální počet hran:}
+    Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
     \begin{itemize}
-        \item Maximální počet hran v grafu je dosažen tehdy, když je graf tvořen jednou komponentou. Každý vrchol je
-        spojen s každým jiným vrcholem a jedná se tedy o úplný graf $K_n$.
-        \item Celkový počet hran lze pak vyjádřit jako součet počtu hran v úplném grafu $K_n$, tedy $n(n-1)/2$.
-        \item Celkový počet hran je tedy $n(n-1)/2$.
+        \item Izolované komponenty: 2 izolované vrcholy, 1 komponenta s 8 vrcholy.
+        \item Minimální počet hran: $10 - 3 = 7$.
     \end{itemize}
 
     \answerbox{
-        Pro $n$ vrcholů a $c$ komponent platí:
-        \begin{itemize}
-            \item Minimální počet hran: $n - c$
-            \item Maximální počet hran: $\frac{n(n-1)}{2}$
-        \end{itemize}
-    }{3}
+        Minimální počet v grafu na $n$ vrcholech s $c$ komponentami je $n-c$.
+    }{3a}
+
+    \textbf{Postup pro nalezení maximálního počtu hran}:
+    \begin{itemize}
+        \item Maximální počet hran nastává, když každá komponenta je úplný graf (graf, kde jsou každé různé vrcholy spojeny jedinou hranou).
+        \item Respektive postačí nám jedna komponenta jako úplný graf a zbytek komponent jako izolované vrcholy (tedy
+        bez hran).
+        \item Počet hran v úplném grafu na $k$ vrcholech je $\binom{k}{2}$
+        \item Náš úplný graf má $n-(c-1)$ vrcholů, tedy počet vrcholů mínus počet ostatních izolovaných vrcholů (
+        komponent).
+        \item Maximální počet hran je tedy $\binom{n-(c-1)}{2}$.
+    \end{itemize}
+
+    Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
+    \begin{itemize}
+        \item Úplný graf s 8 ($10-(3-1)$) vrcholy a 1 izolovaný vrchol.
+        \item Maximální počet hran: $\binom{10-2}{2} = 28$.
+    \end{itemize}
+
+    \answerbox{
+        Maximální počet v grafu na $n$ vrcholech s $c$ komponentami je $\binom{n-(c-1)}{2}$.
+    }{3b}
     \newpage
 
 % -- TODO: Úloha 4
