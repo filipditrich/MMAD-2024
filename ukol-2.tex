@@ -523,7 +523,7 @@
     }{TODO}{false}{false}
     \newpage
 
-% -- TODO: Úloha 12
+% -- Úloha 12
     \uloha{12}{2}{
         Využijte vysvětlení proč platí polynomialita 2-SAT a nakreslete graf odpovídající následující formuli a otestujte a případně ukažte, zda-li je splněna.
         \textit{Pozn.: Graf na kreslete, i když budete schopni splnitelnost rozhodnout jinak.}
@@ -533,7 +533,96 @@
             \lor
             \overline{x_4}) \land (x_4 \lor x_5) \land (\overline{x_3} \lor x_5)
         \end{equation*}
-    }{TODO}{false}{false}
+    }{}{false}{true}
+
+    Nejprve sestavíme graf na literálech a klauzuích, tak že:
+    \begin{itemize}
+        \item Vrcholy: $V = \{x_1,\dots,x_5, \neg x_1,\dots,\neg x_5\}$
+        \item Hrany: Pro $\forall$ klauzuli $(a \lor b)$ přidáme hrany mezi $(\neg a, b)$ a $(\neg b, a)$
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=5cm,semithick]
+            \tikzstyle{every state}=[fill=white,draw=black,text=black]
+            \node[state] (x1) at (0,2) {$x_1$};
+            \node[state] (x2) at (2,2) {$x_2$};
+            \node[state] (x3) at (4,2) {$x_3$};
+            \node[state] (x4) at (6,2) {$x_4$};
+            \node[state] (x5) at (8,2) {$x_5$};
+
+            \node[state] (nx1) at (0,0) {$\neg x_1$};
+            \node[state] (nx2) at (2,0) {$\neg x_2$};
+            \node[state] (nx3) at (4,0) {$\neg x_3$};
+            \node[state] (nx4) at (6,0) {$\neg x_4$};
+            \node[state] (nx5) at (8,0) {$\neg x_5$};
+
+            % (x1 ∨ ¬x3)
+            \draw (nx1) to [bend right] (nx3);
+            \draw (x3) to [bend right] (x1);
+            % (x2 ∨ x3)
+            \draw (nx2) to (x3);
+            \draw (nx3) to (x2);
+            % (¬x3 ∨ x4)
+            \draw (x3) to (x4);
+            \draw (nx4) to (nx3);
+            % (¬x2 ∨ ¬x4)
+            \draw (x2) to (nx4);
+            \draw (x4) to (nx2);
+            % (x4 ∨ x5)
+            \draw (nx4) to (x5);
+            \draw (nx5) to (x4);
+            % (¬x3 ∨ x5)
+            \draw (x3) [bend left] to (x5);
+            \draw (nx5) [bend left] to (nx3);
+
+        \end{tikzpicture}
+        \caption{Graf sestaený z literálů a klauzulí}
+        \label{fig:ukol-2-12-graf}
+    \end{figure}
+
+    Následně nalezneme silně souvislé komponenty (kvasikomponenty) pomocí Kosarajova algoritmu (dvojitý průchod DFS). Z tohoto algoritmu jsme nalezli 4 kvasikomponenty:
+    \begin{enumerate}
+        \item $G_1 = \{ \neg x_1 \}$
+        \item $G_2 = \{ \neg x_5, x_4, \neg x_2, x_3 \}$
+        \item $G_3 = \{ \neg x_3, x_2, \neg x_4, x_5 \}$
+        \item $G_4 = \{ x_1 \}$
+    \end{enumerate}
+
+    Nalezneme průchody mezi kvasikomponentami:
+    \begin{enumerate}
+        \item $G_1 \rightarrow G_3$
+        \item $G_2 \rightarrow G_3$ a $G_2 \rightarrow G_4$
+    \end{enumerate}
+    a acyklicky je očíslujeme:
+    \begin{enumerate}
+        \item $c(G_1) = 1$
+        \item $c(G_2) = 2$
+        \item $c(G_4) = 3$
+        \item $c(G_3) = 4$
+    \end{enumerate}
+    poté jdeme od nejvyšší komponenty $G_2$ a sbíráme informace o literálech z grafu:
+    \begin{itemize}
+        \item v $G_3$ jsou $x_2, x_5, \neg x_3, \neg x_4$ a tedy $x_2 = x_5 = 1$ a $x_3 = x_4 = 0$
+        \item v $G_4$ je $x_1 = 1$ a tedy $x_1 = 1$
+    \end{itemize}
+
+    Pak pro tyto hodnoty ověříme formuli:
+    \begin{equation*}
+        f(x_1, x_2, x_3, x_4, x_5) = (1 \lor 0) \land (1 \lor 0) \land
+        (1 \lor 0) \land (0 \lor 1) \land (0 \lor 1) \land (1 \lor 1) = 1
+    \end{equation*}
+
+    Podrobnější postup je vidět na obrázku \ref{fig:ukol-2-12-hand} níže:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{\FIGDIR/ukol-2-12-hand}
+        \caption{Postup nalezení silně souvislých komponent a ověření formule}
+        \label{fig:ukol-2-12-hand}
+    \end{figure}
+
+    \answerbox{
+        Formule je splněna s hodnotami $x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1$.
+    }{}
     \newpage
 
 % -- TODO: Úloha 13
