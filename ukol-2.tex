@@ -481,11 +481,39 @@
     }{TODO}{false}{false}
     \newpage
 
-% -- TODO: Úloha 10
+% -- Úloha 10
     \uloha{10}{2}{
         Ukažte proč pro každý kubický graf $G$, t.j. takový, že všechny stupně vrcholů jsou 3, platí, že stupeň vrcholové i hranové souvislosti se rovnají, tj. $\alpha(G) = \kappa(G)$.
         \textit{Hint: Pokuste se rozebrat případy pro různé vrcholové stupně souvislosti.}
-    }{TODO}{false}{false}
+    }{}{false}{true}
+
+    Víme, že pro každý graf $G=(V, E)$ platí \textit{Whitneyho nerovnost}:
+    \begin{equation*}
+        \kappa(G) \leq \alpha(G) \leq \delta(G)
+    \end{equation*}
+    kde $\delta(G)$ je minimální stupeň vrcholu v grafu $G$. Pro kubický graf tedy platí $\delta(G) = 3$.
+
+    \textbf{Odebírání hran a vrcholů v kubickém grafu}:
+    \begin{itemize}
+        \item Odebráním hrany se sníží stupeň dvou vrcholů z 3 na 2, ale graf zůstává souvislý.
+        \item Odebráním vrcholu se sníží stupeň tří hran z 3 na 2, což může vést k rozpadu grafu.
+        \item Zatím můžeme pozorovat, že odebrání vrcholu může být více kritické než odebrání hrany.
+    \end{itemize}
+
+    \textbf{Případy pro různé vrcholové stupně souvislosti}:
+    \begin{itemize}
+        \item \textbf{Případ 1:} Pokud $\alpha(G) = 1$, graf obsahuje most, který po odebrání rozdělí graf na dvě
+        komponenty. Odebráním jednoho vrcholu se graf rozpadne, tedy $\kappa(G) = 1$ také.
+        \item \textbf{Případ 2:} Pokud $\alpha(G) > 1$, odebrání jednoho vrcholu nevede k rozpadu grafu, což naznačuje vyšší odolnost, tedy $\kappa(G)$ může být 2 nebo 3.
+        \begin{itemize}
+            \item Vzhledem k tomu, že kubické grafy mají vrcholy a hrany těsně propojeny kvůli jejich uniformnímu stupni, odebrání minimálního počtu vrcholů obvykle znamená odebrání i minimálního počtu hran.
+        \end{itemize}
+        \item \textbf{Případ 3:} Pro $\alpha(G) = 2$ nebo $\alpha(G) = 3$ bude kubický graf vyžadovat podobně minimální počet odebraných vrcholů k rozdělení, což znamená, že $\kappa(G)$ bude obvykle odpovídat $\alpha(G)$.
+    \end{itemize}
+
+    \answerbox{
+        Díky stejnému stupni vrcholů v kubickém grafu $G$ platí, že stupeň vrcholové i hranové souvislosti jsou stejné, tj. $\alpha(G) = \kappa(G)$.
+    }{}
     \newpage
 
 % -- TODO: Úloha 11
