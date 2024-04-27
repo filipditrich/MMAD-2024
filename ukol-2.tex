@@ -32,29 +32,37 @@
     \addtocontents{toc}{\vskip -2em}
     \tableofcontents
 
-% -- TODO: Úloha 1
+% -- Úloha 1
     \uloha{1}{2}{
         Pro následující grafy určete minimální stupeň $\delta(G)$, maximální stupeň $\Delta(G)$, skóre grafu a barevnost pro následující grafy:
-        \begin{enumerate}[a]
+        \begin{enumerate}
+            \renewcommand{\theenumi}{\alph{enumi}}
             \item Cesta $P_n$
             \item Kružnice $C_n$
             \item Úplný graf $K_n$
             \item Úplný bipartitní graf $K_{m,n}$
             \item Papův graf ukázaný níže
         \end{enumerate}
-    }{
 
-        Nejprve si připomeneme definice:
         \begin{itemize}
+            \itemsep0.5em
             \item \textbf{Minimální stupeň $\delta(G)$} je nejmenší stupeň vrcholu v grafu $G$.
             \item \textbf{Maximální stupeň $\Delta(G)$} je největší stupeň vrcholu v grafu $G$.
             \item \textbf{Skóre grafu} je součet stupňů všech vrcholů v grafu $G$.
-            \item \textbf{Barevnost} je minimální počet barev potřebných k obarvení vrcholů grafu $G$ tak, aby žádné dva sousední vrcholy neměly stejnou barvu.
+            \item \textbf{Barevnost $\chi(G)$} je minimální počet barev potřebných k obarvení vrcholů grafu $G$ tak,
+            aby žádné dva sousední vrcholy neměly stejnou barvu.
         \end{itemize}
-    }{false}
+    }{}{false}{true}
 
-    \subsubsection{1a) Cesta $P_n$}
+    \textbf{a) Cesta $P_n$}\\
     Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
+
+    \begin{itemize}
+        \item První a poslední vrchol mají stupeň 1, všechny ostatní vrcholy mají stupeň 2.
+        \item Pro obarvení cesty $P_n$ stačí vždy 2 barvy (jedna pro liché a druhá pro sudé vrcholy).
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
+
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -70,18 +78,23 @@
     \end{figure}
 
     \answerbox{
-        Uvažujme cestu $P_n$ s $n \ge 3$ vrcholy.\\
         \begin{itemize}
-            \item $\delta(P_n) = 1$ ... první a poslední vrchol mají stupeň 1
-            \item $\Delta(P_n) = 2$ ... všechny vrcholy kromě prvního a posledního mají stupeň 2
-            \item Skóre grafu $P_n = 2n - 2$ ... vnitřní vrcholy mají stupeň 2, první a poslední vrchol mají stupeň 1
-            \item Barevnost grafu $P_n = 2$ ... vždy stačí 2 barvy
+            \item $\delta(P_n) = 1$
+            \item $\Delta(P_n) = 2$
+            \item Skóre grafu $P_n = 2n - 2$
+            \item Barevnost grafu \chi($P_n) = 2$
         \end{itemize}
-        Pro $P_2$ pak platí, že $\delta(P_2) = \Delta(P_2) = 1$.
     }{1a}
 
-    \subsubsection{1b) Kružnice $C_n$}\\
+    \textbf{b) Kružnice $C_n$}\\
     Definice: Kružnice $C_n$ má $n$ vrcholů a každý vrchol je spojen s předchozím a následujícím vrcholem.
+
+    \begin{itemize}
+        \item Všechny vrcholy mají stupeň 2.
+        \item Lichou kružnici $C_n$ lze obarvit 3 barvami, sudou kružnici $C_n$ lze pak obarvit 2 barvami střídavě.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
+
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -96,20 +109,26 @@
     \end{figure}
 
     \answerbox{
-        Uvažujme kružnici $C_n$ s $n \ge 3$ vrcholy.\\
         \begin{itemize}
-            \item $\delta(C_n) = 2$ ... všechny vrcholy mají stupeň 2
-            \item $\Delta(C_n) = 2$ ... všechny vrcholy mají stupeň 2
-            \item Skóre grafu $C_n = 2n$ ... všechny vrcholy mají stupeň 2
-            \item Barevnost grafu $C_n = 2$ pro sudé $n$, $3$ pro liché $n$
+            \item $\delta(C_n) = 2$
+            \item $\Delta(C_n) = 2$
+            \item Skóre grafu $C_n = 2n$
+            \item Barevnost grafu \chi($C_n) = \begin{cases}
+                                                   2 & \text{pro sudé } n \\ 3 & \text{pro liché } n
+            \end{cases}$
         \end{itemize}
     }{1b}
     \newpage
 
-    \subsubsection{1c) Úplný graf $K_n$}\\
-    Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.\\
-    Speciální případ úplného grafu je úplný graf $K_2$, který má 2 vrcholy a 1 hranu a jedná se tedy o cestu $P_2$.\\
-    Další speciální případ je úplný graf $K_3$, který má 3 vrcholy a 3 hrany a jedná se tedy o kružnici $C_3$.
+    \textbf{c) Úplný graf $K_n$}\\
+    Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.
+
+    \begin{itemize}
+        \item Všechny vrcholy mají stupeň $n-1$.
+        \item Kvůli propojení všech vrcholů se všemi je nutné použít $n$ barev.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 3$ vrcholy.}
+
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -125,19 +144,22 @@
     \end{figure}
 
     \answerbox{
-        Uvažujme úplný graf $K_n$ s $n \ge 3$ vrcholy.\\
         \begin{itemize}
-            \item $\delta(K_n) = n-1$ ... všechny vrcholy mají stupeň $n-1$
-            \item $\Delta(K_n) = n-1$ ... všechny vrcholy mají stupeň $n-1$
-            \item Skóre grafu $K_n = n(n-1)$ ... všechny vrcholy mají stupeň $n-1$
-            \item Barevnost grafu $K_n = \begin{cases}
-                                             n-1 & \text{pro sudé } n \\ n & \text{pro liché } n
-            \end{cases}$
+            \item $\delta(K_n) = n-1$
+            \item $\Delta(K_n) = n-1$
+            \item Skóre grafu $K_n = n(n-1)$
+            \item Barevnost grafu \chi($K_n) = n$
         \end{itemize}
     }{1c}
 
-    \subsubsection{1d) Úplný bipartitní graf $K_{m,n}$}\\
+    \textbf{d) Úplný bipartitní graf $K_{m,n}$}\\
     Definice: Úplný bipartitní graf $K_{m,n}$ má $m$ vrcholů v jedné partitě a $n$ vrcholů v druhé partitě a každý vrchol z jedné partity je spojen s každým vrcholem z druhé partity.
+
+    \begin{itemize}
+        \item Všechny vrcholy z první partity mají stupeň $n$, všechny vrcholy z druhé partity mají stupeň $m$.
+        \item Pro obarvení úplného bipartitního grafu $K_{m,n}$ stačí 2 barvy, jedna pro každou partitu.
+    \end{itemize}
+    \textit{Poznámka: Bereme v potaz úplný bipartitní graf $K_{m,n}$ s $m,n \geq 1$ vrcholy.}
 
     \begin{figure}[H]
         \centering
@@ -163,32 +185,38 @@
     \end{figure}
 
     \answerbox{
-        Uvažujme úplný bipartitní graf $K_{m,n}$ s $m,n \ge 1$ vrcholy.\\
         \begin{itemize}
-            \item $\delta(K_{m,n}) = n$ ... všechny vrcholy z první partity mají stupeň $n$
-            \item $\Delta(K_{m,n}) = m$ ... všechny vrcholy z druhé partity mají stupeň $m$
-            \item Skóre grafu $K_{m,n} = mn$ ... všechny vrcholy z první partity mají stupeň $n$, všechny vrcholy z druhé partity mají stupeň $m$
-            \item Barevnost grafu $K_{m,n} = 2$ ... vždy stačí 2 barvy, jedna pro každou partitu
+            \item $\delta(K_{m,n}) = m$
+            \item $\Delta(K_{m,n}) = n$
+            \item Skóre grafu $K_{m,n} = mn$
+            \item Barevnost grafu \chi($K_{m,n}) = 2$
         \end{itemize}
     }{1d}
     \newpage
 
-    \subsubsection{1e) Papův graf}\\
-    Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami.\\
+    \textbf{e) Papův graf}\\
+    Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami, označme si jej jako $PG_{n, m}$, kde $
+    n$ je počet vrcholů a $m$ je počet hran.
+
+    \begin{itemize}
+        \item Všechny vrcholy mají stupeň 3, jedná se tedy o kubický graf.
+        \item Skóre grafu je $\{3, 3, \dots, 3\}$, tedy $3 \cdot 18 = 54$.
+        \item Každý vrchol je spojen s právě 3 dalšími vrcholy, tedy je možné graf obarvit 3 barvami.
+    \end{itemize}
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.35\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
-        \caption{Papův graf}
+        \caption{Papův graf $PG_{18, 27}$}
         \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
     \end{figure}
 
     \answerbox{
-        TODO:
         \begin{itemize}
-            \item $\delta(\text{Papův graf}) = 3$ ... všechny vrcholy mají stupeň 3
-            \item $\Delta(\text{Papův graf}) = 3$ ... všechny vrcholy mají stupeň 3
-            \item Skóre grafu $\text{Papův graf} = 18 \times 3 = 54$ ... všechny vrcholy mají stupeň 3
-            \item Barevnost grafu $\text{Papův graf} = TODO?$
+            \item $\delta(PG_{18, 27}) = 3$
+            \item $\Delta(PG_{18, 27}) = 3$
+            \item Skóre grafu $PG_{18, 27} = 54$
+            \item Barevnost grafu \chi($PG_{18, 27}) = 3$
         \end{itemize}
     }{1e}
     \newpage
@@ -405,7 +433,8 @@
 % -- Úloha 8
     \uloha{8}{2}{
         Určete vrcholový a hranový stupeň grafu, neboli $\alpha(G)$ a $\kappa(G)$, pro následující grafy:
-        \begin{enumerate}[a]
+        \begin{enumerate}
+            \renewcommand{\theenumi}{\alph{enumi}}
             \item Cesta $P_n$
             \item Kružnice $C_n$
             \item Úplný graf $K_n$
@@ -473,6 +502,7 @@
     \uloha{9}{2}{
         Vezměmě si grafy typu strom o fixní velikosti $n$. Rozhodněte a nakreslete, jaký strom o velikosti $n$ má:
         \begin{enumerate}
+            \renewcommand{\theenumi}{\alph{enumi}}
             \item Největší hodnotu nezávislosti $\alpha(G)$
             \item Nejmenší hodnotu nezávislosti $\alpha(G)$
             \item Největší hodnotu vrcholového pokrytí $\beta(G)$
