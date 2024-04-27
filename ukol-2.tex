@@ -261,6 +261,7 @@
     \uloha{3}{2}{
         Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
     }{}{false}{true}
+
     \subsection{a) Postup pro nalezení minimálního počtu hran}
     \begin{itemize}
         \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
@@ -614,30 +615,30 @@
         \begin{tabular}{|c|c|c|c|c|c|}
             \hline
             \rowcolor{gray!25}
-            \textbf{Stav} & \textbf{Čtení} & \textbf{Zápis} & \textbf{Pohyb} & \textbf{Další stav} \\
+            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
             \hline
-            $s_r$         & $0$            & $0$            & \rightarrow    & $s_r$               \\
+            $s_r$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
             \hline
-            $s_r$         & $1$            & $X$            & \rightarrow    & $s_c$               \\
+            $s_r$         & $1$              & $X$              & \rightarrow    & $s_c$               \\
             \hline
-            $s_r$         & $\hookleftarrow$  & $\hookleftarrow$  & \rightarrow    & $s_{\text{ano}}$    \\
+            $s_r$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_{\text{ano}}$    \\
             \hline
-            $s_r$         & $\star$        & $\star$        & \rightarrow    & $s_{\text{ano}}$    \\
+            $s_r$         & $\star$          & $\star$          & \rightarrow    & $s_{\text{ano}}$    \\
             \hline
         \end{tabular}
 
         \begin{tabular}{|c|c|c|c|c|c|}
             \hline
             \rowcolor{gray!25}
-            \textbf{Stav} & \textbf{Čtení} & \textbf{Zápis} & \textbf{Pohyb} & \textbf{Další stav} \\
+            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
             \hline
-            $s_c$         & $1$            & $X$            & \rightarrow    & $s_{\text{ne}}$     \\
+            $s_c$         & $1$              & $X$              & \rightarrow    & $s_{\text{ne}}$     \\
             \hline
-            $s_c$         & $0$            & $0$            & \rightarrow    & $s_r$               \\
+            $s_c$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
             \hline
-            $s_c$         & $\hookleftarrow$  & $\hookleftarrow$  & \rightarrow    & $s_r$               \\
+            $s_c$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_r$               \\
             \hline
-            $s_c$         & $\star$        & $\star$        & \rightarrow    & $s_r$               \\
+            $s_c$         & $\star$          & $\star$          & \rightarrow    & $s_r$               \\
             \hline
         \end{tabular}
     \end{center}
@@ -855,11 +856,134 @@
     }
     \newpage
 
-% -- TODO: Úloha programovací 2
+% -- Úloha programovací 2
     \uloha{programovací 2}{4}{
         Realizujte hrubou silou nalezení největší nezávislé množiny daného grafu a následně otestujte, že je množina nezávislá. Následně se pokuste vylepšit řešení procházení množinami použitím sousedů vrcholu.
 
         Pokud chceme testovat procházení, nabízí se, ne nutně, řešení pomocí nějakého rekurzivního přístupu.
-    }{TODO}{false}{false}
+    }{}{false}{true}
+    \begin{itemize}
+        \item \textbf{Maximální (Maximal) nezávislá množina} je taková množina uzlů, kde žádné dva uzly nejsou spojeny
+        hranou a nelze přidat další uzel, aby zůstala nezávislá.
+        \item \textbf{Největší (Maximum) nezávislá množina} je taková množina, která má největší počet uzlů.
+    \end{itemize}
+
+    Pro řešení naimplementujeme nejdříve funkci na zjištění nezávislosti množiny \texttt{is\_independent\_set(G,~ind\_set)}:
+    \begin{minted}{python}
+         def is_independent_set(G, ind_set):
+            """
+            Množina je nezávislá, pokud žádné dva uzly nejsou spojeny hranou.
+            :param G: Graf G
+            :param ind_set: Množina uzlů
+            :return: True pokud je množina nezávislá, jinak False
+            """
+            # pro všechny uzly v množině
+            for node in ind_set:
+                # projdeme všechny sousedy uzlu
+                for neighbor in G.neighbors(node):
+                    # pokud je soused také v množině, množina není nezávislá
+                    if neighbor in ind_set:
+                        return False
+            return True
+    \end{minted}
+
+    Tato funkce nám umožní testovat nezávislost množiny uzlů v grafu. Následně můžeme implementovat funkci pro
+    nalezení největší nezávislé množiny grafu \texttt{get\_max\_independent\_set(G)} pomocí hrubé síly:
+    \begin{minted}{python}
+        def get_max_independent_set(G):
+            """
+            Nalezení největší nezávislé množiny grafu hrubou silou.
+            :param G: Graf G
+            :return: Největší nezávislá množina grafu G
+            """
+            # inicializace (prázdné) maximální nezávislé množiny
+            max_ind_set = set()
+            # pro všechny možné velikosti množin
+            for i in range(1, len(G.nodes) + 1):
+                # pro všechny možné kombinace uzlů
+                for ind_set in itertools.combinations(G.nodes, i):
+                    # pokud je množina nezávislá a má větší počet uzlů než dosavadní maximální množina
+                    if is_independent_set(G, ind_set) and len(ind_set) > len(max_ind_set):
+                        # nastavíme novou maximální množinu
+                        max_ind_set = set(ind_set)
+            return max_ind_set
+    \end{minted}
+
+    Pro otestování nyní zavoláme naši funkci \texttt{get\_max\_independent\_set(G)} a porovnáme oproti výsledku z
+    knihovny \texttt{networkx}:
+    \begin{minted}{python}
+        G = nx.generators.small.petersen_graph()
+        # brute force
+        brute_max_ind_set = log_perf(get_max_independent_set)(G)
+        print(f"[brute] Set: {brute_max_ind_set}, Length: {len(brute_max_ind_set)}, Is independent: {is_independent_set(G, brute_max_ind_set)}")
+        # confirm via networkx
+        nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
+        print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
+        # assert
+        assert len(brute_max_ind_set) == len(nx_max_ind_set)
+        # >>> [get_max_independent_set] took 0.36 ms
+        # >>> [brute] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
+        # >>> [maximum_independent_set] took 1.28 ms
+        # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
+    \end{minted}
+
+    Lze vidět, že naše funkce pro nalezení největší nezávislé množiny grafu funguje správně a vrací stejný výsledek
+    jako funkce z knihovny \texttt{networkx}. Dále si také můžeme všimnout že průměrná doba běhu naší funkce je $0
+    .36ms$ oproti $1.28ms$ funkce z knihovní funkce.
+
+    Nyní se pokusme naši funkci vylepšit pomocí rekurzivního přístupu:
+    \begin{minted}{python}
+        def recursive_independent_set(G, current_set, nodes_remaining):
+            """
+            :param G:
+            :param current_set:
+            :param nodes_remaining:
+            :return:
+            """
+            # pokud již nejsou žádné uzly k procházení, vrátíme aktuální množinu
+            if not nodes_remaining:
+                return current_set
+
+            # inicializace maximální množiny
+            max_set = current_set
+            # pro všechny uzly, které ještě nebyly zpracovány
+            for node in nodes_remaining:
+                # všechny sousedy uzlu
+                neighbors = G.neighbors(node)
+                # pokud žádný soused není v aktuální množině
+                if all(neighbor not in current_set for neighbor in neighbors):
+                    # vytvoříme novou množinu s uzlem
+                    new_set = current_set.union({node})
+                    # rekurzivně zavoláme funkci pro další uzly
+                    remaining = nodes_remaining.difference(new_set).difference(set(G.neighbors(node)))
+                    candidate_set = recursive_independent_set(G, new_set, remaining)
+                    # pokud je nová množina větší než dosavadní maximální množina
+                    if len(candidate_set) > len(max_set):
+                        # nastavíme novou maximální množinu
+                        max_set = candidate_set
+
+            return max_set
+    \end{minted}
+
+    Otestováním této funkce zjistíme, že výsledek je sice správný a tedy stejný jako u předchozích funkcí, ale doba
+    běhu je výrazně delší, což je způsobeno rekurzivním přístupem:
+    \begin{minted}{python}
+        # improved with neighbors
+        recursive_max_ind_set = log_perf(recursive_independent_set)(G, set(), set(G.nodes))
+        print(f"[recursive] Set: {recursive_max_ind_set}, Length: {len(recursive_max_ind_set)}, Is independent: {is_independent_set(G, recursive_max_ind_set)}")
+        # confirm via networkx
+        nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
+        print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
+        # assert
+        assert len(brute_max_ind_set) == len(nx_max_ind_set)
+        # >>> [recursive_independent_set] took 0.43 ms
+        # >>> [recursive] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
+        # >>> [maximum_independent_set] took 1.28 ms
+        # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
+    \end{minted}
+
+    \textit{
+        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k2.py}{ukol-2-k2.py}.
+    }
     \newpage
 \end{document}
