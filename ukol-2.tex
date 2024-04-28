@@ -774,10 +774,10 @@
             (1 \lor 0) \land (0 \lor 1) \land (0 \lor 1) \land (1 \lor 1) = 1
         \end{equation*}
 
-        Podrobnější postup je vidět na obrázku \ref{fig:ukol-2-12-hand} níže:
+        Podrobnější postup je vidět na obrázku~\ref{fig:ukol-2-12-hand} níže:
         \begin{figure}[H]
             \centering
-            \includegraphics[width=\textwidth]{\FIGDIR/ukol-2-12-hand}
+            \includegraphics[width=0.65\textwidth]{\FIGDIR/ukol-2-12-hand}
             \caption{Postup nalezení silně souvislých komponent a ověření formule}
             \label{fig:ukol-2-12-hand}
         \end{figure}
@@ -974,7 +974,9 @@
             \land (0 \lor 1) = 1
         \end{equation*}
 
-        Formule je rovna $1$ a tedy je splněna se zvolenými hodnotami literálů. Podrobnější postup je vidět na obrázku~\ref{fig:ukol-2-13-hand} níže:
+        Formule je rovna $1$ a tedy je splněna se zvolenými hodnotami literálů.
+
+        Podrobnější postup je vidět na obrázku~\ref{fig:ukol-2-13-hand} níže:
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.75\textwidth]{\FIGDIR/ukol-2-13-hand}
@@ -987,15 +989,324 @@
         }{}
     \end{uloha}
 
-% -- TODO: Úloha 14
+% -- Úloha 14
     \begin{uloha}{14}{2}{
         Na základě vysvětlení převodu 3-SAT na 3-COL nakreslete graf odpovídající následující formuli a otestujte barevnost grafu.
         \begin{equation*}
             f(x_1, x_2, x_3, x_4, x_5) = (x_1 \lor x_2 \lor \overline{x_4}) \land (x_1 \lor \overline{x_2} \lor x_3) \land (\overline{x_2}
             \lor \overline{x_3} \lor x_4) \land (x_1 \lor \overline{x_2} \lor x_3)
         \end{equation*}
-    }{false}
-        TODO
+    }{true}
+        Nejprve si lze všimnout:
+        \begin{itemize}
+            \item Ve formuli není zahrnuta proměnná $x_5$, a tedy ji můžeme ignorovat.
+            \item Klauzule $(x_1 \lor \overline{x_2} \lor x_3)$ je duplicitní a můžeme tedy jednu z nich odstranit.
+            \item \textit{Poznámka: Originální zadání jsem stáhnul a pročítal 5$\times$ a opravdu tak formule je a
+            nebyla to chyba při přepisu. Budeme tedy dále předpokládat, že se jedná o záměr.}
+        \end{itemize}
+
+        Dále tedy pracujeme s upravenou formulí:
+        \begin{equation*}
+            f(x_1, x_2, x_3, x_4) =
+            \underbrace{(x_1 \lor x_2 \lor \overline{x_4})}_{c_1} \land
+            \underbrace{(x_1 \lor \overline{x_2} \lor x_3)}_{c_2} \land
+            \underbrace{(\overline{x_2} \lor \overline{x_3} \lor x_4)}_{c_3}
+        \end{equation*}
+
+        Nejprve si sestrojíme graf následovně:
+        \begin{itemize}
+            \item Vrcholy pro každou proměnnou $x_i$ vytvoříme dvojici vrcholů $x_1,\overline{x_i}$.
+            \item Přidáme vrcholy $u, v, w$
+            \item Přidáme hrany $\{x_i,\overline{x_i}\}$ pro každou proměnnou
+            \item Přidáme hrany $\{w,x_i\}$ a $\{w,\overline{x_i}\}$ pro každou proměnnou
+            \item Přidáme hrany mezi vrcholy $u, v, w$
+            \item Pro každou klauzuli $c1, c2, c3$ přidáme pomocný graf G (sloužící jako logická brána) s vrcholy $d_i$ a $a_i, b_i, c_i$
+            \item Vrcholy $a_i, b_i, c_i$ ztotožníme s vrcholy $x_i$ z klauzule
+            \item Všechny vrcholy $d_i$ spojíme hranou s vrcholem $u$
+            \item A inicalizujeme obarvení vrcholů $u, v, w$ na 3 barvy:
+            \begin{itemize}
+                \item $u$ - \textcolor{gray}{Barva 0} (šedá)
+                \item $v$ - \textcolor{blue}{Barva 1} (modrá)
+                \item $w$ - \textcolor{green}{Barva 2} (zelená)
+            \end{itemize}
+        \end{itemize}
+
+        \begin{figure}[H]
+            \centering
+            \resizebox{0.3\paperwidth}{!}{
+                \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3cm,semithick,y=-1cm]
+                    % colors: 0 -> gray, 1 -> blue, 2 -> green
+                    % color u -> 0, v -> 1, w -> 2
+                    \filldraw[gray!50] (0,8) circle (6pt);
+                    \filldraw[blue!50] (0,12) circle (6pt);
+                    \filldraw[green!50] (3,10) circle (6pt);
+
+                    % u, v, w
+                    \filldraw[black] (0,8) circle (2pt) node[anchor=north east] {$u$};
+                    \filldraw[black] (3,10) circle (2pt) node[anchor=south] {$w$};
+                    \filldraw[black] (0,12) circle (2pt) node[anchor=north east] {$v$};
+                    % x_1, x_2, x_3, x_4 + their negations
+                    \filldraw[black] (6,8) circle (2pt) node[anchor=north west] {$x_1$};
+                    \filldraw[black] (6,12) circle (2pt) node[anchor=north west] {$\overline{x_1}$};
+                    \filldraw[black] (10,8) circle (2pt) node[anchor=north west] {$x_2$};
+                    \filldraw[black] (10,12) circle (2pt) node[anchor=north west] {$\overline{x_2}$};
+                    \filldraw[black] (14,8) circle (2pt) node[anchor=north west] {$x_3$};
+                    \filldraw[black] (14,12) circle (2pt) node[anchor=north west] {$\overline{x_3}$};
+                    \filldraw[black] (18,8) circle (2pt) node[anchor=north west] {$x_4$};
+                    \filldraw[black] (18,12) circle (2pt) node[anchor=north west] {$\overline{x_4}$};
+                    % logic gate graphs for each clause (c1, c2, c3)
+                    \filldraw[black] (6,0) circle (2pt) node[anchor=south west] {$d_1$};
+                    \filldraw[black] (5,1) circle (2pt);
+                    \filldraw[black] (7,1) circle (2pt);
+                    \filldraw[black] (5,2) circle (2pt);
+                    \filldraw[black] (4,3) circle (2pt);
+                    \filldraw[black] (6,3) circle (2pt);
+                    % c2
+                    \filldraw[black] (12,0) circle (2pt) node[anchor=south west] {$d_2$};
+                    \filldraw[black] (11,1) circle (2pt);
+                    \filldraw[black] (13,1) circle (2pt);
+                    \filldraw[black] (11,2) circle (2pt);
+                    \filldraw[black] (10,3) circle (2pt);
+                    \filldraw[black] (12,3) circle (2pt);
+                    % c3
+                    \filldraw[black] (18,0) circle (2pt) node[anchor=south west] {$d_3$};
+                    \filldraw[black] (17,1) circle (2pt);
+                    \filldraw[black] (19,1) circle (2pt);
+                    \filldraw[black] (17,2) circle (2pt);
+                    \filldraw[black] (16,3) circle (2pt);
+                    \filldraw[black] (18,3) circle (2pt);
+                    % edges - u, v, w
+                    \draw (0,8) to (3,10);
+                    \draw (0,8) to (0,12);
+                    \draw (0,12) to (3,10);
+                    % edges - x_i, ~x_i
+                    \draw (6,8) to (6,12);
+                    \draw (10,8) to (10,12);
+                    \draw (14,8) to (14,12);
+                    \draw (18,8) to (18,12);
+                    % edges - w, x_i, ~x_i
+                    \draw (3,10) to (6,8);
+                    \draw (3,10) to (6,12);
+                    \draw (3,10) to (10,8);
+                    \draw (3,10) to (10,12);
+                    \draw (3,10) to (14,8);
+                    \draw (3,10) to (14,12);
+                    \draw (3,10) to (18,8);
+                    \draw (3,10) to (18,12);
+                    % edges - u, d_i
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (6,0);
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (12,0);
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (18,0);
+                    % edges - d_1 triangles
+                    \draw (5,1) to (7,1);
+                    \draw (5,1) to (5,2);
+                    \draw (5,1) to (6,0);
+                    \draw (7,1) to (6,0);
+                    \draw (5,2) to (4,3);
+                    \draw (5,2) to (6,3);
+                    \draw (4,3) to (6,3);
+                    % edges - d_2 triangles
+                    \draw (11,1) to (13,1);
+                    \draw (11,1) to (11,2);
+                    \draw (11,1) to (12,0);
+                    \draw (13,1) to (12,0);
+                    \draw (11,2) to (10,3);
+                    \draw (11,2) to (12,3);
+                    \draw (10,3) to (12,3);
+                    % edges - d_3 triangles
+                    \draw (17,1) to (19,1);
+                    \draw (17,1) to (17,2);
+                    \draw (17,1) to (18,0);
+                    \draw (19,1) to (18,0);
+                    \draw (17,2) to (16,3);
+                    \draw (17,2) to (18,3);
+                    \draw (16,3) to (18,3);
+                    % edges a_i, b_i, c_i -> x_i
+                    \draw[draw=gray!35] (4,3) to [bend right] (6,8);
+                    \draw[draw=gray!35] (6,3) to [bend right] (10,8);
+                    \draw[draw=gray!35] (7,1) to [bend right] (18,12);
+                    \draw[draw=gray!35] (10,3) to [bend left] (6,8);
+                    \draw[draw=gray!35] (12,3) to [bend left] (10,12);
+                    \draw[draw=gray!35] (13,1) to [bend left] (14,8);
+                    \draw[draw=gray!35] (16,3) to [bend left] (10,12);
+                    \draw[draw=gray!35] (18,3) to [bend left] (14,12);
+                    \draw[draw=gray!35] (19,1) to [bend left] (18,8);
+                \end{tikzpicture}
+            }
+            \caption{Sestrojený graf pro formuli}
+            \label{fig:ukol-2-14-graph}
+        \end{figure}
+
+        Poté se pokusíme obarvit graf, tak že:
+        \begin{itemize}
+            \item Vrcholy $d_i$ musí být obarveny tak, aby byly různé od barvy $0$ (šedé).
+            \item Vrcholy $x_i$ a $\overline{x_i}$ musí být obarveny tak, aby od sebe různé, barvami $0$ a $1$
+            \item Pokud v každé klauzuli existují vrcholy $d_i$ takové, že jsou různé od barvy $0$, pak je formule
+            splnitelná a graf je 3-obarvitelný.
+        \end{itemize}
+
+        Takové obarvení může být násludující:
+        \begin{figure}[H]
+            \centering
+            \resizebox{0.4\paperwidth}{!}{
+                \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3cm,semithick,y=-1cm]
+                    % colors: 0 -> gray, 1 -> blue, 2 -> green
+                    % color u -> 0, v -> 1, w -> 2
+                    \filldraw[gray!50] (0,8) circle (6pt);
+                    \filldraw[blue!50] (0,12) circle (6pt);
+                    \filldraw[green!50] (3,10) circle (6pt);
+
+                    % color x_1 -> 1, x_2 -> 0, x_3 -> 0, x_4 -> 1
+                    \filldraw[blue!50] (6,8) circle (6pt);
+                    \filldraw[gray!50] (10,8) circle (6pt);
+                    \filldraw[gray!50] (14,8) circle (6pt);
+                    \filldraw[blue!50] (18,8) circle (6pt);
+                    \filldraw[gray!50] (6,12) circle (6pt);
+                    \filldraw[blue!50] (10,12) circle (6pt);
+                    \filldraw[blue!50] (14,12) circle (6pt);
+                    \filldraw[gray!50] (18,12) circle (6pt);
+                    % color c_i graphs
+                    \filldraw[green!50] (6,0) circle (6pt);
+                    \filldraw[blue!50] (12,0) circle (6pt);
+                    \filldraw[blue!50] (18,0) circle (6pt);
+
+                    \filldraw[gray!50] (5,1) circle (6pt);
+                    \filldraw[gray!50] (11,1) circle (6pt);
+                    \filldraw[gray!50] (17,1) circle (6pt);
+
+                    \filldraw[green!50] (5,2) circle (6pt);
+                    \filldraw[blue!50] (11,2) circle (6pt);
+                    \filldraw[blue!50] (17,2) circle (6pt);
+
+                    \filldraw[gray!50] (4,3) circle (6pt);
+                    \filldraw[gray!50] (10,3) circle (6pt);
+                    \filldraw[green!50] (16,3) circle (6pt);
+
+                    \filldraw[blue!50] (6,3) circle (6pt);
+                    \filldraw[green!50] (12,3) circle (6pt);
+                    \filldraw[gray!50] (18,3) circle (6pt);
+
+                    \filldraw[blue!50] (7,1) circle (6pt);
+                    \filldraw[green!50] (13,1) circle (6pt);
+                    \filldraw[green!50] (19,1) circle (6pt);
+
+                    % u, v, w
+                    \filldraw[black] (0,8) circle (2pt) node[anchor=north east] {$u$};
+                    \filldraw[black] (3,10) circle (2pt) node[anchor=south] {$w$};
+                    \filldraw[black] (0,12) circle (2pt) node[anchor=north east] {$v$};
+                    % x_1, x_2, x_3, x_4 + their negations
+                    \filldraw[black] (6,8) circle (2pt) node[anchor=north west] {$x_1$};
+                    \filldraw[black] (6,12) circle (2pt) node[anchor=north west] {$\overline{x_1}$};
+                    \filldraw[black] (10,8) circle (2pt) node[anchor=north west] {$x_2$};
+                    \filldraw[black] (10,12) circle (2pt) node[anchor=north west] {$\overline{x_2}$};
+                    \filldraw[black] (14,8) circle (2pt) node[anchor=north west] {$x_3$};
+                    \filldraw[black] (14,12) circle (2pt) node[anchor=north west] {$\overline{x_3}$};
+                    \filldraw[black] (18,8) circle (2pt) node[anchor=north west] {$x_4$};
+                    \filldraw[black] (18,12) circle (2pt) node[anchor=north west] {$\overline{x_4}$};
+                    % logic gate graphs for each clause (c1, c2, c3)
+                    \filldraw[black] (6,0) circle (2pt) node[anchor=south west] {$d_1$};
+                    \filldraw[black] (5,1) circle (2pt);
+                    \filldraw[black] (7,1) circle (2pt);
+                    \filldraw[black] (5,2) circle (2pt);
+                    \filldraw[black] (4,3) circle (2pt);
+                    \filldraw[black] (6,3) circle (2pt);
+                    % c2
+                    \filldraw[black] (12,0) circle (2pt) node[anchor=south west] {$d_2$};
+                    \filldraw[black] (11,1) circle (2pt);
+                    \filldraw[black] (13,1) circle (2pt);
+                    \filldraw[black] (11,2) circle (2pt);
+                    \filldraw[black] (10,3) circle (2pt);
+                    \filldraw[black] (12,3) circle (2pt);
+                    % c3
+                    \filldraw[black] (18,0) circle (2pt) node[anchor=south west] {$d_3$};
+                    \filldraw[black] (17,1) circle (2pt);
+                    \filldraw[black] (19,1) circle (2pt);
+                    \filldraw[black] (17,2) circle (2pt);
+                    \filldraw[black] (16,3) circle (2pt);
+                    \filldraw[black] (18,3) circle (2pt);
+                    % edges - u, v, w
+                    \draw (0,8) to (3,10);
+                    \draw (0,8) to (0,12);
+                    \draw (0,12) to (3,10);
+                    % edges - x_i, ~x_i
+                    \draw (6,8) to (6,12);
+                    \draw (10,8) to (10,12);
+                    \draw (14,8) to (14,12);
+                    \draw (18,8) to (18,12);
+                    % edges - w, x_i, ~x_i
+                    \draw (3,10) to (6,8);
+                    \draw (3,10) to (6,12);
+                    \draw (3,10) to (10,8);
+                    \draw (3,10) to (10,12);
+                    \draw (3,10) to (14,8);
+                    \draw (3,10) to (14,12);
+                    \draw (3,10) to (18,8);
+                    \draw (3,10) to (18,12);
+                    % edges - u, d_i
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (6,0);
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (12,0);
+                    \draw (0,8) to [bend left] (2,1) to [bend left] (18,0);
+                    % edges - d_1 triangles
+                    \draw (5,1) to (7,1);
+                    \draw (5,1) to (5,2);
+                    \draw (5,1) to (6,0);
+                    \draw (7,1) to (6,0);
+                    \draw (5,2) to (4,3);
+                    \draw (5,2) to (6,3);
+                    \draw (4,3) to (6,3);
+                    % edges - d_2 triangles
+                    \draw (11,1) to (13,1);
+                    \draw (11,1) to (11,2);
+                    \draw (11,1) to (12,0);
+                    \draw (13,1) to (12,0);
+                    \draw (11,2) to (10,3);
+                    \draw (11,2) to (12,3);
+                    \draw (10,3) to (12,3);
+                    % edges - d_3 triangles
+                    \draw (17,1) to (19,1);
+                    \draw (17,1) to (17,2);
+                    \draw (17,1) to (18,0);
+                    \draw (19,1) to (18,0);
+                    \draw (17,2) to (16,3);
+                    \draw (17,2) to (18,3);
+                    \draw (16,3) to (18,3);
+                    % edges a_i, b_i, c_i -> x_i
+                    \draw[draw=gray!35] (4,3) to [bend right] (6,8);
+                    \draw[draw=gray!35] (6,3) to [bend right] (10,8);
+                    \draw[draw=gray!35] (7,1) to [bend right] (18,12);
+                    \draw[draw=gray!35] (10,3) to [bend left] (6,8);
+                    \draw[draw=gray!35] (12,3) to [bend left] (10,12);
+                    \draw[draw=gray!35] (13,1) to [bend left] (14,8);
+                    \draw[draw=gray!35] (16,3) to [bend left] (10,12);
+                    \draw[draw=gray!35] (18,3) to [bend left] (14,12);
+                    \draw[draw=gray!35] (19,1) to [bend left] (18,8);
+                \end{tikzpicture}
+            }
+            \caption{Obarvený graf pro formuli}
+            \label{fig:ukol-2-14-graph-colored}
+        \end{figure}
+
+        Dosazením do formule zjistíme, že všechny klauzule jsou splněny:
+        \begin{equation*}
+            f(x_1=1, x_2=0, x_3=0, x_4=1) =
+            (1 \lor 0 \lor 0) \land
+            (1 \lor 1 \lor 0) \land
+            (1 \lor 1 \lor 1) = 1
+        \end{equation*}
+
+        Obarvení jsme v grafu našli a tedy je formule splnitelná a graf je 3-obarvitelný.
+
+        Podrobnější postup je vidět na obrázku~\ref{fig:ukol-2-14-hand} níže:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{\FIGDIR/ukol-2-14-hand}
+            \caption{Postup obarvení grafu}
+            \label{fig:ukol-2-14-hand}
+        \end{figure}
+
+        \answerbox{
+            Formule je splněna a graf je 3-obarvitelný pro $x_1 = 1, x_2 = 0, x_3 = 0, x_4 = 1$.
+        }{}
     \end{uloha}
 
 % -- Úloha programovací 1
@@ -1106,6 +1417,7 @@
                 return max_ind_set
         \end{minted}
 
+        \clearpage
         Pro otestování nyní zavoláme naši funkci \texttt{get\_max\_independent\_set(G)} a porovnáme oproti výsledku z
         knihovny \texttt{networkx}:
         \begin{minted}{python}
@@ -1162,6 +1474,7 @@
                 return max_set
         \end{minted}
 
+        \clearpage
         Otestováním této funkce zjistíme, že výsledek je sice správný a tedy stejný jako u předchozích funkcí, ale doba
         běhu je výrazně delší, což je způsobeno rekurzivním přístupem:
         \begin{minted}{python}
