@@ -430,8 +430,7 @@
         \end{itemize}
 
         \answerbox{
-            Každá hrana ve vrcholově 2-souvislém grafu musí ležet na kružnici, protože definice vrcholové 2-souvislosti zaru
-            čuje přítomnost alternativních cest mezi vrcholy.
+            Každá hrana ve vrcholově 2-souvislém grafu musí ležet na kružnici, protože definice vrcholové 2-souvislosti zaručuje přítomnost alternativních cest mezi vrcholy.
         }{}
 
     \end{uloha}
@@ -503,7 +502,7 @@
 
     \end{uloha}
 
-% -- TODO: Úloha 9
+% -- Úloha 9
     \begin{uloha}{9}{2}{
         Vezměmě si grafy typu strom o fixní velikosti $n$. Rozhodněte a nakreslete, jaký strom o velikosti $n$ má:
         \begin{enumerate}
@@ -513,8 +512,113 @@
             \item Největší hodnotu vrcholového pokrytí $\beta(G)$
             \item Nejmenší hodnotu vrcholového pokrytí $\beta(G)$
         \end{enumerate}
-    }{false}
-        TODO
+    }{true}
+        \begin{itemize}
+            \item \textbf{Strom} je graf, který je souvislý a neobsahuje cykly (kružnice).
+            \item \textbf{Nezávislost $\alpha(G)$} je největší podmnožina vrcholů grafu $G$, která není spojená hranou.
+            \item \textbf{Vrcholové pokrytí $\beta(G)$} je nejmenší podmnožina vrcholů grafu $G$, která pokryje všechny hrany.
+        \end{itemize}
+
+        \subsection{a) Největší hodnota nezávislosti $\alpha(G)$}
+        K nalezení stromu s největší hodnotou nezávislosti $\alpha(G)$ je třeba nalézt strom, který má co nejvíce listů (vrcholů stupně 1). Nezávislá množina pak bude tvořena všemi listy stromu.
+
+        Takový strom může být například \textbf{hvězdicový strom}, pro který platí, že má jeden vrchol stupně $n-1$ a $n-1$ vrcholů stupně 1:
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (3,3) {};
+                \foreach \i in {2,...,8}
+                \node[circle, draw, inner sep=2pt, fill=red, label=above:{\i}] (\i) at ({3+cos(360/7*\i)},{3+sin(
+                360/7
+                *\i)}) {};
+                \foreach \i in {2,...,8}
+                \draw[>=stealth] (1) -- (\i);
+            \end{tikzpicture}
+            \caption{Hvězdicový strom o velikosti $n=8$}
+            \label{fig:ukol-2-9-hvezdicovy-strom}
+        \end{figure}
+
+        Dále si na tomto grafu můžeme povšimnout, že jeho vrcholové pokrytí $\beta(G)$ bude tvořeno pouze kořenem
+        stromu, tedy $\beta(G) = 1$, k tomu se ale dostaneme v dalších bodech.
+
+        \answerbox{
+            Největší hodnota nezávislosti $\alpha(G)$ je docílena na hvězdicovém stromu o velikosti $n$, kde $\alpha(G) = n-1$.
+        }{9a}
+
+        \subsection{b) Nejmenší hodnota nezávislosti $\alpha(G)$}
+        Pro nalezení stromu s nejmenší hodnotou nezávislosti $\alpha(G)$ je třeba nalézt strom, který bude mít co
+        nejvíce hran mezi vrcholy. V takovém stromu pak bude nezávislá množina tvořena každým druhým vrcholem.
+
+        Takový strom je například \textbf{cesta} $P_n$, kde nezávislá množina bude tvořena každým druhým vrcholem:
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[y=-1cm]
+                \foreach \i in {1,...,8}{
+                    \ifthenelse{
+                        \isodd{\i}
+                    }{
+                        \node[circle, draw, inner sep=2pt, fill=red, label=above:{\i}] (\i) at (\i,0) {};
+                    }{
+                        \node[circle, draw, inner sep=2pt, fill=black, label=above:{\i}] (\i) at (\i,0) {};
+                    }
+                }
+                \draw (1) -- (2) -- (3) -- (4) -- (5) -- (6) -- (7) -- (8);
+            \end{tikzpicture}
+            \caption{Cesta o velikosti $n=8$}
+            \label{fig:ukol-2-9-cesta}
+        \end{figure}
+
+        Dále si na tomto grafu můžeme povšimnout, že jeho vrcholové pokrytí $\beta(G)$ bude také tvořeno každým druhým vrcholem, tedy $\beta(G) = \frac{n}{2}$.
+
+        \answerbox{
+            Nejmenší hodnota nezávislosti $\alpha(G)$ je docílena na cestě o velikosti $n$, kde $\alpha(G) = \frac{n}{2}$.
+        }{9b}
+
+        \subsection{c) Největší hodnota vrcholového pokrytí $\beta(G)$}
+        Jak jsme si již ukázali v předchozích bodech, největší hodnota vrcholového pokrytí $\beta(G)$ bude docílena na cestě $P_n$, kde $\beta(G) = \frac{n}{2}$.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[y=-1cm]
+                \foreach \i in {1,...,8}{
+                    \ifthenelse{
+                        \isodd{\i}
+                    }{
+                        \node[circle, draw, inner sep=2pt, fill=black, label=above:{\i}] (\i) at (\i,0) {};
+                    }{
+                        \node[circle, draw, inner sep=2pt, fill=red, label=above:{\i}] (\i) at (\i,0) {};
+                    }
+                }
+                \draw (1) -- (2) -- (3) -- (4) -- (5) -- (6) -- (7) -- (8);
+            \end{tikzpicture}
+            \caption{Cesta o velikosti $n=8$}
+            \label{fig:ukol-2-9-cesta-2}
+        \end{figure}
+
+        \answerbox{
+            Největší hodnota vrcholového pokrytí $\beta(G)$ je docílena na cestě o velikosti $n$, kde $\beta(G) = \frac{n}{2}$.
+        }{9c}
+
+        \subsection{d) Nejmenší hodnota vrcholového pokrytí $\beta(G)$}
+        Naopak opět se vracíme k hvězdicovému stromu, kde jsme dále zjistili, že nejmenší hodnota vrcholového pokrytí $\beta(G)$ bude docílena na hvězdicovém stromu, kde $\beta(G) = 1$ a to díky kořeni stromu, který pokryje všechny hrany.
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[circle, draw, inner sep=2pt, fill=red, label=above:{1}] (1) at (3,3) {};
+                \foreach \i in {2,...,8}
+                \node[circle, draw, inner sep=2pt, fill=black, label=above:{\i}] (\i) at ({3+cos(360/7*\i)},{3+sin(
+                360/7
+                *\i)}) {};
+                \foreach \i in {2,...,8}
+                \draw[>=stealth] (1) -- (\i);
+            \end{tikzpicture}
+            \caption{Hvězdicový strom o velikosti $n=8$}
+            \label{fig:ukol-2-9-hvezdicovy-strom-2}
+        \end{figure}
+
+        \answerbox{
+            Nejmenší hodnota vrcholového pokrytí $\beta(G)$ je docílena na hvězdicovém stromu o velikosti $n$, kde $\beta(G) = 1$.
+        }{9d}
     \end{uloha}
 
 % -- Úloha 10
