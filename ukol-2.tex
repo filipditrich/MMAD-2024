@@ -787,7 +787,7 @@
         }{}
     \end{uloha}
 
-% -- TODO: Úloha 13
+% -- Úloha 13
     \begin{uloha}{13}{2}{
         Na základě vysvětlení převodu SAT na IND nakreslete graf odpovídající následující formuli a otestujte splnitelnost formule nalezením nezávislé množiny.
         \textit{Pozn.: Graf nakreslete a zhodnoťte, i když budete schopni splnitelnost rozhodnout jinak.}
@@ -798,8 +798,193 @@
             \lor
             x_4) \land (x_1 \lor \overline{x_2} \lor x_3 \lor \overline{x_4}) \land (x_4 \lor x_5)
         \end{equation*}
-    }{false}
-        TODO
+    }{true}
+        Nejprve sestavíme graf na literálech a klauzích, tak že:
+        \begin{itemize}
+            \item Vrcholy budou indexované jako literály
+            \item A hrany budou spojovat:
+            \begin{itemize}
+                \item vrcholy odpovídající literálům stejné klauzule
+                \item vrcholy odpovídající stejné proměnné, ale negaci
+            \end{itemize}
+        \end{itemize}
+
+        Formuli si nyní rozepíšeme do literálů a klauzulí:
+        \begin{equation*}
+            f(x_1, x_2, \dots, x_5) =
+            \underbrace{(a_{11} \lor a_{12} \lor a_{13})}_{c_1} \land
+            \underbrace{(a_{21} \lor a_{22} \lor a_{23})}_{c_2} \land
+            \underbrace{(a_{31} \lor a_{32} \lor a_{33})}_{c_3} \land
+            \underbrace{(a_{41} \lor a_{42} \lor a_{43} \lor a_{44})}_{c_4} \land
+            \underbrace{(a_{51} \lor a_{52})}_{c_5}
+        \end{equation*}
+
+        Pro tu nyní sestrojíme graf:
+        \begin{figure}[H]
+            \centering
+            \resizebox{0.35\paperwidth}{!}{
+                \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3cm,semithick,y=-1cm]
+                    % c1
+                    \draw[fill=gray!20,draw=none] (0, 4) ellipse (0.5 and 2.5);
+                    \node[anchor=center,fill=gray!20, circle] at (0, 1) {$c_1$};
+                    \filldraw[black] (0,2) circle (2pt) node[anchor=south east] {$a_{11}$};
+                    \filldraw[black] (0,4) circle (2pt) node[anchor=south east] {$a_{12}$};
+                    \filldraw[black] (0,6) circle (2pt) node[anchor=south east] {$a_{13}$};
+                    % c2
+                    \draw[fill=gray!20,draw=none] (2, 2) ellipse (0.5 and 2.5);
+                    \node[anchor=center,fill=gray!20, circle] at (2, -1) {$c_2$};
+                    \filldraw[black] (2,0) circle (2pt) node[anchor=south east] {$a_{21}$};
+                    \filldraw[black] (2,2) circle (2pt) node[anchor=south east] {$a_{22}$};
+                    \filldraw[black] (2,4) circle (2pt) node[anchor=south east] {$a_{23}$};
+                    % c3
+                    \draw[fill=gray!20,draw=none] (4, 3) ellipse (0.5 and 3.5);
+                    \node[anchor=center,fill=gray!20, circle] at (4, -1) {$c_3$};
+                    \filldraw[black] (4,0) circle (2pt) node[anchor=south east] {$a_{31}$};
+                    \filldraw[black] (4,4) circle (2pt) node[anchor=south east] {$a_{32}$};
+                    \filldraw[black] (4,6) circle (2pt) node[anchor=south east] {$a_{33}$};
+                    % c4
+                    \draw[fill=gray!20,draw=none] (6, 3) ellipse (0.5 and 3.5);
+                    \node[anchor=center,fill=gray!20, circle] at (6, -1) {$c_4$};
+                    \filldraw[black] (6,0) circle (2pt) node[anchor=north east] {$a_{41}$};
+                    \filldraw[black] (6,2) circle (2pt) node[anchor=north east] {$a_{42}$};
+                    \filldraw[black] (6,4) circle (2pt) node[anchor=north east] {$a_{43}$};
+                    \filldraw[black] (6,6) circle (2pt) node[anchor=north east] {$a_{44}$};
+                    % c5
+                    \draw[fill=gray!20,draw=none] (8, 7) ellipse (0.5 and 1.5);
+                    \node[anchor=center,fill=gray!20, circle] at (8, 5) {$c_5$};
+                    \filldraw[black] (8,6) circle (2pt) node[anchor=south east] {$a_{51}$};
+                    \filldraw[black] (8,8) circle (2pt) node[anchor=south east] {$a_{52}$};
+                    % c1 - complete
+                    \draw (0,2) to (0,4);
+                    \draw (0,4) to (0,6);
+                    \draw (0,6) to [bend right] (0,2);
+                    % c2 - complete
+                    \draw (2,0) to (2,2);
+                    \draw (2,2) to (2,4);
+                    \draw (2,4) to [bend right] (2,0);
+                    % c3 - complete
+                    \draw (4,0) to (4,4);
+                    \draw (4,4) to (4,6);
+                    \draw (4,6) to [bend right] (4,0);
+                    % c4 - complete
+                    \draw (6,0) to (6,2);
+                    \draw (6,2) to (6,4);
+                    \draw (6,4) to (6,6);
+                    \draw (6,6) to [bend right] (6,0);
+                    \draw (6,6) to [bend right] (6,2);
+                    \draw (6,4) to [bend right] (6,0);
+                    % c5 - complete
+                    \draw (8,6) to (8,8);
+                    % join opposite literals
+                    \draw (0,2) to (2,2);
+                    \draw (0,2) to [bend left] (6,2);
+                    \draw (0,4) to (2,4);
+                    \draw (0,4) to [bend left] (6,4);
+                    \draw (0,6) to [bend left] (6,6);
+                    \draw (2,0) to (4,0);
+                    \draw (2,4) to (4,4);
+                    \draw (4,0) to (6,0);
+                    \draw (4,4) to (6,4);
+                    \draw (4,6) to (6,6);
+                    \draw (6,6) to (8,6);
+                \end{tikzpicture}
+            }
+            \caption{Graf sestaený z literálů a klauzulí}
+            \label{fig:ukol-2-13-graf}
+        \end{figure}
+
+        Nyní musíme v každé klauzuli nalézt literál, který bude roven $1$, a tím pádem bude tato klauzule splněna.
+        Tedy musíme najít nezávislou množinu v grafu:
+        \begin{figure}[H]
+            \centering
+            \resizebox{0.35\paperwidth}{!}{
+                \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3cm,semithick,y=-1cm]
+                    % independed vertices set (a11, a21, a32, a44, a52)
+                    \filldraw[red] (0,2) circle (6pt);
+                    \filldraw[red] (2,0) circle (6pt);
+                    \filldraw[red] (4,4) circle (6pt);
+                    \filldraw[red] (6,6) circle (6pt);
+                    \filldraw[red] (8,8) circle (6pt);
+                    % c1
+                    \filldraw[black] (0,2) circle (2pt) node[anchor=south east] {$a_{11}$};
+                    \filldraw[black] (0,4) circle (2pt) node[anchor=south east] {$a_{12}$};
+                    \filldraw[black] (0,6) circle (2pt) node[anchor=south east] {$a_{13}$};
+                    % c2
+                    \filldraw[black] (2,0) circle (2pt) node[anchor=south east] {$a_{21}$};
+                    \filldraw[black] (2,2) circle (2pt) node[anchor=south east] {$a_{22}$};
+                    \filldraw[black] (2,4) circle (2pt) node[anchor=south east] {$a_{23}$};
+                    % c3
+                    \filldraw[black] (4,0) circle (2pt) node[anchor=south east] {$a_{31}$};
+                    \filldraw[black] (4,4) circle (2pt) node[anchor=south east] {$a_{32}$};
+                    \filldraw[black] (4,6) circle (2pt) node[anchor=south east] {$a_{33}$};
+                    % c4
+                    \filldraw[black] (6,0) circle (2pt) node[anchor=north east] {$a_{41}$};
+                    \filldraw[black] (6,2) circle (2pt) node[anchor=north east] {$a_{42}$};
+                    \filldraw[black] (6,4) circle (2pt) node[anchor=north east] {$a_{43}$};
+                    \filldraw[black] (6,6) circle (2pt) node[anchor=north east] {$a_{44}$};
+                    % c5
+                    \filldraw[black] (8,6) circle (2pt) node[anchor=south east] {$a_{51}$};
+                    \filldraw[black] (8,8) circle (2pt) node[anchor=south east] {$a_{52}$};
+                    % c1 - complete
+                    \draw (0,2) to (0,4);
+                    \draw (0,4) to (0,6);
+                    \draw (0,6) to [bend right] (0,2);
+                    % c2 - complete
+                    \draw (2,0) to (2,2);
+                    \draw (2,2) to (2,4);
+                    \draw (2,4) to [bend right] (2,0);
+                    % c3 - complete
+                    \draw (4,0) to (4,4);
+                    \draw (4,4) to (4,6);
+                    \draw (4,6) to [bend right] (4,0);
+                    % c4 - complete
+                    \draw (6,0) to (6,2);
+                    \draw (6,2) to (6,4);
+                    \draw (6,4) to (6,6);
+                    \draw (6,6) to [bend right] (6,0);
+                    \draw (6,6) to [bend right] (6,2);
+                    \draw (6,4) to [bend right] (6,0);
+                    % c5 - complete
+                    \draw (8,6) to (8,8);
+                    % join opposite literals
+                    \draw (0,2) to (2,2);
+                    \draw (0,2) to [bend left] (6,2);
+                    \draw (0,4) to (2,4);
+                    \draw (0,4) to [bend left] (6,4);
+                    \draw (0,6) to [bend left] (6,6);
+                    \draw (2,0) to (4,0);
+                    \draw (2,4) to (4,4);
+                    \draw (4,0) to (6,0);
+                    \draw (4,4) to (6,4);
+                    \draw (4,6) to (6,6);
+                    \draw (6,6) to (8,6);
+                \end{tikzpicture}
+            }
+            \caption{Množina nezávislých vrcholů v grafu}
+            \label{fig:ukol-2-13-ind}
+        \end{figure}
+
+        Pro tuto množinu $a_{12}, a_{21}, a_{32}, a_{44}, a_{52}$ zvolíme literály rovny jedné:
+        \begin{equation*}
+            f(x_1=1, x_2=1, x_3=0, x_4=0, x_5=1) =
+            (1 \lor 1 \lor 0) \land
+            (1 \lor 0 \lor 0) \land
+            (0 \lor 1 \lor 0) \land
+            (1 \lor 0 \lor 0 \lor 1)
+            \land (0 \lor 1) = 1
+        \end{equation*}
+
+        Formule je rovna $1$ a tedy je splněna se zvolenými hodnotami literálů. Podrobnější postup je vidět na obrázku~\ref{fig:ukol-2-13-hand} níže:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.75\textwidth]{\FIGDIR/ukol-2-13-hand}
+            \caption{Postup nalezení nezávislé množiny a ověření formule}
+            \label{fig:ukol-2-13-hand}
+        \end{figure}
+
+        \answerbox{
+            Formule je splněna s hodnotami $x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1$.
+        }{}
     \end{uloha}
 
 % -- TODO: Úloha 14
