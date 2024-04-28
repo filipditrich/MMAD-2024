@@ -128,18 +128,28 @@
 %%%%% Custom commands
 %%%%% ---------------------------------------------------------------
 % uloha/task with answerbox command
-\newcommand{\uloha}[6]{
-    \ifthenelse{\equal{#6}{true}}{
+\newcommand{\uloha}[4]{
+    % clear page for task 2 and higher
+    \ifthenelse{\equal{#1}{1}}{}{
+        \clearpage
+    }
+    % checkmark status
+    \ifthenelse{\equal{#4}{true}}{
         \section[$\checkmark$ Úloha #1]{$\checkmark$ Úloha #1\hfill\small\normalfont{(#2 body)}}
     }{
         \section[Úloha #1]{Úloha #1\hfill\small\normalfont{(#2 body)}}
     }
     \label{sec:uloha-#1}
+    % instructions
     #3
+    % solution
     \subsection{Řešení}
     \label{subsec:uloha-#1-reseni}
-    #4
-    \ifthenelse{\equal{#5}{false}}{}{\newpage}
+}
+
+% make uloha an environment
+\newenvironment{ulohaenv}[4]{
+    \uloha{#1}{#2}{#3}{#4}
 }
 
 \usetikzlibrary{automata, positioning, arrows}

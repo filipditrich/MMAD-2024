@@ -33,9 +33,9 @@
     \tableofcontents
 
 % -- Úloha 1
-    \uloha{1}{3}{
+    \begin{uloha}{1}{3}{
         Dokažte, že každá ortogonální matice má determinant $\pm 1$.
-    }{
+    }{true}
         Ortogonální matice je čtvercová reálná matice $Q$, která splňuje podmínku:
         \begin{equation*}
             Q^{TQ} = QQ^T = I
@@ -70,12 +70,12 @@
         \answerbox{
             Ano, každá ortogonální matice má determinant $\pm 1$.
         }{}
-    }{true}{true}
+    \end{uloha}
 
 % -- Úloha 2
-    \uloha{2}{3}{
+    \begin{uloha}{2}{3}{
         Pokud mají matice $A$ i $B$ stejná vlastní čísla, platí i, že $A \times B$ mají ty samá vlastní čísla?
-    }{
+    }{true}
         Neplatí. Uvažme matice
         \begin{equation*}
             A = \begin{pmatrix}
@@ -118,10 +118,10 @@
 
         \answerbox{Ne, pokud matice $A$ a $B$ nemají stejná vlastní čísla, pak ani jejich součin $A \times B$ nemusí
         mít stejná vlastní čísla.}{}
-    }{true}{true}
+    \end{uloha}
 
 % -- Úloha 3
-    \uloha{3}{3}{
+    \begin{uloha}{3}{3}{
         Rozhodněte, zda je následující matice diagonalizovatelná
 
         \[
@@ -131,7 +131,7 @@
                     -5 & 1 & 7
             \end{pmatrix}
         \]
-    }{
+    }{true}
         Diagonalizovatelná matice je taková reálná čtvercová matice o rozměrech $n \times n$, která má $n$ navzájem různých
         vlastních čísel.
 
@@ -171,12 +171,12 @@
         \answerbox{
             Ano, matice $A$ je diagonalizovatelná.
         }{}
-    }{true}{true}
+    \end{uloha}
 
 % -- Úloha 4
-    \uloha{4}{3}{
+    \begin{uloha}{4}{3}{
         Nalezněte vlastní vektor příslušný k nejmenšímu a největšímu vlastnímu číslu matice $A$ z předchozího příkladu.
-    }{
+    }{true}
         Vlastní vektory matice $A$ jsou řešením soustavy rovnic $(A - \lambda I)x = 0$, kde $\lambda$ je vlastní číslo matice $A$.
 
         Nejmenší a největší vlastní čísla matice $A$ jsou $\lambda_{\min} = 1$ a $\lambda_{\max} = 5$.
@@ -259,10 +259,10 @@
             Vlastní vektor příslušný nejmenšímu vlastnímu číslu $\lambda_{\min} = 1$ je $p = (1, -1, 1)^T$ a vlastní
             vektor příslušný největšímu vlastnímu číslu $\lambda_{\max} = 5$ je $s = \left(\frac{1}{2}, \frac{1}{2}, 1\right)^T$.
         }{}
-    }{true}{true}
+    \end{uloha}
 
 % -- Úloha 5
-    \uloha{5}{3}{
+    \begin{uloha}{5}{3}{
         Mějme stálý migrační proces obyvatel mezi Severem, Jihem, Východem a Západem, jehož průběh za 1 rok lze znázornit diagramem níže (desetinná čísla udávají, jaký zlomek populace se za rok přemístí po šipce do jiné oblasti). Na počátku je počet obyvatel ve všech oblastech 10 milionů.
 
         \begin{itemize}
@@ -279,14 +279,13 @@
             \label{fig:population-migration}
         \end{figure}
         \source{}
-    }{
+    }{true}
         Pro řešení této úlohy využijeme jazyk Python a knihovnu \texttt{numpy} pro práci s maticemi a vektory.
-    }{false}{true}
 
-    \textbf{\textit{5a) Jak bude situace rozložení populace vypadat za 10 let od počátku?}}
+        \textbf{\textit{5a) Jak bude situace rozložení populace vypadat za 10 let od počátku?}}
 
-    Nejprve si vytvoříme matici přechodů $P$ a vektor počátečního rozložení populace $x_0$:
-    \begin{minted}{python}
+        Nejprve si vytvoříme matici přechodů $P$ a vektor počátečního rozložení populace $x_0$:
+        \begin{minted}{python}
         import numpy as np
 
         # matice přechodů
@@ -303,37 +302,37 @@
 
         # počáteční rozložení populace
         x0 = np.array([10, 10, 10, 10])
-    \end{minted}
+        \end{minted}
 
-    Následně provedeme výpočet rozložení populace za 10 let:
-    \begin{minted}{python}
+        Následně provedeme výpočet rozložení populace za 10 let:
+        \begin{minted}{python}
         # výpočet rozložení populace za 10 let
         x = x0
         for _ in range(10):
             x = np.dot(P, x) # P * x
         print(x)
         # [13.05176735  6.66666985  6.94823265 13.33333015]
-    \end{minted}
+        \end{minted}
 
-    \answerbox{
-        Výsledné rozložení populace po 10 letech bude:
-        \begin{equation*}
-            S &\approx 13.05 \text{ mil.}; \\
-            J &\approx 6.67 \text{ mil.}; \\
-            V &\approx 6.95 \text{ mil.}; \\
-            Z &\approx 13.33 \text{ mil.}
-        \end{equation*}
-    }{5a}
+        \answerbox{
+            Výsledné rozložení populace po 10 letech bude:
+            \begin{equation*}
+                S &\approx 13.05 \text{ mil.}; \\
+                J &\approx 6.67 \text{ mil.}; \\
+                V &\approx 6.95 \text{ mil.}; \\
+                Z &\approx 13.33 \text{ mil.}
+            \end{equation*}
+        }{5a}
 
-    \vspace{5em}
+        \vspace{5em}
 
-    \textbf{\textit{5b) Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně
-    dlouho sledovat?}}
+        \textbf{\textit{5b) Na kterých hodnotách se populace v jednotlivých oblastech ustálí, pokud ji budeme dostatečně
+        dlouho sledovat?}}
 
-    Pro řešení této otázky můžeme využít vlastních vektorů a vlastních čísel matice přechodů $P$.
-    Vlastní vektor příslušný vlastnímu číslu 1 nám řekne, na kterých hodnotách se populace ustálí po dostatečně dlouh
-    é době (tj. po nekonečně mnoho letech).
-    \begin{minted}{python}
+        Pro řešení této otázky můžeme využít vlastních vektorů a vlastních čísel matice přechodů $P$.
+        Vlastní vektor příslušný vlastnímu číslu 1 nám řekne, na kterých hodnotách se populace ustálí po dostatečně dlouh
+        é době (tj. po nekonečně mnoho letech).
+        \begin{minted}{python}
         # vlastní čísla a vektory matice P
         w, v = np.linalg.eig(P)
         # vlastní čísla: [0.25 0.5 1. 0.75]
@@ -353,36 +352,34 @@
         # normalizace vlastního vektoru
         v1 = v1 / np.sum(v1)
         # [[0.33333333] [0.16666667], [0.16666667], [0.33333333]]
-    \end{minted}
+        \end{minted}
 
-    \answerbox{
-        Pokud budeme populaci dostatečně dlouho sledovat, ustálí se na hodnotách:
-        \begin{equation*}
-            S &\approx 33.33\%; \\
-            J &\approx 16.67\%; \\
-            V &\approx 16.67\%; \\
-            Z &\approx 33.33\%
-        \end{equation*}
-    }{5b}
+        \answerbox{
+            Pokud budeme populaci dostatečně dlouho sledovat, ustálí se na hodnotách:
+            \begin{equation*}
+                S &\approx 33.33\%; \\
+                J &\approx 16.67\%; \\
+                V &\approx 16.67\%; \\
+                Z &\approx 33.33\%
+            \end{equation*}
+        }{5b}
 
-    \textit{
-        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-1-5.py}{ukol-1-5.py}.
-    }
-    \newpage
+        \textit{
+            Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-1-5.py}{ukol-1-5.py}.
+        }
+    \end{uloha}
 
 % -- Úloha 6
-    \uloha{6}{3}{
+    \begin{uloha}{6}{3}{
         Na adrese \url{https://openmv.net/file/room-temperature.csv} naleznete soubor s daty. Jedná se o simulovaná data měření teploty v místnosti. Data jsou v .csv formátu. Obsahují hlavičku a pět sloupců. V prvním sloupci je datum, v následujících čtyřech sloupcích jsou teploty měření v jednotlivých čtyřech rozích místnosti.
 
         Celkem je v souboru 144 záznamů měření. Pokud bychom chtěli s takovými daty dále pracovat, kolik hlavních komponent (a jaké) je vhodné zvolit a proč?
         Využijte SVD rozkladu a libovolného počítačového nástroje a své argumenty podpořte výstupy těchto nástrojů. Nezapomeňte na úvodní transformaci dat.
-    }{
-        Pro vyřešení této úlohy využijeme jazyk Python a knihovny \texttt{pandas} a \texttt{numpy} pro práci s
-        maticemi a vektory.
-    }{false}{true}
-% answer must be outside the \uloha command, since \minted cannot be used inside it
-    Nejprve načteme data z CSV souboru a provedeme úvodní transformaci dat.
-    \begin{minted}{python}
+    }{true}
+        Pro vyřešení této úlohy využijeme jazyk Python a knihovny \texttt{pandas} a \texttt{numpy} pro práci s maticemi a vektory.
+
+        Nejprve načteme data z CSV souboru a provedeme úvodní transformaci dat.
+        \begin{minted}{python}
         import pandas as pd
         import numpy as np
 
@@ -392,10 +389,10 @@
         data = data.drop(columns=['Date'])
         # normalizace dat (odstranění průměru)
         data = data - data.mean()
-    \end{minted}
+        \end{minted}
 
-    Následně provedeme SVD rozklad matice dat a zjistíme, kolik hlavních komponent je vhodné zvolit.
-    \begin{minted}{python}
+        Následně provedeme SVD rozklad matice dat a zjistíme, kolik hlavních komponent je vhodné zvolit.
+        \begin{minted}{python}
         # SVD rozklad
         U, s, V = np.linalg.svd(data, full_matrices=False)
         # s = [34.54408633 16.15976563  7.69262365  6.51293724]
@@ -407,14 +404,14 @@
         # zjištění počtu komponent pro 95% vysvětlené variance
         components = np.argmax(np.cumsum(explained_variance) > 0.95) + 1
         # components = 3
-    \end{minted}
+        \end{minted}
 
-    \answerbox{
-        Z výsledků SVD rozkladu zjistíme, že pro dosažení 95\% vysvětlené variance je vhodné zvolit 3 hlavní komponenty.
-    }{}
+        \answerbox{
+            Z výsledků SVD rozkladu zjistíme, že pro dosažení 95\% vysvětlené variance je vhodné zvolit 3 hlavní komponenty.
+        }{}
 
-    \textit{
-        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-1-6.py}{ukol-1-6.py}.
-    }
-    \newpage
+        \textit{
+            Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-1-6.py}{ukol-1-6.py}.
+        }
+    \end{uloha}
 \end{document}

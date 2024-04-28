@@ -33,7 +33,7 @@
     \tableofcontents
 
 % -- Úloha 1
-    \uloha{1}{2}{
+    \begin{uloha}{1}{2}{
         Pro následující grafy určete minimální stupeň $\delta(G)$, maximální stupeň $\Delta(G)$, skóre grafu a barevnost pro následující grafy:
         \begin{enumerate}
             \renewcommand{\theenumi}{\alph{enumi}}
@@ -52,175 +52,180 @@
             \item \textbf{Barevnost $\chi(G)$} je minimální počet barev potřebných k obarvení vrcholů grafu $G$ tak,
             aby žádné dva sousední vrcholy neměly stejnou barvu.
         \end{itemize}
-    }{}{false}{true}
+    }{true}
 
-    \subsection{a) Cesta $P_n$}\\
-    Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
+        \subsection{a) Cesta $P_n$}
+        \label{subsec:ukol-2-1a-cesta}
+        Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
 
-    \begin{itemize}
-        \item První a poslední vrchol mají stupeň 1, všechny ostatní vrcholy mají stupeň 2.
-        \item Pro obarvení cesty $P_n$ stačí vždy 2 barvy (jedna pro liché a druhá pro sudé vrcholy).
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
-
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \node[draw, circle] (1) at (0,0) {1};
-            \node[draw, circle] (2) at (1,0) {2};
-            \node[draw, circle] (3) at (2,0) {3};
-            \node (dots) at (3,0) {$\ldots$};
-            \node[draw, circle] (n) at (4,0) {n};
-            \draw (1) -- (2) -- (3) -- (dots) -- (n);
-        \end{tikzpicture}
-        \caption{Cesta $P_n$}
-        \label{fig:ukol-2-1a-cesta}
-    \end{figure}
-
-    \answerbox{
         \begin{itemize}
-            \item $\delta(P_n) = 1$
-            \item $\Delta(P_n) = 2$
-            \item Skóre grafu $P_n = 2n - 2$
-            \item Barevnost grafu \chi($P_n) = 2$
+            \item První a poslední vrchol mají stupeň 1, všechny ostatní vrcholy mají stupeň 2.
+            \item Pro obarvení cesty $P_n$ stačí vždy 2 barvy (jedna pro liché a druhá pro sudé vrcholy).
         \end{itemize}
-    }{1a}
+        \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
 
-    \subsection{b) Kružnice $C_n$}\\
-    Definice: Kružnice $C_n$ má $n$ vrcholů a každý vrchol je spojen s předchozím a následujícím vrcholem.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[draw, circle] (1) at (0,0) {1};
+                \node[draw, circle] (2) at (1,0) {2};
+                \node[draw, circle] (3) at (2,0) {3};
+                \node (dots) at (3,0) {$\ldots$};
+                \node[draw, circle] (n) at (4,0) {n};
+                \draw (1) -- (2) -- (3) -- (dots) -- (n);
+            \end{tikzpicture}
+            \caption{Cesta $P_n$}
+            \label{fig:ukol-2-1a-cesta}
+        \end{figure}
 
-    \begin{itemize}
-        \item Všechny vrcholy mají stupeň 2.
-        \item Lichou kružnici $C_n$ lze obarvit 3 barvami, sudou kružnici $C_n$ lze pak obarvit 2 barvami střídavě.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
+        \answerbox{
+            \begin{itemize}
+                \item $\delta(P_n) = 1$
+                \item $\Delta(P_n) = 2$
+                \item Skóre grafu $P_n = 2n - 2$
+                \item Barevnost grafu \chi($P_n) = 2$
+            \end{itemize}
+        }{1a}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \node[draw, circle] (1) at (0,0) {1};
-            \node[draw, circle] (2) at (1,1) {2};
-            \node[draw, circle] (dots) at (2,0) {...};
-            \node[draw, circle] (n) at (1,-1) {n};
-            \draw (1) -- (2) -- (dots) -- (n) -- (1);
-        \end{tikzpicture}
-        \caption{Kružnice $C_n$}
-        \label{fig:ukol-2-1b-kruznice}
-    \end{figure}
+        \subsection{b) Kružnice $C_n$}
+        \label{subsec:ukol-2-1b-kruznice}
+        Definice: Kružnice $C_n$ má $n$ vrcholů a každý vrchol je spojen s předchozím a následujícím vrcholem.
 
-    \answerbox{
         \begin{itemize}
-            \item $\delta(C_n) = 2$
-            \item $\Delta(C_n) = 2$
-            \item Skóre grafu $C_n = 2n$
-            \item Barevnost grafu \chi($C_n) = \begin{cases}
-                                                   2 & \text{pro sudé } n \\ 3 & \text{pro liché } n
-            \end{cases}$
+            \item Všechny vrcholy mají stupeň 2.
+            \item Lichou kružnici $C_n$ lze obarvit 3 barvami, sudou kružnici $C_n$ lze pak obarvit 2 barvami střídavě.
         \end{itemize}
-    }{1b}
+        \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
 
-    \subsection{c) Úplný graf $K_n$}\\
-    Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[draw, circle] (1) at (0,0) {1};
+                \node[draw, circle] (2) at (1,1) {2};
+                \node[draw, circle] (dots) at (2,0) {...};
+                \node[draw, circle] (n) at (1,-1) {n};
+                \draw (1) -- (2) -- (dots) -- (n) -- (1);
+            \end{tikzpicture}
+            \caption{Kružnice $C_n$}
+            \label{fig:ukol-2-1b-kruznice}
+        \end{figure}
 
-    \begin{itemize}
-        \item Všechny vrcholy mají stupeň $n-1$.
-        \item Kvůli propojení všech vrcholů se všemi je nutné použít $n$ barev.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 3$ vrcholy.}
+        \answerbox{
+            \begin{itemize}
+                \item $\delta(C_n) = 2$
+                \item $\Delta(C_n) = 2$
+                \item Skóre grafu $C_n = 2n$
+                \item Barevnost grafu \chi($C_n) = \begin{cases}
+                                                       2 & \text{pro sudé } n \\ 3 & \text{pro liché } n
+                \end{cases}$
+            \end{itemize}
+        }{1b}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \node[draw, circle] (1) at (0,0) {1};
-            \node[draw, circle] (2) at (2,0) {2};
-            \node[draw, circle] (3) at (0,-2) {3};
-            \node[draw, circle] (4) at (2,-2) {4};
-            \draw (1) -- (2) -- (3) -- (4) -- (1);
-            \draw (1) -- (3) -- (2) -- (4) -- (1);
-        \end{tikzpicture}
-        \caption{Úplný graf $K_4$}
-        \label{fig:ukol-2-1c-uplny-graf}
-    \end{figure}
+        \subsection{c) Úplný graf $K_n$}
+        \label{subsec:ukol-2-1c-uplny-graf}
+        Definice: Úplný graf $K_n$ má $n$ vrcholů a každý vrchol je spojen s každým jiným vrcholem.
 
-    \answerbox{
         \begin{itemize}
-            \item $\delta(K_n) = n-1$
-            \item $\Delta(K_n) = n-1$
-            \item Skóre grafu $K_n = n(n-1)$
-            \item Barevnost grafu \chi($K_n) = n$
+            \item Všechny vrcholy mají stupeň $n-1$.
+            \item Kvůli propojení všech vrcholů se všemi je nutné použít $n$ barev.
         \end{itemize}
-    }{1c}
+        \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 3$ vrcholy.}
 
-    \subsection{d) Úplný bipartitní graf $K_{m,n}$}
-    Definice: Úplný bipartitní graf $K_{m,n}$ má $m$ vrcholů v jedné partitě a $n$ vrcholů v druhé partitě a každý vrchol z jedné partity je spojen s každým vrcholem z druhé partity.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[draw, circle] (1) at (0,0) {1};
+                \node[draw, circle] (2) at (2,0) {2};
+                \node[draw, circle] (3) at (0,-2) {3};
+                \node[draw, circle] (4) at (2,-2) {4};
+                \draw (1) -- (2) -- (3) -- (4) -- (1);
+                \draw (1) -- (3) -- (2) -- (4) -- (1);
+            \end{tikzpicture}
+            \caption{Úplný graf $K_4$}
+            \label{fig:ukol-2-1c-uplny-graf}
+        \end{figure}
 
-    \begin{itemize}
-        \item Všechny vrcholy z první partity mají stupeň $n$, všechny vrcholy z druhé partity mají stupeň $m$.
-        \item Pro obarvení úplného bipartitního grafu $K_{m,n}$ stačí 2 barvy, jedna pro každou partitu.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz úplný bipartitní graf $K_{m,n}$ s $m,n \geq 1$ vrcholy.}
+        \answerbox{
+            \begin{itemize}
+                \item $\delta(K_n) = n-1$
+                \item $\Delta(K_n) = n-1$
+                \item Skóre grafu $K_n = n(n-1)$
+                \item Barevnost grafu \chi($K_n) = n$
+            \end{itemize}
+        }{1c}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \node[draw, circle] (1) at (0,0) {1};
-            \node[draw, circle] (2) at (0,-1) {2};
-            \node[draw, circle] (3) at (0,-2) {3};
-            \node[draw, circle] (4) at (2,0) {4};
-            \node[draw, circle] (5) at (2,-1) {5};
-            \node[draw, circle] (6) at (2,-2) {6};
-            \draw (1) -- (4);
-            \draw (1) -- (5);
-            \draw (1) -- (6);
-            \draw (2) -- (4);
-            \draw (2) -- (5);
-            \draw (2) -- (6);
-            \draw (3) -- (4);
-            \draw (3) -- (5);
-            \draw (3) -- (6);
-        \end{tikzpicture}
-        \caption{Úplný bipartitní graf $K_{3,3}$}
-        \label{fig:ukol-2-1d-uplny-bipartitni-graf}
-    \end{figure}
+        \subsection{d) Úplný bipartitní graf $K_{m,n}$}
+        \label{subsec:ukol-2-1d-uplny-bipartitni-graf}
+        Definice: Úplný bipartitní graf $K_{m,n}$ má $m$ vrcholů v jedné partitě a $n$ vrcholů v druhé partitě a každý vrchol z jedné partity je spojen s každým vrcholem z druhé partity.
 
-    \answerbox{
         \begin{itemize}
-            \item $\delta(K_{m,n}) = m$
-            \item $\Delta(K_{m,n}) = n$
-            \item Skóre grafu $K_{m,n} = mn$
-            \item Barevnost grafu \chi($K_{m,n}) = 2$
+            \item Všechny vrcholy z první partity mají stupeň $n$, všechny vrcholy z druhé partity mají stupeň $m$.
+            \item Pro obarvení úplného bipartitního grafu $K_{m,n}$ stačí 2 barvy, jedna pro každou partitu.
         \end{itemize}
-    }{1d}
+        \textit{Poznámka: Bereme v potaz úplný bipartitní graf $K_{m,n}$ s $m,n \geq 1$ vrcholy.}
 
-    \subsection{e) Papův graf}\\
-    Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami, označme si jej jako $PG_{n, m}$, kde $
-    n$ je počet vrcholů a $m$ je počet hran.
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[draw, circle] (1) at (0,0) {1};
+                \node[draw, circle] (2) at (0,-1) {2};
+                \node[draw, circle] (3) at (0,-2) {3};
+                \node[draw, circle] (4) at (2,0) {4};
+                \node[draw, circle] (5) at (2,-1) {5};
+                \node[draw, circle] (6) at (2,-2) {6};
+                \draw (1) -- (4);
+                \draw (1) -- (5);
+                \draw (1) -- (6);
+                \draw (2) -- (4);
+                \draw (2) -- (5);
+                \draw (2) -- (6);
+                \draw (3) -- (4);
+                \draw (3) -- (5);
+                \draw (3) -- (6);
+            \end{tikzpicture}
+            \caption{Úplný bipartitní graf $K_{3,3}$}
+            \label{fig:ukol-2-1d-uplny-bipartitni-graf}
+        \end{figure}
 
-    \begin{itemize}
-        \item Všechny vrcholy mají stupeň 3, jedná se tedy o kubický graf.
-        \item Skóre grafu je $\{3, 3, \dots, 3\}$, tedy $3 \cdot 18 = 54$.
-        \item Každý vrchol je spojen s právě 3 dalšími vrcholy, tedy je možné graf obarvit 3 barvami.
-    \end{itemize}
+        \answerbox{
+            \begin{itemize}
+                \item $\delta(K_{m,n}) = m$
+                \item $\Delta(K_{m,n}) = n$
+                \item Skóre grafu $K_{m,n} = mn$
+                \item Barevnost grafu \chi($K_{m,n}) = 2$
+            \end{itemize}
+        }{1d}
 
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.25\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
-        \caption{Papův graf $PG_{18, 27}$}
-        \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
-    \end{figure}
+        \subsection{e) Papův graf}
+        \label{subsec:ukol-2-1e-papuv-graf}
+        Definice: Na obrázku níže je zobrazen Papův graf s 18 vrcholy a 27 hranami, označme si jej jako $PG_{n, m}$, kde $
+        n$ je počet vrcholů a $m$ je počet hran.
 
-    \answerbox{
         \begin{itemize}
-            \item $\delta(PG_{18, 27}) = 3$
-            \item $\Delta(PG_{18, 27}) = 3$
-            \item Skóre grafu $PG_{18, 27} = 54$
-            \item Barevnost grafu \chi($PG_{18, 27}) = 3$
+            \item Všechny vrcholy mají stupeň 3, jedná se tedy o kubický graf.
+            \item Skóre grafu je $\{3, 3, \dots, 3\}$, tedy $3 \cdot 18 = 54$.
+            \item Každý vrchol je spojen s právě 3 dalšími vrcholy, tedy je možné graf obarvit 3 barvami.
         \end{itemize}
-    }{1e}
-    \newpage
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.25\textwidth]{\FIGDIR/ukol-2-1-papuv-graf}
+            \caption{Papův graf $PG_{18, 27}$}
+            \label{fig:ukol-2-1-papuv-graf}\label{fig:figure}
+        \end{figure}
+
+        \answerbox{
+            \begin{itemize}
+                \item $\delta(PG_{18, 27}) = 3$
+                \item $\Delta(PG_{18, 27}) = 3$
+                \item Skóre grafu $PG_{18, 27} = 54$
+                \item Barevnost grafu \chi($PG_{18, 27}) = 3$
+            \end{itemize}
+        }{1e}
+    \end{uloha}
 
 % -- TODO: Úloha 2
-    \uloha{2}{2}{
+    \begin{uloha}{2}{2}{
         Máme graf $G = (V, E)$. Pro ukázku si představme následující graf $H$:
 
         \begin{figure}[H]
@@ -254,58 +259,61 @@
 
         Mějme $k$-regulární graf $G = (V, E)$ velikosti $|V| = n$, tj. graf pro který víme, že $\deg(v_i) = k$ pro
         všechny vrcholy $v_i \in V$. Navíc víme, že vlastní čísla matice sousednosti jsou reálná v pořadí $\lambda_1(A) \ge \lambda_2(A) \ge \ldots \ge \lambda_n(A)$. Lze nějak obecně vyjádřit všechna vlastní čísla Laplacovy matice takového grafu?
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- Úloha 3
-    \uloha{3}{2}{
+    \begin{uloha}{3}{2}{
         Určete minimální a maximální počet hran v grafu na $n$ vrcholech s $c$ komponentami.
-    }{}{false}{true}
+    }{true}
 
-    \subsection{a) Postup pro nalezení minimálního počtu hran}
-    \begin{itemize}
-        \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
-        případem je mít komponenty bez hran, tedy izolované vrcholy.
-        \item Neizolované komponenty: Pro každou komponentu, která není jediný izolovaný vrchol, je minimální
-        struktura vlastně strom. Strom s $k$ vrcholy má $k-1$ hran (minimum pro udržení grafu spojeného).
-        \item Pokud je potřeba $c$ komponent a předpokládáme že $c-1$ komponent jsou jednotlivé izolované vrcholy a jedna komponenta obsahuje zbytek vrcholů, $n-(c-1)$, tato poslední komponenta jako strom by měla $n-(c-1)-1=n-c$ hran.
-        \item Minimální počet hran je tedy $0 + (n-c) = n-c$.
-    \end{itemize}
+        \subsection{a) Postup pro nalezení minimálního počtu hran}
+        \label{subsec:ukol-2-3a-minimalni-pocet-hran}
+        \begin{itemize}
+            \item Izolované komponenty: Minimální počet hran nastává, když mají komponenty co nejméně hran. Extrémním
+            případem je mít komponenty bez hran, tedy izolované vrcholy.
+            \item Neizolované komponenty: Pro každou komponentu, která není jediný izolovaný vrchol, je minimální
+            struktura vlastně strom. Strom s $k$ vrcholy má $k-1$ hran (minimum pro udržení grafu spojeného).
+            \item Pokud je potřeba $c$ komponent a předpokládáme že $c-1$ komponent jsou jednotlivé izolované vrcholy a jedna komponenta obsahuje zbytek vrcholů, $n-(c-1)$, tato poslední komponenta jako strom by měla $n-(c-1)-1=n-c$ hran.
+            \item Minimální počet hran je tedy $0 + (n-c) = n-c$.
+        \end{itemize}
 
-    Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
-    \begin{itemize}
-        \item Izolované komponenty: 2 izolované vrcholy, 1 komponenta s 8 vrcholy.
-        \item Minimální počet hran: $10 - 3 = 7$.
-    \end{itemize}
+        Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
+        \begin{itemize}
+            \item Izolované komponenty: 2 izolované vrcholy, 1 komponenta s 8 vrcholy.
+            \item Minimální počet hran: $10 - 3 = 7$.
+        \end{itemize}
 
-    \answerbox{
-        Minimální počet v grafu na $n$ vrcholech s $c$ komponentami je $n-c$.
-    }{3a}
+        \answerbox{
+            Minimální počet v grafu na $n$ vrcholech s $c$ komponentami je $n-c$.
+        }{3a}
 
-    \subsection{b) Postup pro nalezení maximálního počtu hran}
-    \begin{itemize}
-        \item Maximální počet hran nastává, když každá komponenta je úplný graf (graf, kde jsou každé různé vrcholy spojeny jedinou hranou).
-        \item Respektive postačí nám jedna komponenta jako úplný graf a zbytek komponent jako izolované vrcholy (tedy
-        bez hran).
-        \item Počet hran v úplném grafu na $k$ vrcholech je $\binom{k}{2}$
-        \item Náš úplný graf má $n-(c-1)$ vrcholů, tedy počet vrcholů mínus počet ostatních izolovaných vrcholů (
-        komponent).
-        \item Maximální počet hran je tedy $\binom{n-(c-1)}{2}$.
-    \end{itemize}
+        \subsection{b) Postup pro nalezení maximálního počtu hran}
+        \label{subsec:ukol-2-3b-maximalni-pocet-hran}
+        \begin{itemize}
+            \item Maximální počet hran nastává, když každá komponenta je úplný graf (graf, kde jsou každé různé vrcholy spojeny jedinou hranou).
+            \item Respektive postačí nám jedna komponenta jako úplný graf a zbytek komponent jako izolované vrcholy (tedy
+            bez hran).
+            \item Počet hran v úplném grafu na $k$ vrcholech je $\binom{k}{2}$
+            \item Náš úplný graf má $n-(c-1)$ vrcholů, tedy počet vrcholů mínus počet ostatních izolovaných vrcholů (
+            komponent).
+            \item Maximální počet hran je tedy $\binom{n-(c-1)}{2}$.
+        \end{itemize}
 
-    Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
-    \begin{itemize}
-        \item Úplný graf s 8 ($10-(3-1)$) vrcholy a 1 izolovaný vrchol.
-        \item Maximální počet hran: $\binom{10-2}{2} = 28$.
-    \end{itemize}
+        Příklad na grafu s $n=10$ vrcholy a $c=3$ komponentami:
+        \begin{itemize}
+            \item Úplný graf s 8 ($10-(3-1)$) vrcholy a 1 izolovaný vrchol.
+            \item Maximální počet hran: $\binom{10-2}{2} = 28$.
+        \end{itemize}
 
-    \answerbox{
-        Maximální počet v grafu na $n$ vrcholech s $c$ komponentami je $\binom{n-(c-1)}{2}$.
-    }{3b}
-    \newpage
+        \answerbox{
+            Maximální počet v grafu na $n$ vrcholech s $c$ komponentami je $\binom{n-(c-1)}{2}$.
+        }{3b}
+    \end{uloha}
 
 % -- TODO: Úloha 4
-    \uloha{4}{2}{
+    \begin{uloha}{4}{2}{
         Mějme následující funkci:
         \begin{equation*}
             f(x, y) = 100(y - x^2)^2 + (1 - x)^2
@@ -313,80 +321,81 @@
 
         Vypočtěte gradient $\nabla f(x)$ a Hessian $\nabla^2 f(x)$ a rozhodněte (a zdůvodněte)
         zda-li je v bodě $(1, 1)$ splněna 1. podmínka pro lokální minimizátor (nulovost gradientu) či zda-li je splněna i 2. podmínka pro Hessovu matici.
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- Úloha 5
-    \uloha{5}{2}{
+    \begin{uloha}{5}{2}{
         Mějme množinu $\{1, 2, \ldots, n\}$. Určete, kolik je možné na této množině najít různých kružnic délky $n$? (jedná se tedy o počet průchodů, ale neorientovaného grafu).
-    }{}{false}{true}
-    Problém můžeme řešit následovně:
-    \begin{itemize}
-        \item Krok 1: Seřadíme vrcholy kružnice do pořadí $1, 2, \ldots, n$. Takových sekvencí je $n!$.
-        \item Krok 2: Zvolíme si jeden výchozí vrchol (symetrická rotace). Tím tedy získáme $(n-1)!$ unikátních sekvencí, ignorujeme-li rotace.
-        \item Krok 3: Otočením sekvence získáme stejnou kružnici. Počet kružnic tedy musíme dělit dvěma (pro $n>2$), protože každá sekvence a její zrcadlový obraz jsou v kružnici identické.
-        \item Počet různých neorientovaných kružnic délky $n$ (pro $n>2$) je tedy: $\frac{(n-1)!}{2}$.
-    \end{itemize}
+    }{true}
+        Problém můžeme řešit následovně:
+        \begin{itemize}
+            \item Krok 1: Seřadíme vrcholy kružnice do pořadí $1, 2, \ldots, n$. Takových sekvencí je $n!$.
+            \item Krok 2: Zvolíme si jeden výchozí vrchol (symetrická rotace). Tím tedy získáme $(n-1)!$ unikátních sekvencí, ignorujeme-li rotace.
+            \item Krok 3: Otočením sekvence získáme stejnou kružnici. Počet kružnic tedy musíme dělit dvěma (pro $n>2$), protože každá sekvence a její zrcadlový obraz jsou v kružnici identické.
+            \item Počet různých neorientovaných kružnic délky $n$ (pro $n>2$) je tedy: $\frac{(n-1)!}{2}$.
+        \end{itemize}
 
-    \textbf{Ukázka}: na příkladu množiny $\{1, 2, 3, 4\}$:\\
-    Dle definice výše víme, že počet různých neorientovaných kružnic délky $4$ bude $\frac{(4-1)!}{2} = 3$.
+        \textbf{Ukázka}: na příkladu množiny $\{1, 2, 3, 4\}$:\\
+        Dle definice výše víme, že počet různých neorientovaných kružnic délky $4$ bude $\frac{(4-1)!}{2} = 3$.
 
-    A bude se jednat o tyto 3 kružnice:
-    \begin{enumerate}
-        \item $1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 1$
-        \item $1 \rightarrow 2 \rightarrow 4 \rightarrow 3 \rightarrow 1$
-        \item $1 \rightarrow 3 \rightarrow 2 \rightarrow 4 \rightarrow 1$
-    \end{enumerate}
+        A bude se jednat o tyto 3 kružnice:
+        \begin{enumerate}
+            \item $1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 1$
+            \item $1 \rightarrow 2 \rightarrow 4 \rightarrow 3 \rightarrow 1$
+            \item $1 \rightarrow 3 \rightarrow 2 \rightarrow 4 \rightarrow 1$
+        \end{enumerate}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[scale=0.8]
-            \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
-            \draw[->,>=stealth] (1) -- (2);
-            \draw[->,>=stealth] (2) -- (3);
-            \draw[->,>=stealth] (3) -- (4);
-            \draw[->,>=stealth] (4) -- (1);
-            \node at (0,-3)
-        \end{tikzpicture}
-        \quad
-        \begin{tikzpicture}[scale=0.8]
-            \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
-            \draw[->,>=stealth] (1) -- (2);
-            \draw[->,>=stealth] (2) -- (4);
-            \draw[->,>=stealth] (4) -- (3);
-            \draw[->,>=stealth] (3) -- (1);
-            \node at (0,-3)
-        \end{tikzpicture}
-        \quad
-        \begin{tikzpicture}[scale=0.8]
-            \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=right:{3}] (3) at (2,0) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=below:{2}] (2) at (0,-2) {};
-            \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
-            \draw[->,>=stealth] (1) -- (3);
-            \draw[->,>=stealth] (3) -- (2);
-            \draw[->,>=stealth] (2) -- (4);
-            \draw[->,>=stealth] (4) -- (1);
-            \node at (0,-3)
-        \end{tikzpicture}
-        \caption{Různé neorientované kružnice délky 4}
-        \label{fig:ukol-2-5-kruznice}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
+                \draw[->,>=stealth] (1) -- (2);
+                \draw[->,>=stealth] (2) -- (3);
+                \draw[->,>=stealth] (3) -- (4);
+                \draw[->,>=stealth] (4) -- (1);
+                \node at (0,-3)
+            \end{tikzpicture}
+            \quad
+            \begin{tikzpicture}[scale=0.8]
+                \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
+                \draw[->,>=stealth] (1) -- (2);
+                \draw[->,>=stealth] (2) -- (4);
+                \draw[->,>=stealth] (4) -- (3);
+                \draw[->,>=stealth] (3) -- (1);
+                \node at (0,-3)
+            \end{tikzpicture}
+            \quad
+            \begin{tikzpicture}[scale=0.8]
+                \node[circle, draw, inner sep=2pt, fill=black, label=above:{1}] (1) at (0,2) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=right:{3}] (3) at (2,0) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=below:{2}] (2) at (0,-2) {};
+                \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
+                \draw[->,>=stealth] (1) -- (3);
+                \draw[->,>=stealth] (3) -- (2);
+                \draw[->,>=stealth] (2) -- (4);
+                \draw[->,>=stealth] (4) -- (1);
+                \node at (0,-3)
+            \end{tikzpicture}
+            \caption{Různé neorientované kružnice délky 4}
+            \label{fig:ukol-2-5-kruznice}
+        \end{figure}
 
-    \answerbox{
-        Pro množinu $\{1, 2, \ldots, n\}$ je možné najít $\frac{(n-1)!}{2}$ různých neorientovaných kružnic délky $n$.
-    }
+        \answerbox{
+            Pro množinu $\{1, 2, \ldots, n\}$ je možné najít $\frac{(n-1)!}{2}$ různých neorientovaných kružnic délky $n$.
+        }
 
-    \newpage
+    \end{uloha}
 
 % -- TODO: Úloha 6
-    \uloha{6}{2}{
+    \begin{uloha}{6}{2}{
         Mějme graf $G_{n,2} = (V, E)$ definovaný následovně. Množina vrcholů jsou všechny podmnožiny množiny $A = \{1, 2, \ldots, n\}$ o velikosti 2, tedy například $v_1 = \{1, 2\}, v_2 = \{2, 3\}, \ldots$. Hrany spojují ty vrcholy $v_i = \{a, b\}, v_2 = \{c, d\}$, které sdílí právě jeden prvek, tj. $a = b \ne c = d$. Příklad takového grafu je vidět na následujícím obrázku.
 
         \begin{figure}[H]
@@ -399,35 +408,36 @@
         Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako
         funkce~$n$
         . Také určete počet hran tohoto grafu, opět jako funkci~$n$.
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- Úloha 7
-    \uloha{7}{2}{
+    \begin{uloha}{7}{2}{
         Zdůvodněte, proč každá hrana vrcholově 2-souvislého grafu musí ležet na kružnici.
-    }{}{false}{true}
-    Vrcholově 2-souvislý graf je graf, který zůstane souvislý i po odebrání libovolního vrcholu, ale po odebrání
-    alespoň dvou vrcholů se může rozpadnout na více komponent vzájemně nespojených hranami, tedy nesouvislých.
+    }{true}
+        Vrcholově 2-souvislý graf je graf, který zůstane souvislý i po odebrání libovolního vrcholu, ale po odebrání
+        alespoň dvou vrcholů se může rozpadnout na více komponent vzájemně nespojených hranami, tedy nesouvislých.
 
-    \begin{itemize}
-        \item Ve vrcholově 2-souvislém grafu musí existovat alespoň dva nezávislé průchody mezi libovolnými dvěma vrcholy.
-        \item Uvažujme libovolnou hranu $uv$ ve vrcholově 2-souvislém grafu.
-        \item Dle vlastností vrcholové 2-souvislosti existuje další cesta z vrcholu $u$ do vrcholu $v$, která
-        neobsahuje hranu $uv$.
-        \item Existence této alternativní cesty mezi vrcholy $u$ a $v$, spolu s hranou $uv$, tvoří kružnici.
-        \item Kružnice je vytvořena cestou z vrcholu $u$ do vrcholu $v$ přes alternativní cestu a návratem do
-        vrcholu $u$ pomocí hrany $uv$.
-    \end{itemize}
+        \begin{itemize}
+            \item Ve vrcholově 2-souvislém grafu musí existovat alespoň dva nezávislé průchody mezi libovolnými dvěma vrcholy.
+            \item Uvažujme libovolnou hranu $uv$ ve vrcholově 2-souvislém grafu.
+            \item Dle vlastností vrcholové 2-souvislosti existuje další cesta z vrcholu $u$ do vrcholu $v$, která
+            neobsahuje hranu $uv$.
+            \item Existence této alternativní cesty mezi vrcholy $u$ a $v$, spolu s hranou $uv$, tvoří kružnici.
+            \item Kružnice je vytvořena cestou z vrcholu $u$ do vrcholu $v$ přes alternativní cestu a návratem do
+            vrcholu $u$ pomocí hrany $uv$.
+        \end{itemize}
 
-    \answerbox{
-        Každá hrana ve vrcholově 2-souvislém grafu musí ležet na kružnici, protože definice vrcholové 2-souvislosti zaru
-        čuje přítomnost alternativních cest mezi vrcholy.
-    }{}
+        \answerbox{
+            Každá hrana ve vrcholově 2-souvislém grafu musí ležet na kružnici, protože definice vrcholové 2-souvislosti zaru
+            čuje přítomnost alternativních cest mezi vrcholy.
+        }{}
 
-    \newpage
+    \end{uloha}
 
 % -- Úloha 8
-    \uloha{8}{2}{
+    \begin{uloha}{8}{2}{
         Určete vrcholový a hranový stupeň grafu, neboli $\alpha(G)$ a $\kappa(G)$, pro následující grafy:
         \begin{enumerate}
             \renewcommand{\theenumi}{\alph{enumi}}
@@ -436,65 +446,65 @@
             \item Úplný graf $K_n$
             \item Úplný bipartitní graf $K_{m,n}$
         \end{enumerate}
-    }{}{false}{true}
+    }{true}
 
-    \begin{itemize}
-        \item \textbf{Vrcholový stupeň $\alpha(G)$} je minimální počet vrcholů, které je třeba odebrat, aby se graf
-        rozpadl na více komponent.
-        \item \textbf{Hranový stupeň $\kappa(G)$} je minimální počet hran, které je třeba odebrat, aby se graf rozpadl
-        na více komponent.
-    \end{itemize}
+        \begin{itemize}
+            \item \textbf{Vrcholový stupeň $\alpha(G)$} je minimální počet vrcholů, které je třeba odebrat, aby se graf
+            rozpadl na více komponent.
+            \item \textbf{Hranový stupeň $\kappa(G)$} je minimální počet hran, které je třeba odebrat, aby se graf rozpadl
+            na více komponent.
+        \end{itemize}
 
-    \subsubsection{Cesta $P_n$}
-    \label{subsubsec:ukol-2-8-cesta}
-    \begin{itemize}
-        \item Odebráním jakéhokoliv vnitřního vrcholu se cesta rozpadne na dvě komponenty. Vrcholový stupeň je tedy $\alpha(P_n) = 1$.
-        \item Odebráním jakékoliv hrany se cesta rozpadne na dvě komponenty. Hranový stupeň je tedy $\kappa(P_n) = 1$.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
-    \answerbox{
-        Pro cestu $P_n$ platí $\alpha(P_n) = 1$ a $\kappa(P_n) = 1$.
-    }{8a}
+        \subsubsection{Cesta $P_n$}
+        \label{subsubsec:ukol-2-8-cesta}
+        \begin{itemize}
+            \item Odebráním jakéhokoliv vnitřního vrcholu se cesta rozpadne na dvě komponenty. Vrcholový stupeň je tedy $\alpha(P_n) = 1$.
+            \item Odebráním jakékoliv hrany se cesta rozpadne na dvě komponenty. Hranový stupeň je tedy $\kappa(P_n) = 1$.
+        \end{itemize}
+        \textit{Poznámka: Bereme v potaz cestu $P_n$ s $n \geq 2$ vrcholy.}
+        \answerbox{
+            Pro cestu $P_n$ platí $\alpha(P_n) = 1$ a $\kappa(P_n) = 1$.
+        }{8a}
 
-    \subsubsection{Kružnice $C_n$}
-    \begin{itemize}
-        \item Odebráním jakéhokoliv vrcholu se z kružnice stane cesta, z tvrzení výše víme že $\alpha(P_n) = 1$.
-        Vrcholový stupeň je tedy $\alpha(C_n) = \alpha(P_{n-1}) + 1$.
-        \item Obdobně odebráním jakýchkoliv 2 sousedních hran se kružnice rozpadne na cestu a jeden izolovaný vrchol. Hranový stupeň je tedy $\kappa(C_n) = 2$.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
-    \answerbox{
-        Pro kružnici $C_n$ platí $\alpha(C_n) = 2$ a $\kappa(C_n) = 2$.
-    }{8b}
+        \subsubsection{Kružnice $C_n$}
+        \begin{itemize}
+            \item Odebráním jakéhokoliv vrcholu se z kružnice stane cesta, z tvrzení výše víme že $\alpha(P_n) = 1$.
+            Vrcholový stupeň je tedy $\alpha(C_n) = \alpha(P_{n-1}) + 1$.
+            \item Obdobně odebráním jakýchkoliv 2 sousedních hran se kružnice rozpadne na cestu a jeden izolovaný vrchol. Hranový stupeň je tedy $\kappa(C_n) = 2$.
+        \end{itemize}
+        \textit{Poznámka: Bereme v potaz kružnici $C_n$ s $n \geq 3$ vrcholy.}
+        \answerbox{
+            Pro kružnici $C_n$ platí $\alpha(C_n) = 2$ a $\kappa(C_n) = 2$.
+        }{8b}
 
-    \subsubsection{Úplný graf $K_n$}
-    \begin{itemize}
-        \item Postupným odebíráním vrcholů zůstává graf stále souvislý, dokud neodebereme až $n-1$ vrcholů, pak zůstává pouze izolovaný vrchol. Vrcholový stupeň je tedy $\alpha(K_n) = n-1$.
-        \item Odebráním všech hran jednoho vrcholu, který má stupeň $n-1$, se graf rozpadne jednu jednu souvislou
-        komponentu a izolovaný vrchol. Hranový stupeň je tedy $\kappa(K_n) = n-1$.
-    \end{itemize}
-    \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 2$ vrcholy.}
-    \answerbox{
-        Pro úplný graf $K_n$ platí $\alpha(K_n) = n-1$ a $\kappa(K_n) = n-1$.
-    }{8c}
+        \subsubsection{Úplný graf $K_n$}
+        \begin{itemize}
+            \item Postupným odebíráním vrcholů zůstává graf stále souvislý, dokud neodebereme až $n-1$ vrcholů, pak zůstává pouze izolovaný vrchol. Vrcholový stupeň je tedy $\alpha(K_n) = n-1$.
+            \item Odebráním všech hran jednoho vrcholu, který má stupeň $n-1$, se graf rozpadne jednu jednu souvislou
+            komponentu a izolovaný vrchol. Hranový stupeň je tedy $\kappa(K_n) = n-1$.
+        \end{itemize}
+        \textit{Poznámka: Bereme v potaz úplný graf $K_n$ s $n \geq 2$ vrcholy.}
+        \answerbox{
+            Pro úplný graf $K_n$ platí $\alpha(K_n) = n-1$ a $\kappa(K_n) = n-1$.
+        }{8c}
 
-    \subsubsection{Úplný bipartitní graf $K_{m,n}$}
-    \begin{itemize}
-        \item Odebráním všech vrcholů jedné partity se graf rozpadne na několik izolovaných vrcholů (jelikož každý
-        vrchol z jedné partity je spojen s každým vrcholem z druhé partity, ale nikoliv s vrcholem ze stejné partity). Lze tedy říci, že vrcholový stupeň je $\alpha(K_{m,n}) = \min(m, n)$.
-        \item Odebráním všech hran spojujících vrcholy jedné partity se graf rozpadne na souvislou komponentu a
-        několik izolovaných vrcholů. Pokud vybereme vrchol z větši parity, musíme odebrat pouze tolik hran, kolik
-        vrcholů má menší parita, tedy opět hranový stupeň je tedy $\kappa(K_{m,
-        n}) = \min(m, n)$.
-    \end{itemize}
-    \answerbox{
-        Pro úplný bipartitní graf $K_{m,n}$ platí $\alpha(K_{m,n}) = \min(m, n)$ a $\kappa(K_{m,n}) = \min(m, n)$.
-    }{8d}
+        \subsubsection{Úplný bipartitní graf $K_{m,n}$}
+        \begin{itemize}
+            \item Odebráním všech vrcholů jedné partity se graf rozpadne na několik izolovaných vrcholů (jelikož každý
+            vrchol z jedné partity je spojen s každým vrcholem z druhé partity, ale nikoliv s vrcholem ze stejné partity). Lze tedy říci, že vrcholový stupeň je $\alpha(K_{m,n}) = \min(m, n)$.
+            \item Odebráním všech hran spojujících vrcholy jedné partity se graf rozpadne na souvislou komponentu a
+            několik izolovaných vrcholů. Pokud vybereme vrchol z větši parity, musíme odebrat pouze tolik hran, kolik
+            vrcholů má menší parita, tedy opět hranový stupeň je tedy $\kappa(K_{m,
+            n}) = \min(m, n)$.
+        \end{itemize}
+        \answerbox{
+            Pro úplný bipartitní graf $K_{m,n}$ platí $\alpha(K_{m,n}) = \min(m, n)$ a $\kappa(K_{m,n}) = \min(m, n)$.
+        }{8d}
 
-    \newpage
+    \end{uloha}
 
 % -- TODO: Úloha 9
-    \uloha{9}{2}{
+    \begin{uloha}{9}{2}{
         Vezměmě si grafy typu strom o fixní velikosti $n$. Rozhodněte a nakreslete, jaký strom o velikosti $n$ má:
         \begin{enumerate}
             \renewcommand{\theenumi}{\alph{enumi}}
@@ -503,180 +513,181 @@
             \item Největší hodnotu vrcholového pokrytí $\beta(G)$
             \item Nejmenší hodnotu vrcholového pokrytí $\beta(G)$
         \end{enumerate}
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- Úloha 10
-    \uloha{10}{2}{
+    \begin{uloha}{10}{2}{
         Ukažte proč pro každý kubický graf $G$, t.j. takový, že všechny stupně vrcholů jsou 3, platí, že stupeň vrcholové i hranové souvislosti se rovnají, tj. $\alpha(G) = \kappa(G)$.
         \textit{Hint: Pokuste se rozebrat případy pro různé vrcholové stupně souvislosti.}
-    }{}{false}{true}
+    }{true}
 
-    Víme, že pro každý graf $G=(V, E)$ platí \textit{Whitneyho nerovnost}:
-    \begin{equation*}
-        \kappa(G) \leq \alpha(G) \leq \delta(G)
-    \end{equation*}
-    kde $\delta(G)$ je minimální stupeň vrcholu v grafu $G$. Pro kubický graf tedy platí $\delta(G) = 3$.
+        Víme, že pro každý graf $G=(V, E)$ platí \textit{Whitneyho nerovnost}:
+        \begin{equation*}
+            \kappa(G) \leq \alpha(G) \leq \delta(G)
+        \end{equation*}
+        kde $\delta(G)$ je minimální stupeň vrcholu v grafu $G$. Pro kubický graf tedy platí $\delta(G) = 3$.
 
-    \subsection{Odebírání hran a vrcholů v kubickém grafu}
-    \begin{itemize}
-        \item Odebráním hrany se sníží stupeň dvou vrcholů z 3 na 2, ale graf zůstává souvislý.
-        \item Odebráním vrcholu se sníží stupeň tří hran z 3 na 2, což může vést k rozpadu grafu.
-        \item Zatím můžeme pozorovat, že odebrání vrcholu může být více kritické než odebrání hrany.
-    \end{itemize}
-
-    \subsection{Případy pro různé vrcholové stupně souvislosti}
-    \begin{itemize}
-        \item \textbf{Případ 1:} Pokud $\alpha(G) = 1$, graf obsahuje most, který po odebrání rozdělí graf na dvě
-        komponenty. Odebráním jednoho vrcholu se graf rozpadne, tedy $\kappa(G) = 1$ také.
-        \item \textbf{Případ 2:} Pokud $\alpha(G) > 1$, odebrání jednoho vrcholu nevede k rozpadu grafu, což naznačuje vyšší odolnost, tedy $\kappa(G)$ může být 2 nebo 3.
+        \subsection{Odebírání hran a vrcholů v kubickém grafu}
         \begin{itemize}
-            \item Vzhledem k tomu, že kubické grafy mají vrcholy a hrany těsně propojeny kvůli jejich uniformnímu stupni, odebrání minimálního počtu vrcholů obvykle znamená odebrání i minimálního počtu hran.
+            \item Odebráním hrany se sníží stupeň dvou vrcholů z 3 na 2, ale graf zůstává souvislý.
+            \item Odebráním vrcholu se sníží stupeň tří hran z 3 na 2, což může vést k rozpadu grafu.
+            \item Zatím můžeme pozorovat, že odebrání vrcholu může být více kritické než odebrání hrany.
         \end{itemize}
-        \item \textbf{Případ 3:} Pro $\alpha(G) = 2$ nebo $\alpha(G) = 3$ bude kubický graf vyžadovat podobně minimální počet odebraných vrcholů k rozdělení, což znamená, že $\kappa(G)$ bude obvykle odpovídat $\alpha(G)$.
-    \end{itemize}
 
-    \answerbox{
-        Díky stejnému stupni vrcholů v kubickém grafu $G$ platí, že stupeň vrcholové i hranové souvislosti jsou stejné, tj. $\alpha(G) = \kappa(G)$.
-    }{}
-    \newpage
+        \subsection{Případy pro různé vrcholové stupně souvislosti}
+        \begin{itemize}
+            \item \textbf{Případ 1:} Pokud $\alpha(G) = 1$, graf obsahuje most, který po odebrání rozdělí graf na dvě
+            komponenty. Odebráním jednoho vrcholu se graf rozpadne, tedy $\kappa(G) = 1$ také.
+            \item \textbf{Případ 2:} Pokud $\alpha(G) > 1$, odebrání jednoho vrcholu nevede k rozpadu grafu, což naznačuje vyšší odolnost, tedy $\kappa(G)$ může být 2 nebo 3.
+            \begin{itemize}
+                \item Vzhledem k tomu, že kubické grafy mají vrcholy a hrany těsně propojeny kvůli jejich uniformnímu stupni, odebrání minimálního počtu vrcholů obvykle znamená odebrání i minimálního počtu hran.
+            \end{itemize}
+            \item \textbf{Případ 3:} Pro $\alpha(G) = 2$ nebo $\alpha(G) = 3$ bude kubický graf vyžadovat podobně minimální počet odebraných vrcholů k rozdělení, což znamená, že $\kappa(G)$ bude obvykle odpovídat $\alpha(G)$.
+        \end{itemize}
+
+        \answerbox{
+            Díky stejnému stupni vrcholů v kubickém grafu $G$ platí, že stupeň vrcholové i hranové souvislosti jsou stejné, tj. $\alpha(G) = \kappa(G)$.
+        }{}
+    \end{uloha}
 
 % -- Úloha 11
-    \uloha{11}{2}{
+    \begin{uloha}{11}{2}{
         Pokuste se navrhnout Turingův stroj pro rozpoznání, že neorientovaný graf má izolovaný vrchol.\\
         \textit{Hint: Graf uložte na pásku jako matici sousednosti (nezapomeňte na oddělovače řádků) a v ní pomocí pravidel nalezněte takový vrchol.}
-    }{}{false}{true}
-    Tento Turingův stroj kontroluje, zda je v neorientovaném grafu izolovaný vrchol, který je reprezentován jako řádek v matici sousednosti se samými $0$.
+    }{true}
+        Tento Turingův stroj kontroluje, zda je v neorientovaném grafu izolovaný vrchol, který je reprezentován jako řádek v matici sousednosti se samými $0$.
 
-    \subsection*{Příklad reprezentace grafu na pásce}
-    \begin{itemize}
-        \item Graf je reprezentován jako matice sousednosti, kde $A_{ij} = 1$ pokud existuje hrana mezi vrcholy $i$ a $j$.
-        \item Abeceda obsahuje znaky $1, 0$ a speciální symbol $\hookleftarrow$ jako oddělovač řádků společně se standardními
-        znaky~$\triangleright$~pro označení počátečního stavu a $\star$ pro prázdné pole.
-        \item Příklad matice, se kterou budeme pracovat: $001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$.
-        \item Tu lze reprezentovat na pásce Turingova strojě následovně:
-    \end{itemize}
+        \subsection*{Příklad reprezentace grafu na pásce}
+        \begin{itemize}
+            \item Graf je reprezentován jako matice sousednosti, kde $A_{ij} = 1$ pokud existuje hrana mezi vrcholy $i$ a $j$.
+            \item Abeceda obsahuje znaky $1, 0$ a speciální symbol $\hookleftarrow$ jako oddělovač řádků společně se standardními
+            znaky~$\triangleright$~pro označení počátečního stavu a $\star$ pro prázdné pole.
+            \item Příklad matice, se kterou budeme pracovat: $001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$.
+            \item Tu lze reprezentovat na pásce Turingova strojě následovně:
+        \end{itemize}
 
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[every node/.style={block},block/.style={minimum height=1.5em,outer sep=0pt,draw,rectangle,node distance=0pt}]
-            \node (ldots) {$\dots$};
-            \node (empty1) [right=of ldots] {$\star$};
-            \node (empty2) [right=of empty1] {$\star$};
-            \node (empty3) [right=of empty2] {$\star$};
-            \node[fill=gray!20] (start) [right=of empty3] {$\triangleright$};
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[every node/.style={block},block/.style={minimum height=1.5em,outer sep=0pt,draw,rectangle,node distance=0pt}]
+                \node (ldots) {$\dots$};
+                \node (empty1) [right=of ldots] {$\star$};
+                \node (empty2) [right=of empty1] {$\star$};
+                \node (empty3) [right=of empty2] {$\star$};
+                \node[fill=gray!20] (start) [right=of empty3] {$\triangleright$};
 
-            \node (x_11) [right=of start] {$0$};
-            \node (x_12) [right=of x_11] {$0$};
-            \node (x_13) [right=of x_12] {$1$};
-            \node (x_1stop) [right=of x_13] {$\hookleftarrow$};
-            \node (x_21) [right=of x_1stop] {$0$};
-            \node (x_22) [right=of x_21] {$1$};
-            \node (x_23) [right=of x_22] {$1$};
-            \node (x_2stop) [right=of x_23] {$\hookleftarrow$};
-            \node (x_31) [right=of x_2stop] {$0$};
-            \node (x_32) [right=of x_31] {$0$};
-            \node (x_33) [right=of x_32] {$0$};
-            \node (x_3stop) [right=of x_33] {$\hookleftarrow$};
+                \node (x_11) [right=of start] {$0$};
+                \node (x_12) [right=of x_11] {$0$};
+                \node (x_13) [right=of x_12] {$1$};
+                \node (x_1stop) [right=of x_13] {$\hookleftarrow$};
+                \node (x_21) [right=of x_1stop] {$0$};
+                \node (x_22) [right=of x_21] {$1$};
+                \node (x_23) [right=of x_22] {$1$};
+                \node (x_2stop) [right=of x_23] {$\hookleftarrow$};
+                \node (x_31) [right=of x_2stop] {$0$};
+                \node (x_32) [right=of x_31] {$0$};
+                \node (x_33) [right=of x_32] {$0$};
+                \node (x_3stop) [right=of x_33] {$\hookleftarrow$};
 
-            \node (empty4) [right=of x_3stop] {$\star$};
-            \node (empty5) [right=of empty4] {$\star$};
-            \node (empty6) [right=of empty5] {$\star$};
-            \node (rdots) [right=of empty6] {$\dots$};
-        \end{tikzpicture}
-        \caption{Reprezentace grafu na pásce}
-        \label{fig:ukol-2-11-paska}
-    \end{figure}
+                \node (empty4) [right=of x_3stop] {$\star$};
+                \node (empty5) [right=of empty4] {$\star$};
+                \node (empty6) [right=of empty5] {$\star$};
+                \node (rdots) [right=of empty6] {$\dots$};
+            \end{tikzpicture}
+            \caption{Reprezentace grafu na pásce}
+            \label{fig:ukol-2-11-paska}
+        \end{figure}
 
-    \subsection*{Konfigurace Turingova stroje}
-    \begin{itemize}
-        \item \textbf{Množina stavů} $K$: Obsahuje počáteční stav $s_0$, stavy pro čtení řádků $s_r$, stav pro
-        kontrolu řádku $s_c$, stav přijetí $s_{\text{ano}}$ a stav odmítnutí $s_{\text{ne}}$.
-        \item \textbf{Vstupní abeceda} $\Sigma$: $\{0, 1, \star, \hookleftarrow, \triangleright\}$.
-        \item \textbf{Abeceda pásky} $\Gamma$: $\{0, 1, \hookleftarrow, \triangleright, X\}$, kde $X$ označuje již zkontrolované prvky.
-        \item \textbf{Přechodová funkce} $\delta$.
-        \item \textbf{Počáteční stav}: $s_0$.
-        \item \textbf{Koncové stavy}: $s_{\text{ano}}, s_{\text{ne}}$.
-    \end{itemize}
+        \subsection*{Konfigurace Turingova stroje}
+        \begin{itemize}
+            \item \textbf{Množina stavů} $K$: Obsahuje počáteční stav $s_0$, stavy pro čtení řádků $s_r$, stav pro
+            kontrolu řádku $s_c$, stav přijetí $s_{\text{ano}}$ a stav odmítnutí $s_{\text{ne}}$.
+            \item \textbf{Vstupní abeceda} $\Sigma$: $\{0, 1, \star, \hookleftarrow, \triangleright\}$.
+            \item \textbf{Abeceda pásky} $\Gamma$: $\{0, 1, \hookleftarrow, \triangleright, X\}$, kde $X$ označuje již zkontrolované prvky.
+            \item \textbf{Přechodová funkce} $\delta$.
+            \item \textbf{Počáteční stav}: $s_0$.
+            \item \textbf{Koncové stavy}: $s_{\text{ano}}, s_{\text{ne}}$.
+        \end{itemize}
 
-    \subsection*{Přechodová funkce}
-    Tabulka přechodů pro Turingův stroj je následující:
-    \begin{center}
-        \begin{tabular}{|c|c|c|c|c|c|}
-            \hline
-            \rowcolor{gray!25}
-            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
-            \hline
-            $s_0$         & $\triangleright$ & $\triangleright$ & \rightarrow    & $s_r$               \\
-            \hline
-        \end{tabular}
+        \subsection*{Přechodová funkce}
+        Tabulka přechodů pro Turingův stroj je následující:
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|c|}
+                \hline
+                \rowcolor{gray!25}
+                \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
+                \hline
+                $s_0$         & $\triangleright$ & $\triangleright$ & \rightarrow    & $s_r$               \\
+                \hline
+            \end{tabular}
 
-        \begin{tabular}{|c|c|c|c|c|c|}
-            \hline
-            \rowcolor{gray!25}
-            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
-            \hline
-            $s_r$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
-            \hline
-            $s_r$         & $1$              & $X$              & \rightarrow    & $s_c$               \\
-            \hline
-            $s_r$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_{\text{ano}}$    \\
-            \hline
-            $s_r$         & $\star$          & $\star$          & \rightarrow    & $s_{\text{ano}}$    \\
-            \hline
-        \end{tabular}
+            \begin{tabular}{|c|c|c|c|c|c|}
+                \hline
+                \rowcolor{gray!25}
+                \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
+                \hline
+                $s_r$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
+                \hline
+                $s_r$         & $1$              & $X$              & \rightarrow    & $s_c$               \\
+                \hline
+                $s_r$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_{\text{ano}}$    \\
+                \hline
+                $s_r$         & $\star$          & $\star$          & \rightarrow    & $s_{\text{ano}}$    \\
+                \hline
+            \end{tabular}
 
-        \begin{tabular}{|c|c|c|c|c|c|}
-            \hline
-            \rowcolor{gray!25}
-            \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
-            \hline
-            $s_c$         & $1$              & $X$              & \rightarrow    & $s_{\text{ne}}$     \\
-            \hline
-            $s_c$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
-            \hline
-            $s_c$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_r$               \\
-            \hline
-            $s_c$         & $\star$          & $\star$          & \rightarrow    & $s_r$               \\
-            \hline
-        \end{tabular}
-    \end{center}
+            \begin{tabular}{|c|c|c|c|c|c|}
+                \hline
+                \rowcolor{gray!25}
+                \textbf{Stav} & \textbf{Čtení}   & \textbf{Zápis}   & \textbf{Pohyb} & \textbf{Další stav} \\
+                \hline
+                $s_c$         & $1$              & $X$              & \rightarrow    & $s_{\text{ne}}$     \\
+                \hline
+                $s_c$         & $0$              & $0$              & \rightarrow    & $s_r$               \\
+                \hline
+                $s_c$         & $\hookleftarrow$ & $\hookleftarrow$ & \rightarrow    & $s_r$               \\
+                \hline
+                $s_c$         & $\star$          & $\star$          & \rightarrow    & $s_r$               \\
+                \hline
+            \end{tabular}
+        \end{center}
 
-    \subsection*{Popis přechodů}
-    \begin{itemize}
-        \item Stroj začíná ve stavu $s_0$ a přejde do stavu $s_r$ po přečtení počátečního stavu $\triangleright$.
-        \item Ve stavu $s_r$ stroj pokračuje ve stavu $s_r$ po přečtení $0$. Po přečtení $1$ přejde do stavu $s_c$.
-        \item Stroj přejde do stavu $s_{\text{ano}}$ po přečtení oddělovače řádku $\hookleftarrow$ nebo $\star$.
-        \item Ve stavu $s_c$ stroj přejde do stavu $s_{\text{ne}}$ po přečtení $1$. Po přečtení $0$, $X$ nebo oddělovače řádku $\hookleftarrow$ přejde zpět do stavu $s_r$.
-        \item Stroj přijme vstup, pokud nalezne řádek s samými $0$ nebo pokud dojde na konec pásky ve stavu $s_r$ po přečtení samých $0$.
-    \end{itemize}
+        \subsection*{Popis přechodů}
+        \begin{itemize}
+            \item Stroj začíná ve stavu $s_0$ a přejde do stavu $s_r$ po přečtení počátečního stavu $\triangleright$.
+            \item Ve stavu $s_r$ stroj pokračuje ve stavu $s_r$ po přečtení $0$. Po přečtení $1$ přejde do stavu $s_c$.
+            \item Stroj přejde do stavu $s_{\text{ano}}$ po přečtení oddělovače řádku $\hookleftarrow$ nebo $\star$.
+            \item Ve stavu $s_c$ stroj přejde do stavu $s_{\text{ne}}$ po přečtení $1$. Po přečtení $0$, $X$ nebo oddělovače řádku $\hookleftarrow$ přejde zpět do stavu $s_r$.
+            \item Stroj přijme vstup, pokud nalezne řádek s samými $0$ nebo pokud dojde na konec pásky ve stavu $s_r$ po přečtení samých $0$.
+        \end{itemize}
 
-    \subsection*{Ukázka běhu Turingova stroje}
-    \textbf{Vstup}: $\triangleright 001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$ – viz obrázek~\ref{fig:ukol-2-11-paska}.
+        \subsection*{Ukázka běhu Turingova stroje}
+        \textbf{Vstup}: $\triangleright 001 \hookleftarrow 011 \hookleftarrow 000 \hookleftarrow$ – viz obrázek~\ref{fig:ukol-2-11-paska}.
 
-    \begin{enumerate}
-        \item Stroj začíná ve stavu $s_0$ s hlavou nad symbolem $\triangleright$.
-        \item Přečte $\triangleright$, zapíše $\triangleright$, posune se doprava a přejde do stavu $s_r$.
-        \item Hlava je nyní nad prvním $0$ za oddělovačem řádku. Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
-        \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
-        \item Přečte $1$. Protože stroj byl navržen tak, aby odmítl, pokud najde $1$ v řádku, přejde do stavu $s_c$.
-        \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava. Protože byla v tomto řádku $1$, stroj nezastaví ani nepřijme, ale pokračuje ve stavu $s_r$ pro kontrolu dalšího řádku.
-        \item Přečte další $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
-        \item Přečte $1$, přejde do stavu $s_c$, zapíše $1$ a posune se doprava.
-        \item Přečte druhé $1$, zapíše $1$, posune se doprava a zůstává ve stavu $s_c$.
-        \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava a přejde zpět do stavu $s_r$ pro kontrolu dalšího řádku.
-        \item Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
-        \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
-        \item Přečte třetí $0$. Nyní je to klíčové, protože je to poslední číslice v řádku a dalším symbolem je $\hookleftarrow$. Stroj se musí přepnout do stavu přijetí, protože našel řádek pouze s $0$, což naznačuje izolovaný vrchol.
-        \item Přečte $\hookleftarrow$, zapíše $\hookleftarrow$ a přejde do stavu $s_{\text{ano}}$ podle poslední aktualizace v přechodové tabulce. To je proto, že detekoval řádek bez $1$, což naznačuje izolovaný vrchol.
-        \item Stroj zastaví ve stavu $s_{\text{ano}$, když úspěšně nalezl izolovaný vrchol.
-    \end{enumerate}
+        \begin{enumerate}
+            \item Stroj začíná ve stavu $s_0$ s hlavou nad symbolem $\triangleright$.
+            \item Přečte $\triangleright$, zapíše $\triangleright$, posune se doprava a přejde do stavu $s_r$.
+            \item Hlava je nyní nad prvním $0$ za oddělovačem řádku. Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+            \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+            \item Přečte $1$. Protože stroj byl navržen tak, aby odmítl, pokud najde $1$ v řádku, přejde do stavu $s_c$.
+            \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava. Protože byla v tomto řádku $1$, stroj nezastaví ani nepřijme, ale pokračuje ve stavu $s_r$ pro kontrolu dalšího řádku.
+            \item Přečte další $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+            \item Přečte $1$, přejde do stavu $s_c$, zapíše $1$ a posune se doprava.
+            \item Přečte druhé $1$, zapíše $1$, posune se doprava a zůstává ve stavu $s_c$.
+            \item Přečte oddělovač řádku $\hookleftarrow$, zapíše $\hookleftarrow$, posune se doprava a přejde zpět do stavu $s_r$ pro kontrolu dalšího řádku.
+            \item Přečte $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+            \item Přečte druhé $0$, zapíše $0$, posune se doprava a zůstává ve stavu $s_r$.
+            \item Přečte třetí $0$. Nyní je to klíčové, protože je to poslední číslice v řádku a dalším symbolem je $\hookleftarrow$. Stroj se musí přepnout do stavu přijetí, protože našel řádek pouze s $0$, což naznačuje izolovaný vrchol.
+            \item Přečte $\hookleftarrow$, zapíše $\hookleftarrow$ a přejde do stavu $s_{\text{ano}}$ podle poslední aktualizace v přechodové tabulce. To je proto, že detekoval řádek bez $1$, což naznačuje izolovaný vrchol.
+            \item Stroj zastaví ve stavu $s_{\text{ano}$, když úspěšně nalezl izolovaný vrchol.
+        \end{enumerate}
 
-    \newpage
+    \end{uloha}
 
 % -- Úloha 12
-    \uloha{12}{2}{
+    \begin{uloha}{12}{2}{
         Využijte vysvětlení proč platí polynomialita 2-SAT a nakreslete graf odpovídající následující formuli a otestujte a případně ukažte, zda-li je splněna.
         \textit{Pozn.: Graf na kreslete, i když budete schopni splnitelnost rozhodnout jinak.}
 
@@ -685,100 +696,99 @@
             \lor
             \overline{x_4}) \land (x_4 \lor x_5) \land (\overline{x_3} \lor x_5)
         \end{equation*}
-    }{}{false}{true}
+    }{true}
+        Nejprve sestavíme graf na literálech a klauzuích, tak že:
+        \begin{itemize}
+            \item Vrcholy: $V = \{x_1,\dots,x_5, \neg x_1,\dots,\neg x_5\}$
+            \item Hrany: Pro $\forall$ klauzuli $(a \lor b)$ přidáme hrany mezi $(\neg a, b)$ a $(\neg b, a)$
+        \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=5cm,semithick]
+                \tikzstyle{every state}=[fill=white,draw=black,text=black]
+                \node[state] (x1) at (0,2) {$x_1$};
+                \node[state] (x2) at (2,2) {$x_2$};
+                \node[state] (x3) at (4,2) {$x_3$};
+                \node[state] (x4) at (6,2) {$x_4$};
+                \node[state] (x5) at (8,2) {$x_5$};
 
-    Nejprve sestavíme graf na literálech a klauzuích, tak že:
-    \begin{itemize}
-        \item Vrcholy: $V = \{x_1,\dots,x_5, \neg x_1,\dots,\neg x_5\}$
-        \item Hrany: Pro $\forall$ klauzuli $(a \lor b)$ přidáme hrany mezi $(\neg a, b)$ a $(\neg b, a)$
-    \end{itemize}
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=5cm,semithick]
-            \tikzstyle{every state}=[fill=white,draw=black,text=black]
-            \node[state] (x1) at (0,2) {$x_1$};
-            \node[state] (x2) at (2,2) {$x_2$};
-            \node[state] (x3) at (4,2) {$x_3$};
-            \node[state] (x4) at (6,2) {$x_4$};
-            \node[state] (x5) at (8,2) {$x_5$};
+                \node[state] (nx1) at (0,0) {$\neg x_1$};
+                \node[state] (nx2) at (2,0) {$\neg x_2$};
+                \node[state] (nx3) at (4,0) {$\neg x_3$};
+                \node[state] (nx4) at (6,0) {$\neg x_4$};
+                \node[state] (nx5) at (8,0) {$\neg x_5$};
 
-            \node[state] (nx1) at (0,0) {$\neg x_1$};
-            \node[state] (nx2) at (2,0) {$\neg x_2$};
-            \node[state] (nx3) at (4,0) {$\neg x_3$};
-            \node[state] (nx4) at (6,0) {$\neg x_4$};
-            \node[state] (nx5) at (8,0) {$\neg x_5$};
+                % (x1 ∨ ¬x3)
+                \draw (nx1) to [bend right] (nx3);
+                \draw (x3) to [bend right] (x1);
+                % (x2 ∨ x3)
+                \draw (nx2) to (x3);
+                \draw (nx3) to (x2);
+                % (¬x3 ∨ x4)
+                \draw (x3) to (x4);
+                \draw (nx4) to (nx3);
+                % (¬x2 ∨ ¬x4)
+                \draw (x2) to (nx4);
+                \draw (x4) to (nx2);
+                % (x4 ∨ x5)
+                \draw (nx4) to (x5);
+                \draw (nx5) to (x4);
+                % (¬x3 ∨ x5)
+                \draw (x3) [bend left] to (x5);
+                \draw (nx5) [bend left] to (nx3);
 
-            % (x1 ∨ ¬x3)
-            \draw (nx1) to [bend right] (nx3);
-            \draw (x3) to [bend right] (x1);
-            % (x2 ∨ x3)
-            \draw (nx2) to (x3);
-            \draw (nx3) to (x2);
-            % (¬x3 ∨ x4)
-            \draw (x3) to (x4);
-            \draw (nx4) to (nx3);
-            % (¬x2 ∨ ¬x4)
-            \draw (x2) to (nx4);
-            \draw (x4) to (nx2);
-            % (x4 ∨ x5)
-            \draw (nx4) to (x5);
-            \draw (nx5) to (x4);
-            % (¬x3 ∨ x5)
-            \draw (x3) [bend left] to (x5);
-            \draw (nx5) [bend left] to (nx3);
+            \end{tikzpicture}
+            \caption{Graf sestaený z literálů a klauzulí}
+            \label{fig:ukol-2-12-graf}
+        \end{figure}
 
-        \end{tikzpicture}
-        \caption{Graf sestaený z literálů a klauzulí}
-        \label{fig:ukol-2-12-graf}
-    \end{figure}
+        Následně nalezneme silně souvislé komponenty (kvasikomponenty) pomocí Kosarajova algoritmu (dvojitý průchod DFS). Z tohoto algoritmu jsme nalezli 4 kvasikomponenty:
+        \begin{enumerate}
+            \item $G_1 = \{ \neg x_1 \}$
+            \item $G_2 = \{ \neg x_5, x_4, \neg x_2, x_3 \}$
+            \item $G_3 = \{ \neg x_3, x_2, \neg x_4, x_5 \}$
+            \item $G_4 = \{ x_1 \}$
+        \end{enumerate}
 
-    Následně nalezneme silně souvislé komponenty (kvasikomponenty) pomocí Kosarajova algoritmu (dvojitý průchod DFS). Z tohoto algoritmu jsme nalezli 4 kvasikomponenty:
-    \begin{enumerate}
-        \item $G_1 = \{ \neg x_1 \}$
-        \item $G_2 = \{ \neg x_5, x_4, \neg x_2, x_3 \}$
-        \item $G_3 = \{ \neg x_3, x_2, \neg x_4, x_5 \}$
-        \item $G_4 = \{ x_1 \}$
-    \end{enumerate}
+        Nalezneme průchody mezi kvasikomponentami:
+        \begin{enumerate}
+            \item $G_1 \rightarrow G_3$
+            \item $G_2 \rightarrow G_3$ a $G_2 \rightarrow G_4$
+        \end{enumerate}
+        a acyklicky je očíslujeme:
+        \begin{enumerate}
+            \item $c(G_1) = 1$
+            \item $c(G_2) = 2$
+            \item $c(G_4) = 3$
+            \item $c(G_3) = 4$
+        \end{enumerate}
+        poté jdeme od nejvyšší komponenty $G_2$ a sbíráme informace o literálech z grafu:
+        \begin{itemize}
+            \item v $G_3$ jsou $x_2, x_5, \neg x_3, \neg x_4$ a tedy $x_2 = x_5 = 1$ a $x_3 = x_4 = 0$
+            \item v $G_4$ je $x_1 = 1$ a tedy $x_1 = 1$
+        \end{itemize}
 
-    Nalezneme průchody mezi kvasikomponentami:
-    \begin{enumerate}
-        \item $G_1 \rightarrow G_3$
-        \item $G_2 \rightarrow G_3$ a $G_2 \rightarrow G_4$
-    \end{enumerate}
-    a acyklicky je očíslujeme:
-    \begin{enumerate}
-        \item $c(G_1) = 1$
-        \item $c(G_2) = 2$
-        \item $c(G_4) = 3$
-        \item $c(G_3) = 4$
-    \end{enumerate}
-    poté jdeme od nejvyšší komponenty $G_2$ a sbíráme informace o literálech z grafu:
-    \begin{itemize}
-        \item v $G_3$ jsou $x_2, x_5, \neg x_3, \neg x_4$ a tedy $x_2 = x_5 = 1$ a $x_3 = x_4 = 0$
-        \item v $G_4$ je $x_1 = 1$ a tedy $x_1 = 1$
-    \end{itemize}
+        Pak pro tyto hodnoty ověříme formuli:
+        \begin{equation*}
+            f(x_1, x_2, x_3, x_4, x_5) = (1 \lor 0) \land (1 \lor 0) \land
+            (1 \lor 0) \land (0 \lor 1) \land (0 \lor 1) \land (1 \lor 1) = 1
+        \end{equation*}
 
-    Pak pro tyto hodnoty ověříme formuli:
-    \begin{equation*}
-        f(x_1, x_2, x_3, x_4, x_5) = (1 \lor 0) \land (1 \lor 0) \land
-        (1 \lor 0) \land (0 \lor 1) \land (0 \lor 1) \land (1 \lor 1) = 1
-    \end{equation*}
+        Podrobnější postup je vidět na obrázku \ref{fig:ukol-2-12-hand} níže:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{\FIGDIR/ukol-2-12-hand}
+            \caption{Postup nalezení silně souvislých komponent a ověření formule}
+            \label{fig:ukol-2-12-hand}
+        \end{figure}
 
-    Podrobnější postup je vidět na obrázku \ref{fig:ukol-2-12-hand} níže:
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{\FIGDIR/ukol-2-12-hand}
-        \caption{Postup nalezení silně souvislých komponent a ověření formule}
-        \label{fig:ukol-2-12-hand}
-    \end{figure}
-
-    \answerbox{
-        Formule je splněna s hodnotami $x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1$.
-    }{}
-    \newpage
+        \answerbox{
+            Formule je splněna s hodnotami $x_1 = 1, x_2 = 1, x_3 = 0, x_4 = 0, x_5 = 1$.
+        }{}
+    \end{uloha}
 
 % -- TODO: Úloha 13
-    \uloha{13}{2}{
+    \begin{uloha}{13}{2}{
         Na základě vysvětlení převodu SAT na IND nakreslete graf odpovídající následující formuli a otestujte splnitelnost formule nalezením nezávislé množiny.
         \textit{Pozn.: Graf nakreslete a zhodnoťte, i když budete schopni splnitelnost rozhodnout jinak.}
 
@@ -788,38 +798,40 @@
             \lor
             x_4) \land (x_1 \lor \overline{x_2} \lor x_3 \lor \overline{x_4}) \land (x_4 \lor x_5)
         \end{equation*}
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- TODO: Úloha 14
-    \uloha{14}{2}{
+    \begin{uloha}{14}{2}{
         Na základě vysvětlení převodu 3-SAT na 3-COL nakreslete graf odpovídající následující formuli a otestujte barevnost grafu.
         \begin{equation*}
             f(x_1, x_2, x_3, x_4, x_5) = (x_1 \lor x_2 \lor \overline{x_4}) \land (x_1 \lor \overline{x_2} \lor x_3) \land (\overline{x_2}
             \lor \overline{x_3} \lor x_4) \land (x_1 \lor \overline{x_2} \lor x_3)
         \end{equation*}
-    }{TODO}{false}{false}
-    \newpage
+    }{false}
+        TODO
+    \end{uloha}
 
 % -- Úloha programovací 1
-    \uloha{programovací 1}{4}{
+    \begin{uloha}{programovací 1}{4}{
         Naprogramujte algoritmus pro testování isomorfismu grafů hrubou silou a otestujte to na pár příkladech grafů s využitím knihovní funkce pro testování isomorfismu.
-    }{}{false}{true}
-    Isomorfismus lze testovat hrubou silou, kde se všechny možné permutace uzlů grafu $G$ porovnají s uzly grafu $H$.
+    }{true}
+        Isomorfismus lze testovat hrubou silou, kde se všechny možné permutace uzlů grafu $G$ porovnají s uzly grafu $H$.
 
-    Vytvoříme funkci \texttt{isomorphism(G, H)}, která otestuje isomorfismus grafů $G$ a $H$ následovně:
-    \begin{itemize}
-        \item Pokud mají grafy různý počet uzlů, vrátí \texttt{False}.
-        \item Pro všechny permutace uzlů grafu $G$:
+        Vytvoříme funkci \texttt{isomorphism(G, H)}, která otestuje isomorfismus grafů $G$ a $H$ následovně:
         \begin{itemize}
-            \item Vytvoří mapování uzlů grafu $G$ na uzly grafu $H$.
-            \item Pokud všechny uzly grafu $G$ mají svůj ekvivalent v grafu $H$ a všechny hrany zůstanou zachovány, vrátí \texttt{True}.
+            \item Pokud mají grafy různý počet uzlů, vrátí \texttt{False}.
+            \item Pro všechny permutace uzlů grafu $G$:
+            \begin{itemize}
+                \item Vytvoří mapování uzlů grafu $G$ na uzly grafu $H$.
+                \item Pokud všechny uzly grafu $G$ mají svůj ekvivalent v grafu $H$ a všechny hrany zůstanou zachovány, vrátí \texttt{True}.
+            \end{itemize}
+            \item Pokud žádná permutace nevyhovuje, vrátí \texttt{False}.
         \end{itemize}
-        \item Pokud žádná permutace nevyhovuje, vrátí \texttt{False}.
-    \end{itemize}
 
-    Implementačně je algoritmus následující:
-    \begin{minted}{python}
+        Implementačně je algoritmus následující:
+        \begin{minted}{python}
         import networkx as nx
         import itertools
 
@@ -838,152 +850,152 @@
                 if has_all_nodes and has_all_edges:
                     return True
                 return False
-    \end{minted}
+        \end{minted}
 
-    Poté již zbývá jen funkci výše otestovat na několika příkladech grafů a porovnat výsledky s knihovní funkcí pro
-    testování isomorfismu:
-    \begin{minted}{python}
+        Poté již zbývá jen funkci výše otestovat na několika příkladech grafů a porovnat výsledky s knihovní funkcí pro
+        testování isomorfismu:
+        \begin{minted}{python}
         G = nx.generators.small.cycle_graph(5)
         H = nx.complement(nx.generators.small.cycle_graph(5))
 
         my_isom = isomorphism(G, H)
         nx_isom = nx.is_isomorphic(G, nx.complement(H))
         print(f"Vlastní: {my_isom}\nNetworkX: {nx_isom}\nÚspěch: {'Ano' if my_isom == nx_isom else 'Ne'}")
-    \end{minted}
+        \end{minted}
 
-    \textit{
-        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k1.py}{ukol-2-k1.py}.
-    }
-    \newpage
+        \textit{
+            Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k1.py}{ukol-2-k1.py}.
+        }
+    \end{uloha}
 
 % -- Úloha programovací 2
-    \uloha{programovací 2}{4}{
+    \begin{uloha}{programovací 2}{4}{
         Realizujte hrubou silou nalezení největší nezávislé množiny daného grafu a následně otestujte, že je množina nezávislá. Následně se pokuste vylepšit řešení procházení množinami použitím sousedů vrcholu.
 
         Pokud chceme testovat procházení, nabízí se, ne nutně, řešení pomocí nějakého rekurzivního přístupu.
-    }{}{false}{true}
-    \begin{itemize}
-        \item \textbf{Maximální (Maximal) nezávislá množina} je taková množina uzlů, kde žádné dva uzly nejsou spojeny
-        hranou a nelze přidat další uzel, aby zůstala nezávislá.
-        \item \textbf{Největší (Maximum) nezávislá množina} je taková množina, která má největší počet uzlů.
-    \end{itemize}
+    }{true}
+        \begin{itemize}
+            \item \textbf{Maximální (Maximal) nezávislá množina} je taková množina uzlů, kde žádné dva uzly nejsou spojeny
+            hranou a nelze přidat další uzel, aby zůstala nezávislá.
+            \item \textbf{Největší (Maximum) nezávislá množina} je taková množina, která má největší počet uzlů.
+        \end{itemize}
 
-    Pro řešení naimplementujeme nejdříve funkci na zjištění nezávislosti množiny \texttt{is\_independent\_set(G,~ind\_set)}:
-    \begin{minted}{python}
-         def is_independent_set(G, ind_set):
-            """
-            Množina je nezávislá, pokud žádné dva uzly nejsou spojeny hranou.
-            :param G: Graf G
-            :param ind_set: Množina uzlů
-            :return: True pokud je množina nezávislá, jinak False
-            """
-            # pro všechny uzly v množině
-            for node in ind_set:
-                # projdeme všechny sousedy uzlu
-                for neighbor in G.neighbors(node):
-                    # pokud je soused také v množině, množina není nezávislá
-                    if neighbor in ind_set:
-                        return False
-            return True
-    \end{minted}
+        Pro řešení naimplementujeme nejdříve funkci na zjištění nezávislosti množiny \texttt{is\_independent\_set(G,~ind\_set)}:
+        \begin{minted}{python}
+             def is_independent_set(G, ind_set):
+                """
+                Množina je nezávislá, pokud žádné dva uzly nejsou spojeny hranou.
+                :param G: Graf G
+                :param ind_set: Množina uzlů
+                :return: True pokud je množina nezávislá, jinak False
+                """
+                # pro všechny uzly v množině
+                for node in ind_set:
+                    # projdeme všechny sousedy uzlu
+                    for neighbor in G.neighbors(node):
+                        # pokud je soused také v množině, množina není nezávislá
+                        if neighbor in ind_set:
+                            return False
+                return True
+        \end{minted}
 
-    Tato funkce nám umožní testovat nezávislost množiny uzlů v grafu. Následně můžeme implementovat funkci pro
-    nalezení největší nezávislé množiny grafu \texttt{get\_max\_independent\_set(G)} pomocí hrubé síly:
-    \begin{minted}{python}
-        def get_max_independent_set(G):
-            """
-            Nalezení největší nezávislé množiny grafu hrubou silou.
-            :param G: Graf G
-            :return: Největší nezávislá množina grafu G
-            """
-            # inicializace (prázdné) maximální nezávislé množiny
-            max_ind_set = set()
-            # pro všechny možné velikosti množin
-            for i in range(1, len(G.nodes) + 1):
-                # pro všechny možné kombinace uzlů
-                for ind_set in itertools.combinations(G.nodes, i):
-                    # pokud je množina nezávislá a má větší počet uzlů než dosavadní maximální množina
-                    if is_independent_set(G, ind_set) and len(ind_set) > len(max_ind_set):
-                        # nastavíme novou maximální množinu
-                        max_ind_set = set(ind_set)
-            return max_ind_set
-    \end{minted}
+        Tato funkce nám umožní testovat nezávislost množiny uzlů v grafu. Následně můžeme implementovat funkci pro
+        nalezení největší nezávislé množiny grafu \texttt{get\_max\_independent\_set(G)} pomocí hrubé síly:
+        \begin{minted}{python}
+            def get_max_independent_set(G):
+                """
+                Nalezení největší nezávislé množiny grafu hrubou silou.
+                :param G: Graf G
+                :return: Největší nezávislá množina grafu G
+                """
+                # inicializace (prázdné) maximální nezávislé množiny
+                max_ind_set = set()
+                # pro všechny možné velikosti množin
+                for i in range(1, len(G.nodes) + 1):
+                    # pro všechny možné kombinace uzlů
+                    for ind_set in itertools.combinations(G.nodes, i):
+                        # pokud je množina nezávislá a má větší počet uzlů než dosavadní maximální množina
+                        if is_independent_set(G, ind_set) and len(ind_set) > len(max_ind_set):
+                            # nastavíme novou maximální množinu
+                            max_ind_set = set(ind_set)
+                return max_ind_set
+        \end{minted}
 
-    Pro otestování nyní zavoláme naši funkci \texttt{get\_max\_independent\_set(G)} a porovnáme oproti výsledku z
-    knihovny \texttt{networkx}:
-    \begin{minted}{python}
-        G = nx.generators.small.petersen_graph()
-        # brute force
-        brute_max_ind_set = log_perf(get_max_independent_set)(G)
-        print(f"[brute] Set: {brute_max_ind_set}, Length: {len(brute_max_ind_set)}, Is independent: {is_independent_set(G, brute_max_ind_set)}")
-        # confirm via networkx
-        nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
-        print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
-        # assert
-        assert len(brute_max_ind_set) == len(nx_max_ind_set)
-        # >>> [get_max_independent_set] took 0.36 ms
-        # >>> [brute] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
-        # >>> [maximum_independent_set] took 1.28 ms
-        # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
-    \end{minted}
+        Pro otestování nyní zavoláme naši funkci \texttt{get\_max\_independent\_set(G)} a porovnáme oproti výsledku z
+        knihovny \texttt{networkx}:
+        \begin{minted}{python}
+            G = nx.generators.small.petersen_graph()
+            # brute force
+            brute_max_ind_set = log_perf(get_max_independent_set)(G)
+            print(f"[brute] Set: {brute_max_ind_set}, Length: {len(brute_max_ind_set)}, Is independent: {is_independent_set(G, brute_max_ind_set)}")
+            # confirm via networkx
+            nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
+            print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
+            # assert
+            assert len(brute_max_ind_set) == len(nx_max_ind_set)
+            # >>> [get_max_independent_set] took 0.36 ms
+            # >>> [brute] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
+            # >>> [maximum_independent_set] took 1.28 ms
+            # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
+        \end{minted}
 
-    Lze vidět, že naše funkce pro nalezení největší nezávislé množiny grafu funguje správně a vrací stejný výsledek
-    jako funkce z knihovny \texttt{networkx}. Dále si také můžeme všimnout že průměrná doba běhu naší funkce je $0
-    .36ms$ oproti $1.28ms$ funkce z knihovní funkce.
+        Lze vidět, že naše funkce pro nalezení největší nezávislé množiny grafu funguje správně a vrací stejný výsledek
+        jako funkce z knihovny \texttt{networkx}. Dále si také můžeme všimnout že průměrná doba běhu naší funkce je $0
+        .36ms$ oproti $1.28ms$ funkce z knihovní funkce.
 
-    Nyní se pokusme naši funkci vylepšit pomocí rekurzivního přístupu:
-    \begin{minted}{python}
-        def recursive_independent_set(G, current_set, nodes_remaining):
-            """
-            :param G:
-            :param current_set:
-            :param nodes_remaining:
-            :return:
-            """
-            # pokud již nejsou žádné uzly k procházení, vrátíme aktuální množinu
-            if not nodes_remaining:
-                return current_set
+        Nyní se pokusme naši funkci vylepšit pomocí rekurzivního přístupu:
+        \begin{minted}{python}
+            def recursive_independent_set(G, current_set, nodes_remaining):
+                """
+                :param G:
+                :param current_set:
+                :param nodes_remaining:
+                :return:
+                """
+                # pokud již nejsou žádné uzly k procházení, vrátíme aktuální množinu
+                if not nodes_remaining:
+                    return current_set
 
-            # inicializace maximální množiny
-            max_set = current_set
-            # pro všechny uzly, které ještě nebyly zpracovány
-            for node in nodes_remaining:
-                # všechny sousedy uzlu
-                neighbors = G.neighbors(node)
-                # pokud žádný soused není v aktuální množině
-                if all(neighbor not in current_set for neighbor in neighbors):
-                    # vytvoříme novou množinu s uzlem
-                    new_set = current_set.union({node})
-                    # rekurzivně zavoláme funkci pro další uzly
-                    remaining = nodes_remaining.difference(new_set).difference(set(G.neighbors(node)))
-                    candidate_set = recursive_independent_set(G, new_set, remaining)
-                    # pokud je nová množina větší než dosavadní maximální množina
-                    if len(candidate_set) > len(max_set):
-                        # nastavíme novou maximální množinu
-                        max_set = candidate_set
+                # inicializace maximální množiny
+                max_set = current_set
+                # pro všechny uzly, které ještě nebyly zpracovány
+                for node in nodes_remaining:
+                    # všechny sousedy uzlu
+                    neighbors = G.neighbors(node)
+                    # pokud žádný soused není v aktuální množině
+                    if all(neighbor not in current_set for neighbor in neighbors):
+                        # vytvoříme novou množinu s uzlem
+                        new_set = current_set.union({node})
+                        # rekurzivně zavoláme funkci pro další uzly
+                        remaining = nodes_remaining.difference(new_set).difference(set(G.neighbors(node)))
+                        candidate_set = recursive_independent_set(G, new_set, remaining)
+                        # pokud je nová množina větší než dosavadní maximální množina
+                        if len(candidate_set) > len(max_set):
+                            # nastavíme novou maximální množinu
+                            max_set = candidate_set
 
-            return max_set
-    \end{minted}
+                return max_set
+        \end{minted}
 
-    Otestováním této funkce zjistíme, že výsledek je sice správný a tedy stejný jako u předchozích funkcí, ale doba
-    běhu je výrazně delší, což je způsobeno rekurzivním přístupem:
-    \begin{minted}{python}
-        # improved with neighbors
-        recursive_max_ind_set = log_perf(recursive_independent_set)(G, set(), set(G.nodes))
-        print(f"[recursive] Set: {recursive_max_ind_set}, Length: {len(recursive_max_ind_set)}, Is independent: {is_independent_set(G, recursive_max_ind_set)}")
-        # confirm via networkx
-        nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
-        print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
-        # assert
-        assert len(brute_max_ind_set) == len(nx_max_ind_set)
-        # >>> [recursive_independent_set] took 0.43 ms
-        # >>> [recursive] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
-        # >>> [maximum_independent_set] took 1.28 ms
-        # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
-    \end{minted}
+        Otestováním této funkce zjistíme, že výsledek je sice správný a tedy stejný jako u předchozích funkcí, ale doba
+        běhu je výrazně delší, což je způsobeno rekurzivním přístupem:
+        \begin{minted}{python}
+            # improved with neighbors
+            recursive_max_ind_set = log_perf(recursive_independent_set)(G, set(), set(G.nodes))
+            print(f"[recursive] Set: {recursive_max_ind_set}, Length: {len(recursive_max_ind_set)}, Is independent: {is_independent_set(G, recursive_max_ind_set)}")
+            # confirm via networkx
+            nx_max_ind_set = log_perf(nx.algorithms.approximation.maximum_independent_set)(G)
+            print(f"[nx] Set: {nx_max_ind_set}, Length: {len(nx_max_ind_set)}, Is independent: {is_independent_set(G, nx_max_ind_set)}")
+            # assert
+            assert len(brute_max_ind_set) == len(nx_max_ind_set)
+            # >>> [recursive_independent_set] took 0.43 ms
+            # >>> [recursive] Set: {0, 8, 2, 9}, Length: 4, Is independent: True
+            # >>> [maximum_independent_set] took 1.28 ms
+            # >>> [nx] Set: {8, 9, 2, 0}, Length: 4, Is independent: True
+        \end{minted}
 
-    \textit{
-        Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k2.py}{ukol-2-k2.py}.
-    }
-    \newpage
+        \textit{
+            Úplný zdrojový kód je k nalezení v souboru \href{https://github.com/filipditrich/MMAD-2024/blob/main/ukol-2-k2.py}{ukol-2-k2.py}.
+        }
+    \end{uloha}
 \end{document}
