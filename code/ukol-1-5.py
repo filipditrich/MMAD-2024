@@ -1,4 +1,3 @@
-# === Úkol 1, úloha 5 ===
 # Mějme stálý migrační proces obyvatel mezi Severem, Jihem, Východem a Západem,
 # jehož průběh za 1 rok lze znázornit diagramem níže (desetinná čísla udávají, jaký zlomek populace se za rok přemístí po šipce do jiné oblasti).
 # Na počátku je počet obyvatel ve všech oblastech 10 milionů.

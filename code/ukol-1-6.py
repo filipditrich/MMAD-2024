@@ -1,4 +1,3 @@
-# === Úkol 1, úloha 6 ===
 # Jedná se o simulovaná data měření teploty v místnosti. Data jsou v .csv formátu.
 # Obsahují hlavičku a pět sloupců. V prvním sloupci je datum, v následujících čtyřech sloupcích jsou teploty měření v jednotlivých čtyřech rozích místnosti.
 # Celkem je v souboru 144 záznamů měření.
@@ -9,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 # načtení dat
-data = pd.read_csv('room-temperature.csv')
+data = pd.read_csv('assets/data/room-temperature.csv')
 # zahození sloupce s datem (nepotřebné pro analýzu)
 data = data.drop(columns=['Date'])
 # normalizace dat (odstranění průměru)
