@@ -13,3 +13,9 @@ dist/*.maf
 dist/*.mtc
 dist/*.mtc0
 dist/_minted*
+
+# venv
+venv/
+
+# resources
+_res/*
