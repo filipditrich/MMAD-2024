@@ -56,7 +56,7 @@
 
         \subsection{a) Cesta $P_n$}
         \label{subsec:ukol-2-1a-cesta}
-        Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.\\
+        Definice: Cesta $P_n$ je graf, který má $n$ vrcholů a $n-1$ hran.
 
         \begin{itemize}
             \item První a poslední vrchol mají stupeň 1, všechny ostatní vrcholy mají stupeň 2.
@@ -67,12 +67,15 @@
         \begin{figure}[H]
             \centering
             \begin{tikzpicture}
-                \node[draw, circle] (1) at (0,0) {1};
-                \node[draw, circle] (2) at (1,0) {2};
-                \node[draw, circle] (3) at (2,0) {3};
-                \node (dots) at (3,0) {$\ldots$};
-                \node[draw, circle] (n) at (4,0) {n};
-                \draw (1) -- (2) -- (3) -- (dots) -- (n);
+                \draw[>=stealth] (0,0) -- (1,0);
+                \draw[>=stealth] (1,0) -- (2,0);
+                \draw[>=stealth] (2,0) -- (3,0);
+                \draw[>=stealth] (3,0) -- (4,0);
+                \filldraw[black] (0,0) circle (2pt) node[anchor=north, yshift=-1ex] {$1$};
+                \filldraw[red] (1,0) circle (2pt) node[anchor=north, yshift=-1ex] {$2$};
+                \filldraw[black] (2,0) circle (2pt) node[anchor=north, yshift=-1ex] {$3$};
+                \filldraw[red] (3,0) circle (2pt) node[anchor=north, yshift=-1ex] {$\ldots$};
+                \filldraw[black] (4,0) circle (2pt) node[anchor=north, yshift=-1ex] {$n$};
             \end{tikzpicture}
             \caption{Cesta $P_n$}
             \label{fig:ukol-2-1a-cesta}
@@ -82,7 +85,7 @@
             \begin{itemize}
                 \item $\delta(P_n) = 1$
                 \item $\Delta(P_n) = 2$
-                \item Skóre grafu $P_n = 2n - 2$
+                \item Skóre grafu $P_n = \{1, 2, 2, \dots, 2, 1\} = 2n - 2$
                 \item Barevnost grafu \chi($P_n) = 2$
             \end{itemize}
         }{1a}
@@ -99,22 +102,50 @@
 
         \begin{figure}[H]
             \centering
-            \begin{tikzpicture}
-                \node[draw, circle] (1) at (0,0) {1};
-                \node[draw, circle] (2) at (1,1) {2};
-                \node[draw, circle] (dots) at (2,0) {...};
-                \node[draw, circle] (n) at (1,-1) {n};
-                \draw (1) -- (2) -- (dots) -- (n) -- (1);
-            \end{tikzpicture}
-            \caption{Kružnice $C_n$}
-            \label{fig:ukol-2-1b-kruznice}
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+                    \draw[>=stealth] (2,0) -- (3,1);
+                    \draw[>=stealth] (3,1) -- (2.66,2.33);
+                    \draw[>=stealth] (2.66,2.33) -- (1.33,2.33);
+                    \draw[>=stealth] (1.33,2.33) -- (1,1);
+                    \draw[>=stealth] (1,1) -- (2,0);
+                    \filldraw[black] (2,0) circle (2pt) node[anchor=south, yshift=1ex] {$1$};
+                    \filldraw[red] (3,1) circle (2pt) node[anchor=west, xshift=1ex] {$2$};
+                    \filldraw[black] (2.66,2.33) circle (2pt) node[anchor=north, yshift=-1ex] {$3$};
+                    \filldraw[red] (1.33,2.33) circle (2pt) node[anchor=north, yshift=-1ex] {$4$};
+                    \filldraw[green] (1,1) circle (2pt) node[anchor=east, xshift=-1ex] {$5$};
+                \end{tikzpicture}
+                \caption{Lichá kružnice $C_5$}
+                \label{fig:ukol-2-1b-kruznice-5}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+                \begin{tikzpicture}[y=-0.5cm,x=0.5cm]
+                    \draw[>=stealth] (1,0) -- (2,0.8);
+                    \draw[>=stealth] (2,0.8) -- (2,2.2);
+                    \draw[>=stealth] (2,2.2) -- (1,3);
+                    \draw[>=stealth] (1,3) -- (0,2.2);
+                    \draw[>=stealth] (0,2.2) -- (0,0.8);
+                    \draw[>=stealth] (0,0.8) -- (1,0);
+                    \filldraw[red] (1,0) circle (2pt) node[anchor=south, yshift=1ex] {$1$};
+                    \filldraw[black] (2,0.8) circle (2pt) node[anchor=west, xshift=1ex] {$2$};
+                    \filldraw[red] (2,2.2) circle (2pt) node[anchor=west, xshift=1ex] {$3$};
+                    \filldraw[black] (1,3) circle (2pt) node[anchor=north, yshift=-1ex] {$4$};
+                    \filldraw[red] (0,2.2) circle (2pt) node[anchor=east, xshift=-1ex] {$5$};
+                    \filldraw[black] (0,0.8) circle (2pt) node[anchor=east, xshift=-1ex] {$6$};
+                \end{tikzpicture}
+                \caption{Sudá kružnice $C_6$}
+                \label{fig:ukol-2-1b-kruznice-6}
+            \end{subfigure}
         \end{figure}
 
         \answerbox{
             \begin{itemize}
                 \item $\delta(C_n) = 2$
                 \item $\Delta(C_n) = 2$
-                \item Skóre grafu $C_n = 2n$
+                \item Skóre grafu $C_n = \{2, 2, \dots, 2\} = 2n$
                 \item Barevnost grafu \chi($C_n) = \begin{cases}
                                                        2 & \text{pro sudé } n \\ 3 & \text{pro liché } n
                 \end{cases}$
@@ -133,13 +164,17 @@
 
         \begin{figure}[H]
             \centering
-            \begin{tikzpicture}
-                \node[draw, circle] (1) at (0,0) {1};
-                \node[draw, circle] (2) at (2,0) {2};
-                \node[draw, circle] (3) at (0,-2) {3};
-                \node[draw, circle] (4) at (2,-2) {4};
-                \draw (1) -- (2) -- (3) -- (4) -- (1);
-                \draw (1) -- (3) -- (2) -- (4) -- (1);
+            \begin{tikzpicture}[y=-1cm]
+                \draw (0,0) -- (0,-1);
+                \draw (0,0) -- (1,0);
+                \draw (0,0) -- (1,-1);
+                \draw (0,-1) -- (1,0);
+                \draw (0,-1) -- (1,-1);
+                \draw (1,0) -- (1,-1);
+                \filldraw[black] (0,0) circle (2pt) node[anchor=north east] {$1$};
+                \filldraw[red] (0,-1) circle (2pt) node[anchor=south east] {$2$};
+                \filldraw[green] (1,0) circle (2pt) node[anchor=north west] {$3$};
+                \filldraw[blue] (1,-1) circle (2pt) node[anchor=south west] {$4$};
             \end{tikzpicture}
             \caption{Úplný graf $K_4$}
             \label{fig:ukol-2-1c-uplny-graf}
@@ -149,7 +184,7 @@
             \begin{itemize}
                 \item $\delta(K_n) = n-1$
                 \item $\Delta(K_n) = n-1$
-                \item Skóre grafu $K_n = n(n-1)$
+                \item Skóre grafu $K_n = \{n-1, n-1, \dots, n-1\} = n(n-1)$
                 \item Barevnost grafu \chi($K_n) = n$
             \end{itemize}
         }{1c}
@@ -166,22 +201,22 @@
 
         \begin{figure}[H]
             \centering
-            \begin{tikzpicture}
-                \node[draw, circle] (1) at (0,0) {1};
-                \node[draw, circle] (2) at (0,-1) {2};
-                \node[draw, circle] (3) at (0,-2) {3};
-                \node[draw, circle] (4) at (2,0) {4};
-                \node[draw, circle] (5) at (2,-1) {5};
-                \node[draw, circle] (6) at (2,-2) {6};
-                \draw (1) -- (4);
-                \draw (1) -- (5);
-                \draw (1) -- (6);
-                \draw (2) -- (4);
-                \draw (2) -- (5);
-                \draw (2) -- (6);
-                \draw (3) -- (4);
-                \draw (3) -- (5);
-                \draw (3) -- (6);
+            \begin{tikzpicture}[y=-0.5cm]
+                \draw (0,0) -- (2,0);
+                \draw (0,0) -- (2,1);
+                \draw (0,0) -- (2,2);
+                \draw (0,1) -- (2,0);
+                \draw (0,1) -- (2,1);
+                \draw (0,1) -- (2,2);
+                \draw (0,2) -- (2,0);
+                \draw (0,2) -- (2,1);
+                \draw (0,2) -- (2,2);
+                \filldraw[black] (0,0) circle (2pt) node[anchor=east] {$1$};
+                \filldraw[black] (0,1) circle (2pt) node[anchor=east] {$2$};
+                \filldraw[black] (0,2) circle (2pt) node[anchor=east] {$3$};
+                \filldraw[red] (2,0) circle (2pt) node[anchor=west] {$4$};
+                \filldraw[red] (2,1) circle (2pt) node[anchor=west] {$5$};
+                \filldraw[red] (2,2) circle (2pt) node[anchor=west] {$6$};
             \end{tikzpicture}
             \caption{Úplný bipartitní graf $K_{3,3}$}
             \label{fig:ukol-2-1d-uplny-bipartitni-graf}
@@ -189,9 +224,9 @@
 
         \answerbox{
             \begin{itemize}
-                \item $\delta(K_{m,n}) = m$
-                \item $\Delta(K_{m,n}) = n$
-                \item Skóre grafu $K_{m,n} = mn$
+                \item $\delta(K_{m,n}) = \min(m,n)$
+                \item $\Delta(K_{m,n}) = \max(m,n)$
+                \item Skóre grafu $K_{m,n} = \{m, m, \dots, m, n, n, \dots, n\} = m \cdot n$
                 \item Barevnost grafu \chi($K_{m,n}) = 2$
             \end{itemize}
         }{1d}
@@ -218,7 +253,7 @@
             \begin{itemize}
                 \item $\delta(PG_{18, 27}) = 3$
                 \item $\Delta(PG_{18, 27}) = 3$
-                \item Skóre grafu $PG_{18, 27} = 54$
+                \item Skóre grafu $PG_{18, 27} = \{3, 3, \dots, 3\} = 54$
                 \item Barevnost grafu \chi($PG_{18, 27}) = 3$
             \end{itemize}
         }{1e}
@@ -354,10 +389,10 @@
                 \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
-                \draw[->,>=stealth] (1) -- (2);
-                \draw[->,>=stealth] (2) -- (3);
-                \draw[->,>=stealth] (3) -- (4);
-                \draw[->,>=stealth] (4) -- (1);
+                \draw[>=stealth] (1) -- (2);
+                \draw[>=stealth] (2) -- (3);
+                \draw[>=stealth] (3) -- (4);
+                \draw[>=stealth] (4) -- (1);
                 \node at (0,-3)
             \end{tikzpicture}
             \quad
@@ -366,10 +401,10 @@
                 \node[circle, draw, inner sep=2pt, fill=black, label=right:{2}] (2) at (2,0) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=below:{3}] (3) at (0,-2) {};
-                \draw[->,>=stealth] (1) -- (2);
-                \draw[->,>=stealth] (2) -- (4);
-                \draw[->,>=stealth] (4) -- (3);
-                \draw[->,>=stealth] (3) -- (1);
+                \draw[>=stealth] (1) -- (2);
+                \draw[>=stealth] (2) -- (4);
+                \draw[>=stealth] (4) -- (3);
+                \draw[>=stealth] (3) -- (1);
                 \node at (0,-3)
             \end{tikzpicture}
             \quad
@@ -378,10 +413,10 @@
                 \node[circle, draw, inner sep=2pt, fill=black, label=right:{3}] (3) at (2,0) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=below:{2}] (2) at (0,-2) {};
                 \node[circle, draw, inner sep=2pt, fill=black, label=left:{4}] (4) at (-2,0) {};
-                \draw[->,>=stealth] (1) -- (3);
-                \draw[->,>=stealth] (3) -- (2);
-                \draw[->,>=stealth] (2) -- (4);
-                \draw[->,>=stealth] (4) -- (1);
+                \draw[>=stealth] (1) -- (3);
+                \draw[>=stealth] (3) -- (2);
+                \draw[>=stealth] (2) -- (4);
+                \draw[>=stealth] (4) -- (1);
                 \node at (0,-3)
             \end{tikzpicture}
             \caption{Různé neorientované kružnice délky 4}
@@ -406,8 +441,8 @@
         \end{figure}
 
         Pro takový obecný graf $G_{n,2}$ určete jaký bude jeho minimální a maximální stupeň vrcholu vyjádřeno jako
-        funkce~$n$
-        . Také určete počet hran tohoto grafu, opět jako funkci~$n$.
+        funkce~$n$.
+        Také určete počet hran tohoto grafu, opět jako funkci~$n$.
     }{false}
         TODO
     \end{uloha}
